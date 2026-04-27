@@ -1,0 +1,6 @@
+All 32,429 posts, chronological
+32,408 remaining
+
+
+Read analysis/SCHEMA.md and analysis/AGENT-LOOP.md, then run the loop until ALL DONE. Do not stop between batches. Do not ask for confirmation. batch-input.json is already prepared (batch 5, 50 posts)
+

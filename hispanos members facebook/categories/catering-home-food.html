@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catering &amp; Home Food — Hispanos FB Directory</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0d14;color:#e4e6eb;line-height:1.5}
+a{color:#4da3ff;text-decoration:none}a:hover{text-decoration:underline}
+.topbar{position:sticky;top:0;z-index:10;background:#11141d;border-bottom:1px solid #222836;padding:14px 20px;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.topbar h1{font-size:1.15rem;color:#fff}
+.topbar .sub{font-size:.78rem;color:#8b92a3}
+.topbar nav{display:flex;gap:8px;flex-wrap:wrap}
+.topbar nav a{padding:6px 12px;background:#161a24;border:1px solid #242a38;border-radius:6px;font-size:.8rem;color:#cdd3e0}
+.topbar nav a:hover{background:#1d2535;color:#fff;text-decoration:none}
+.topbar nav a.on{background:#1a2744;color:#4da3ff;border-color:#4da3ff}
+.wrap{max-width:1400px;margin:0 auto;padding:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:24px}
+.stat{background:#11141d;border:1px solid #1f2432;border-radius:10px;padding:16px}
+.stat .n{font-size:1.8rem;font-weight:700;color:#4da3ff;line-height:1}
+.stat .l{font-size:.72rem;color:#8b92a3;text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+.card{background:#11141d;border:1px solid #1f2432;border-radius:10px;overflow:hidden;transition:border-color .15s}
+.card:hover{border-color:#2d3548}
+.card.offer{border-left:3px solid #4ae0a0}
+.card.seek{border-left:3px solid #f0a84a}
+.card-head{padding:12px 16px;display:flex;gap:14px;align-items:flex-start}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4da3ff,#b48eff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.05rem;flex-shrink:0}
+.head-body{flex:1;min-width:0}
+.name{font-size:1.02rem;font-weight:600;color:#fff;margin-bottom:4px}
+.meta{font-size:.75rem;color:#8b92a3;display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.trades{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.trade{font-size:.72rem;padding:3px 10px;border-radius:12px;background:#1a2744;color:#4da3ff;border:1px solid #2c3f5e}
+.trade.offering{background:#0f2d22;color:#4ae0a0;border-color:#1f5540}
+.trade.seeking{background:#2d220f;color:#f0a84a;border-color:#55401f}
+.phones{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.phone{font-size:.86rem;font-weight:600;color:#4ae0a0;padding:4px 10px;background:#0f2d22;border-radius:6px;border:1px solid #1f5540}
+.phone a{color:inherit}
+.bio{font-size:.78rem;color:#8b92a3;font-style:italic}
+.sec{margin:24px 0 12px;font-size:1.1rem;color:#fff;padding-bottom:6px;border-bottom:1px solid #222836}
+.search{width:100%;padding:10px 14px;background:#161a24;border:1px solid #242a38;color:#e4e6eb;border-radius:8px;font-size:.95rem;outline:none;margin-bottom:16px}
+.search:focus{border-color:#4da3ff}
+.list{display:flex;flex-direction:column;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #1f2432}
+th{background:#0d1019;color:#8b92a3;font-weight:600;text-transform:uppercase;font-size:.7rem;letter-spacing:.5px;position:sticky;top:0;cursor:pointer;user-select:none}
+th:hover{color:#fff}
+tr:hover{background:#141823}
+.excerpt{font-size:.78rem;color:#8b92a3;margin-top:4px;line-height:1.4}
+.post-item{padding:10px 14px;background:#0d1019;border:1px solid #1a1f2c;border-radius:6px;margin-bottom:8px;font-size:.85rem}
+.post-item.offer{border-left:2px solid #4ae0a0}
+.post-item.seek{border-left:2px solid #f0a84a}
+.post-item .head{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;font-size:.72rem;color:#8b92a3}
+.post-item .body{color:#cdd3e0;white-space:pre-wrap;word-wrap:break-word}
+.hidden{display:none!important}
+@media (max-width:700px){.topbar{flex-direction:column;align-items:flex-start}}
+.cat-head{background:linear-gradient(135deg,#1a2744 0%,#2a1f44 100%);padding:32px 20px;border-radius:12px;margin-bottom:24px}
+.cat-head h2{font-size:1.8rem;color:#fff;margin-bottom:8px}
+.cat-head p{color:#cdd3e0;font-size:.9rem}
+.section{margin-top:24px}
+.section h3{color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section h3 .count{font-size:.75rem;background:#1a2744;color:#4da3ff;padding:3px 10px;border-radius:10px}
+</style></head><body>
+<div class="topbar">
+  <div><h1>Catering &amp; Home Food</h1><div class="sub"><a href="index.html" style="color:#8b92a3">← Dashboard</a> · <a href="index.html" style="color:#8b92a3">All categories</a></div></div>
+  <nav><a href="../index.html" >Dashboard</a><a href="../directory.html" >Full Directory</a><a href="../phones.html" >Phone Lookup</a><a href="../businesses.html" >Top Businesses</a><a href="../categories/index.html" class="on">Categories</a></nav>
+</div>
+<div class="wrap">
+  <div class="cat-head">
+    <h2>Catering &amp; Home Food</h2>
+    <p>12 people mentioned · 4 offering · 0 seeking · 8 with phone numbers</p>
+  </div>
+
+  <input type="text" class="search" id="q" placeholder="Search name or phone within Catering &amp; Home Food...">
+
+  <div class="section"><h3>🟢 Offering Services <span class="count">4</span></h3>
+    <div class="list" id="offer-list"><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">YF</div>
+        <div class="head-body">
+          <div class="name">Yuliana Fuentes
+            <a href="https://www.facebook.com/yuliana.fuentes.7517" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 77% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 175 posts</span>
+            <span>💬 176 comments</span>
+            <span>🕒 2026-04-11</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 737-9919">(318) 737-9919</a></span><span class="phone"><a href="tel:(318) 547-4541">(318) 547-4541</a></span><span class="phone"><a href="tel:(318) 737-9910">(318) 737-9910</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Events &amp; Party</span><span class="trade">Delivery</span><span class="trade">Bakery &amp; Pastries</span><span class="trade">Cleaning</span></div>
+          <div class="excerpt">"Hola buen día 😃 yo hago pasteles 🎂 y si aceptos envíos de México por si desea ☺️" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3864596847105896/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">AC</div>
+        <div class="head-body">
+          <div class="name">Anlli Casanas
+            <a href="https://www.facebook.com/anlli.casanas" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 77% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 30 posts</span>
+            <span>💬 30 comments</span>
+            <span>🕒 2026-01-29</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 570-1044">(318) 570-1044</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Delivery</span></div>
+          <div class="excerpt">"Leon Vera no se preocupe pero cada fin de semana vendo comida después de las 6:00 pm" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3243868009178786/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">TA</div>
+        <div class="head-body">
+          <div class="name">Taquería Alvarado
+            <a href="https://www.facebook.com/taqueria.alvarado.461690" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 77% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 6 posts</span>
+            <span>💬 12 comments</span>
+            <span>🕒 2026-03-04</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(615) 424-2351">(615) 424-2351</a></span><span class="phone"><a href="tel:(850) 851-2814">(850) 851-2814</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Painting</span></div>
+          <div class="excerpt">"Realizamos servicio de catering para compañías se los llevamos a su lugar de trabajo  variedad de platillos de comida con tortillas hechas a mano 8508512814" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4388671904698385/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">ZV</div>
+        <div class="head-body">
+          <div class="name">Zoad Vasquez
+            <a href="https://www.facebook.com/zoad.vasquez.2025" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 62% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 14 posts</span>
+            <span>💬 18 comments</span>
+            <span>🕒 2024-09-08</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 551-9403">(318) 551-9403</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Restaurant</span></div>
+          <div class="excerpt">"Hola buenas tardes vengo a ofrecerles para mañana sábado venta de comida completamente 🇭🇳
+Tendremos carne asada : con arroz ,chismol, queso , frijoles y aguacate 
+Pollo frito , acompañado de tajadas ,o papas fritas 🤤 
+No te lo pierdas 
+Ambos platillos incluyen tus tortillas
+Se…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3921299741435606/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div></div></div>
+
+  <div class="section"><h3>Mentioned (intent unclear) <span class="count">8</span></h3>
+    <div class="list" id="unclear-list"><div class="card ">
+      <div class="card-head">
+        <div class="avatar">AA</div>
+        <div class="head-body">
+          <div class="name">AM Antojitos Mexicanos
+            <a href="https://www.facebook.com/profile.php?id=100083060184150" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 30% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 420 posts</span>
+            <span>💬 40 comments</span>
+            <span>🕒 2026-04-10</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 816-1364">(318) 816-1364</a></span><span class="phone"><a href="tel:(318) 816-1354">(318) 816-1354</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Delivery</span><span class="trade">Events &amp; Party</span><span class="trade">Music &amp; DJ</span></div>
+          <div class="excerpt">"Congratulations to the newly weds 🤍 
+We really enjoyed being part of your special event. ❤️
+
+✨Contact us for catering at your event! You can send us a message to this page, call318-816-1354 or email us at am.antojitos.mexicanos22@gmail.com  
+
+Felicidades a los recién casados 🤍d…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3935937899971790/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">AP</div>
+        <div class="head-body">
+          <div class="name">Andrea Ponce
+            <a href="https://www.facebook.com/andrea.ponce.376" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 30% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 333 posts</span>
+            <span>💬 86 comments</span>
+            <span>🕒 2026-04-12</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 816-1354">(318) 816-1354</a></span><span class="phone"><a href="tel:(318) 953-7261">(318) 953-7261</a></span><span class="phone"><a href="tel:(318) 376-0129">(318) 376-0129</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Events &amp; Party</span><span class="trade">Bakery &amp; Pastries</span><span class="trade">Music &amp; DJ</span><span class="trade">Concrete &amp; Masonry</span></div>
+          <div class="excerpt">"#beautyandthebeast #disney #cateringservice #roses #disneyprincess 💛🌹🎂🎉" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3623199917912258/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Neville High School</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">ER</div>
+        <div class="head-body">
+          <div class="name">Eva Rojas
+            <a href="https://www.facebook.com/eva.rojas.39" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 164 posts</span>
+            <span>💬 86 comments</span>
+            <span>🕒 2025-06-19</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(504) 220-9927">(504) 220-9927</a></span><span class="phone"><a href="tel:(318) 816-4173">(318) 816-4173</a></span><span class="phone"><a href="tel:(318) 738-6511">(318) 738-6511</a></span><span class="phone"><a href="tel:(292) 318-8164">(292) 318-8164</a></span><span class="phone"><a href="tel:(318) 450-5361">(318) 450-5361</a></span><span class="phone"><a href="tel:(318) 914-0165">(318) 914-0165</a></span><span class="phone"><a href="tel:(318) 450-1046">(318) 450-1046</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Sewing &amp; Tailoring</span><span class="trade">Restaurant</span><span class="trade">Landscaping &amp; Lawn</span><span class="trade">Delivery</span><span class="trade">Events &amp; Party</span></div>
+          <div class="excerpt">"Estamos haciendo una actividad de venta de comida para  recaudar fondos para gastos funerarios para  la Familia Delgado Murillo  todas las personas que gusten colaborar les esperamos bendiciones recuerden Dios bendice al dador alegre
+Pupusas  de chicharrón con queso, frijol con Q…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3385714344994151/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Assistant Manager at El Rinconcito de la abuela Licha</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">RB</div>
+        <div class="head-body">
+          <div class="name">Rodríguez   Bertha
+            <a href="https://www.facebook.com/maria.baena.7503" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 34 posts</span>
+            <span>💬 39 comments</span>
+            <span>🕒 2026-02-15</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 557-8444">(318) 557-8444</a></span><span class="phone"><a href="tel:(318) 557-6935">(318) 557-6935</a></span><span class="phone"><a href="tel:(870) 820-4020">(870) 820-4020</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Nails</span><span class="trade">Mechanic</span><span class="trade">Painting</span></div>
+          <div class="excerpt">"Hoy Hoy Hola buenas tarde ,Hoy tendré venta de comida 🍤🍤🍚🫘🥗, frutas 🍉 🍍🍈 y Cueros preparados ,por si gustan algo llamar ☎️ 318-557-8444
+🍤🍤Camarones 🍤 🍤
+🍚 Arroz 🍚 
+Frijol 🫘 
+Ensalada 🥗 
+Tortillas 🫓
+Fruta 🍉🍉🍍🍍🍈🍈
+Hoy Hoy Viernes A partir de las 5:00 pm en adel…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4409348882630687/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at A Mi Me Gusta Bailar Norteñas</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">IR</div>
+        <div class="head-body">
+          <div class="name">Irlanda Romero
+            <a href="https://www.facebook.com/irlanda.romero.5" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 77 posts</span>
+            <span>💬 34 comments</span>
+            <span>🕒 2026-04-20</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Restaurant</span><span class="trade">Taxes &amp; Notary</span><span class="trade">Bakery &amp; Pastries</span></div>
+          <div class="excerpt">"🌮✨ Monroe’s Favorite Taste of Mexico! ✨🌮
+
+For almost 15 years, El Azteca has been serving up 100+ authentic Mexican &amp; Hispanic dishes with love! 🎶 Enjoy live music, margaritas, Taco Tuesdays, family-friendly dining, catering, and events—all in one place! 🥳
+
+📍 4075 Sterlingto…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4196337780598466/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Now After Nothing</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">HJ</div>
+        <div class="head-body">
+          <div class="name">Hernandez Jenrri
+            <a href="https://www.facebook.com/gonzalez.tadeo.447761" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 7 posts</span>
+            <span>💬 11 comments</span>
+            <span>🕒 2026-03-30</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Labor / Helper</span><span class="trade">HVAC</span></div>
+          <div class="excerpt">"Bnos dias quien vende comida a domicilio" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4618390761726497/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">EA</div>
+        <div class="head-body">
+          <div class="name">El Azteca Grill &amp; Bar
+            <a href="https://www.facebook.com/100063559873429" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 14 posts</span>
+            <span>💬 4 comments</span>
+            <span>🕒 2026-01-28</span>
+          </div>
+          
+          
+          <div class="excerpt">"🌮✨ Monroe’s Favorite Taste of Mexico! ✨🌮
+
+For almost 15 years, El Azteca has been serving up 100+ authentic Mexican &amp; Hispanic dishes with love! 🎶 Enjoy live music, margaritas, Taco Tuesdays, family-friendly dining, catering, and events—all in one place! 🥳
+
+📍 4075 Sterlingto…" <a href="https://www.facebook.com/groups/1437882213110717/posts/1191892536272731/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">SD</div>
+        <div class="head-body">
+          <div class="name">Sophie De La O
+            <a href="https://www.facebook.com/guadalupe.delao.1" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 7 posts</span>
+            <span>💬 0 comments</span>
+            <span>🕒 2021-08-21</span>
+          </div>
+          
+          
+          <div class="excerpt">"Hola amigos, buenas tardes a todos! Les queremos avisar que ya se acabo la venta de comida .  Mi familia y yo les queremos agradecer de todo corazon a todos a los que vineron a comprar, ordenar, los que nos ayudaron al preparamiento,y compartir el post. Tambien a los que siguen r…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3057618394470416/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Wossman High School</div>
+        </div>
+      </div>
+    </div></div></div>
+
+  
+</div>
+<script>
+document.getElementById('q').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.card').forEach(c => {
+    const txt = c.textContent.toLowerCase();
+    c.classList.toggle('hidden', q && txt.indexOf(q) < 0);
+  });
+});
+</script>
+</body></html>

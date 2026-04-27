@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sewing &amp; Tailoring — Hispanos FB Directory</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0d14;color:#e4e6eb;line-height:1.5}
+a{color:#4da3ff;text-decoration:none}a:hover{text-decoration:underline}
+.topbar{position:sticky;top:0;z-index:10;background:#11141d;border-bottom:1px solid #222836;padding:14px 20px;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.topbar h1{font-size:1.15rem;color:#fff}
+.topbar .sub{font-size:.78rem;color:#8b92a3}
+.topbar nav{display:flex;gap:8px;flex-wrap:wrap}
+.topbar nav a{padding:6px 12px;background:#161a24;border:1px solid #242a38;border-radius:6px;font-size:.8rem;color:#cdd3e0}
+.topbar nav a:hover{background:#1d2535;color:#fff;text-decoration:none}
+.topbar nav a.on{background:#1a2744;color:#4da3ff;border-color:#4da3ff}
+.wrap{max-width:1400px;margin:0 auto;padding:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:24px}
+.stat{background:#11141d;border:1px solid #1f2432;border-radius:10px;padding:16px}
+.stat .n{font-size:1.8rem;font-weight:700;color:#4da3ff;line-height:1}
+.stat .l{font-size:.72rem;color:#8b92a3;text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+.card{background:#11141d;border:1px solid #1f2432;border-radius:10px;overflow:hidden;transition:border-color .15s}
+.card:hover{border-color:#2d3548}
+.card.offer{border-left:3px solid #4ae0a0}
+.card.seek{border-left:3px solid #f0a84a}
+.card-head{padding:12px 16px;display:flex;gap:14px;align-items:flex-start}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4da3ff,#b48eff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.05rem;flex-shrink:0}
+.head-body{flex:1;min-width:0}
+.name{font-size:1.02rem;font-weight:600;color:#fff;margin-bottom:4px}
+.meta{font-size:.75rem;color:#8b92a3;display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.trades{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.trade{font-size:.72rem;padding:3px 10px;border-radius:12px;background:#1a2744;color:#4da3ff;border:1px solid #2c3f5e}
+.trade.offering{background:#0f2d22;color:#4ae0a0;border-color:#1f5540}
+.trade.seeking{background:#2d220f;color:#f0a84a;border-color:#55401f}
+.phones{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.phone{font-size:.86rem;font-weight:600;color:#4ae0a0;padding:4px 10px;background:#0f2d22;border-radius:6px;border:1px solid #1f5540}
+.phone a{color:inherit}
+.bio{font-size:.78rem;color:#8b92a3;font-style:italic}
+.sec{margin:24px 0 12px;font-size:1.1rem;color:#fff;padding-bottom:6px;border-bottom:1px solid #222836}
+.search{width:100%;padding:10px 14px;background:#161a24;border:1px solid #242a38;color:#e4e6eb;border-radius:8px;font-size:.95rem;outline:none;margin-bottom:16px}
+.search:focus{border-color:#4da3ff}
+.list{display:flex;flex-direction:column;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #1f2432}
+th{background:#0d1019;color:#8b92a3;font-weight:600;text-transform:uppercase;font-size:.7rem;letter-spacing:.5px;position:sticky;top:0;cursor:pointer;user-select:none}
+th:hover{color:#fff}
+tr:hover{background:#141823}
+.excerpt{font-size:.78rem;color:#8b92a3;margin-top:4px;line-height:1.4}
+.post-item{padding:10px 14px;background:#0d1019;border:1px solid #1a1f2c;border-radius:6px;margin-bottom:8px;font-size:.85rem}
+.post-item.offer{border-left:2px solid #4ae0a0}
+.post-item.seek{border-left:2px solid #f0a84a}
+.post-item .head{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;font-size:.72rem;color:#8b92a3}
+.post-item .body{color:#cdd3e0;white-space:pre-wrap;word-wrap:break-word}
+.hidden{display:none!important}
+@media (max-width:700px){.topbar{flex-direction:column;align-items:flex-start}}
+.cat-head{background:linear-gradient(135deg,#1a2744 0%,#2a1f44 100%);padding:32px 20px;border-radius:12px;margin-bottom:24px}
+.cat-head h2{font-size:1.8rem;color:#fff;margin-bottom:8px}
+.cat-head p{color:#cdd3e0;font-size:.9rem}
+.section{margin-top:24px}
+.section h3{color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section h3 .count{font-size:.75rem;background:#1a2744;color:#4da3ff;padding:3px 10px;border-radius:10px}
+</style></head><body>
+<div class="topbar">
+  <div><h1>Sewing &amp; Tailoring</h1><div class="sub"><a href="index.html" style="color:#8b92a3">← Dashboard</a> · <a href="index.html" style="color:#8b92a3">All categories</a></div></div>
+  <nav><a href="../index.html" >Dashboard</a><a href="../directory.html" >Full Directory</a><a href="../phones.html" >Phone Lookup</a><a href="../businesses.html" >Top Businesses</a><a href="../categories/index.html" class="on">Categories</a></nav>
+</div>
+<div class="wrap">
+  <div class="cat-head">
+    <h2>Sewing &amp; Tailoring</h2>
+    <p>24 people mentioned · 2 offering · 13 seeking · 13 with phone numbers</p>
+  </div>
+
+  <input type="text" class="search" id="q" placeholder="Search name or phone within Sewing &amp; Tailoring...">
+
+  <div class="section"><h3>🟢 Offering Services <span class="count">2</span></h3>
+    <div class="list" id="offer-list"><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">ER</div>
+        <div class="head-body">
+          <div class="name">Eva Rojas
+            <a href="https://www.facebook.com/eva.rojas.39" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 77% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 164 posts</span>
+            <span>💬 86 comments</span>
+            <span>🕒 2025-06-19</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(504) 220-9927">(504) 220-9927</a></span><span class="phone"><a href="tel:(318) 816-4173">(318) 816-4173</a></span><span class="phone"><a href="tel:(318) 738-6511">(318) 738-6511</a></span><span class="phone"><a href="tel:(292) 318-8164">(292) 318-8164</a></span><span class="phone"><a href="tel:(318) 450-5361">(318) 450-5361</a></span><span class="phone"><a href="tel:(318) 914-0165">(318) 914-0165</a></span><span class="phone"><a href="tel:(318) 450-1046">(318) 450-1046</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Restaurant</span><span class="trade">Landscaping &amp; Lawn</span><span class="trade">Delivery</span><span class="trade">Events &amp; Party</span><span class="trade">Legal Services</span></div>
+          <div class="excerpt">"Juana Escobar yo ya no hago arreglos pero q me manden mensage tengo una amiga ella hace reparaciones faldas vestidos es costurera" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3356502337915352/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Assistant Manager at El Rinconcito de la abuela Licha</div>
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">RG</div>
+        <div class="head-body">
+          <div class="name">Rita Guerrero
+            <a href="https://www.facebook.com/rita.guerrero.98499" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 77% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 19 posts</span>
+            <span>💬 105 comments</span>
+            <span>🕒 2026-03-18</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 372-8798">(318) 372-8798</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Childcare</span><span class="trade">Delivery</span><span class="trade">Landscaping &amp; Lawn</span></div>
+          <div class="excerpt">"Buenas noches amigos(a) quería informales que se hacen arreglos de ropa de vestir.   ( Ruedos de pantalón ajustes de camisas etc) para más información comuníquese conmigo" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3581076322124618/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div></div></div>
+
+  <div class="section"><h3>Mentioned (intent unclear) <span class="count">9</span></h3>
+    <div class="list" id="unclear-list"><div class="card ">
+      <div class="card-head">
+        <div class="avatar">IM</div>
+        <div class="head-body">
+          <div class="name">Ivette Mendoza
+            <a href="https://www.facebook.com/ivette.mendoza" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 142 posts</span>
+            <span>💬 158 comments</span>
+            <span>🕒 2026-04-10</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 318-5086">(318) 318-5086</a></span><span class="phone"><a href="tel:(318) 368-5086">(318) 368-5086</a></span><span class="phone"><a href="tel:(425) 117-7734">(425) 117-7734</a></span><span class="phone"><a href="tel:(318) 468-5086">(318) 468-5086</a></span><span class="phone"><a href="tel:(318) 361-0381">(318) 361-0381</a></span><span class="phone"><a href="tel:(386) 684-3489">(386) 684-3489</a></span><span class="phone"><a href="tel:(318) 608-5767">(318) 608-5767</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Delivery</span><span class="trade">Childcare</span><span class="trade">Fencing</span><span class="trade">Translation</span><span class="trade">Nails</span></div>
+          <div class="excerpt">"Angel Ferrero modificar prendas de ropa (alta costura)" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4446232558942319/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">YS</div>
+        <div class="head-body">
+          <div class="name">Yulianita Sanz
+            <a href="https://www.facebook.com/kiomarayuliana.riverasanchez" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 19 posts</span>
+            <span>💬 106 comments</span>
+            <span>🕒 2026-04-03</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 557-9584">(318) 557-9584</a></span><span class="phone"><a href="tel:(337) 965-5442">(337) 965-5442</a></span><span class="phone"><a href="tel:(318) 267-7342">(318) 267-7342</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Tutoring</span><span class="trade">Accounting</span><span class="trade">Flooring &amp; Tile</span></div>
+          <div class="excerpt">"Milena Cabrera reina no se si el aún está aquí en la ciudad pero es sastre te envío la foto del perfil, podrías hablarle" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3804110999821148/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">ML</div>
+        <div class="head-body">
+          <div class="name">Martha Lucía López González
+            <a href="https://www.facebook.com/marthalucia.lopezgonzalez" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 36 posts</span>
+            <span>💬 27 comments</span>
+            <span>🕒 2026-01-12</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 801-3618">(318) 801-3618</a></span><span class="phone"><a href="tel:(318) 801-3619">(318) 801-3619</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Plumbing</span><span class="trade">Remodeling</span><span class="trade">Mechanic</span><span class="trade">Auto Body &amp; Paint</span></div>
+          <div class="excerpt">"Hola  alguien conoce a una costurera?" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3308390179393235/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Quetzalcoatl</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">RS</div>
+        <div class="head-body">
+          <div class="name">Rita Santoyo
+            <a href="https://www.facebook.com/rita.santoyo.54" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 9 posts</span>
+            <span>💬 53 comments</span>
+            <span>🕒 2026-02-12</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(838) 595-8946">(838) 595-8946</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Healthcare Worker</span><span class="trade">Bakery &amp; Pastries</span></div>
+          <div class="excerpt">"Kari Reyes Cif eya es muy buena costurera" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3846189808946600/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">KR</div>
+        <div class="head-body">
+          <div class="name">Kari Reyes Cif
+            <a href="https://www.facebook.com/kari.reyescif" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 5 posts</span>
+            <span>💬 5 comments</span>
+            <span>🕒 2026-03-15</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 914-5546">(318) 914-5546</a></span></div>
+          
+          <div class="excerpt">"Hola buenas noches, con el permiso de la administrador, me pongo a sus servicios como costurera en el área de West Monroe y sus alrededores" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4596137137285193/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Facebook</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">AA</div>
+        <div class="head-body">
+          <div class="name">Anahi Arzate Torres
+            <a href="https://www.facebook.com/anahi.arzatetorres" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 17 posts</span>
+            <span>💬 44 comments</span>
+            <span>🕒 2026-03-29</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Restaurant</span><span class="trade">Plumbing</span></div>
+          <div class="excerpt">"Alguien sabe ,quien hace costuras de ropa 
+Bastillas de pantalones y esas cosas ." <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3110669569165298/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Francisco J. Mujica</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">PL</div>
+        <div class="head-body">
+          <div class="name">Presiliana Lopez
+            <a href="https://www.facebook.com/presiliana.lopez.2025" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 15 posts</span>
+            <span>💬 20 comments</span>
+            <span>🕒 2025-01-20</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Cleaning</span></div>
+          <div class="excerpt">"Alguien  costura pantalónes" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3926524817579765/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Guatemala City, Guatemala</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">CO</div>
+        <div class="head-body">
+          <div class="name">Christian Ochoa
+            <a href="https://www.facebook.com/christian.ochoa.380018" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 4 posts</span>
+            <span>💬 8 comments</span>
+            <span>🕒 2025-08-02</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Childcare</span></div>
+          <div class="excerpt">"Algún sastre costurera por la zona?👀👀" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4243760599189517/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">ER</div>
+        <div class="head-body">
+          <div class="name">Edu Romeo Sants
+            <a href="https://www.facebook.com/eduardo.santosromero.58" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 5 posts</span>
+            <span>💬 6 comments</span>
+            <span>🕒 2026-04-10</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Photography</span></div>
+          <div class="excerpt">"ALGUN SASTRE QUÉ ME AYUDE A ARREGLAR UNAS PRENDAS" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4593232874242286/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Coyoacán</div>
+        </div>
+      </div>
+    </div></div></div>
+
+  <div class="section"><h3>🟡 Seeking Services <span class="count">13</span></h3>
+    <div class="list" id="seek-list"><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">LM</div>
+        <div class="head-body">
+          <div class="name">Lupita Morato
+            <a href="https://www.facebook.com/lupita.morato.260539" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 30% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 62 posts</span>
+            <span>💬 75 comments</span>
+            <span>🕒 2026-04-19</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 614-5220">(318) 614-5220</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Bakery &amp; Pastries</span><span class="trade">Delivery</span><span class="trade">Events &amp; Party</span><span class="trade">Barber &amp; Hair</span><span class="trade">Landscaping &amp; Lawn</span></div>
+          <div class="excerpt">"Alguna costurera que me recomienden" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4449151655317076/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">West Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">GA</div>
+        <div class="head-body">
+          <div class="name">Gloria Amaya
+            <a href="https://www.facebook.com/gloria.amaya.35199" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 171 posts</span>
+            <span>💬 67 comments</span>
+            <span>🕒 2025-08-30</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(510) 283-4372">(510) 283-4372</a></span><span class="phone"><a href="tel:(510) 674-6101">(510) 674-6101</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Delivery</span><span class="trade">Real Estate</span><span class="trade">Driver &amp; Rides</span></div>
+          <div class="excerpt">"Busco una costurera en west Monroe" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4166792663552978/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at En Mi Casa</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">AR</div>
+        <div class="head-body">
+          <div class="name">Alexis Rivera
+            <a href="https://www.facebook.com/alexis.rivera.516069" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 21 posts</span>
+            <span>💬 16 comments</span>
+            <span>🕒 2026-04-08</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 904-5746">(318) 904-5746</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Restaurant</span><span class="trade">Mechanic</span></div>
+          <div class="excerpt">"Con el permiso del administrador quiero saber si alguien que sepa de costura" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4277121692520074/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Alex Latin Restaurant &amp; Cafeteria</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">AB</div>
+        <div class="head-body">
+          <div class="name">Abigail Barragán
+            <a href="https://www.facebook.com/lourdes92" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 3 posts</span>
+            <span>💬 14 comments</span>
+            <span>🕒 2026-02-17</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 863-9295">(318) 863-9295</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Delivery</span></div>
+          <div class="excerpt">"Buenos días ! Busco quien realice trabajos de costura o si me pueden compartir algún contacto porfavor" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4456585101240398/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Quitman, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">MS</div>
+        <div class="head-body">
+          <div class="name">Matt Sherlock
+            <a href="https://www.facebook.com/matt.sherlock.71" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 11 comments</span>
+            <span>🕒 2026-01-28</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 816-4173">(318) 816-4173</a></span></div>
+          
+          <div class="excerpt">"Hola muy buenos día Dios les bendiga inmensa mente y pues aquí haciendo una molestia alguien que me recomiende una costurera por favor se los agradezco mucho" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4086764281555817/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Registered Pharmacist at Walgreens</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">MM</div>
+        <div class="head-body">
+          <div class="name">Mary Matias
+            <a href="https://www.facebook.com/mary.matias.16" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 3 posts</span>
+            <span>💬 3 comments</span>
+            <span>🕒 2024-08-17</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(601) 813-8462">(601) 813-8462</a></span><span class="phone"><a href="tel:(318) 450-5867">(318) 450-5867</a></span></div>
+          
+          <div class="excerpt">"Buenas tardes  alguien  que sepa de costuras aquí en west monroe o monroe  recomendaciones porfavor 🙏" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3268448006720786/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">West Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">MC</div>
+        <div class="head-body">
+          <div class="name">Milena Cabrera
+            <a href="https://www.facebook.com/scabreragonzalez" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 165 posts</span>
+            <span>💬 50 comments</span>
+            <span>🕒 2026-03-27</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Barber &amp; Hair</span><span class="trade">Delivery</span><span class="trade">Drywall</span><span class="trade">Fencing</span><span class="trade">Cleaning</span></div>
+          <div class="excerpt">"Buen día, agradezco recomendaciones de alguien hispano haga alteraciones o sastrería" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3804110999821148/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">CG</div>
+        <div class="head-body">
+          <div class="name">Carolina Guzmán
+            <a href="https://www.facebook.com/caro.guzq" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 8 posts</span>
+            <span>💬 162 comments</span>
+            <span>🕒 2026-03-06</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Flooring &amp; Tile</span><span class="trade">Remodeling</span><span class="trade">Translation</span><span class="trade">Delivery</span><span class="trade">Tree Services</span></div>
+          <div class="excerpt">"Hola! Alguien que conozca de una costurera que me pueda ayudar a hacer una almohada? La tela de la daría yo. Gracias. Es como la de la foto." <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3760625120836403/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">CUCS</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">VJ</div>
+        <div class="head-body">
+          <div class="name">Vzqz Janet
+            <a href="https://www.facebook.com/janet.vazquezrojas" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 26 posts</span>
+            <span>💬 36 comments</span>
+            <span>🕒 2026-03-01</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Nails</span><span class="trade">Photography</span></div>
+          <div class="excerpt">"Alguna costurera,    tengo un vestido largo de lentejuela que necesito arreglar" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3356502337915352/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Eros, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">NJ</div>
+        <div class="head-body">
+          <div class="name">Nancy Johnson
+            <a href="https://www.facebook.com/nancy.johnson.96155" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 20 comments</span>
+            <span>🕒 2026-03-03</span>
+          </div>
+          
+          
+          <div class="excerpt">"Alguien que me recomiende alguna costurera por favor!! Se agrádese grasias🙏" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/2939860289579561/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">ML</div>
+        <div class="head-body">
+          <div class="name">Millan López
+            <a href="https://www.facebook.com/millan.lopez.581" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 5 posts</span>
+            <span>💬 17 comments</span>
+            <span>🕒 2025-08-31</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Legal Services</span><span class="trade">Bakery &amp; Pastries</span></div>
+          <div class="excerpt">"Algún sastrero q me recomienden me urge" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3966370356928544/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">MR</div>
+        <div class="head-body">
+          <div class="name">Madeling Rodriguez
+            <a href="https://www.facebook.com/madeling.rodriguez.885701" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 10 posts</span>
+            <span>💬 10 comments</span>
+            <span>🕒 2026-03-19</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Events &amp; Party</span><span class="trade">Photography</span></div>
+          <div class="excerpt">"Hola buenas tardes alguien que me recomiende alguien que sepa de costura gracias!" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4516069245291983/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">North Charleston, South Carolina</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">RL</div>
+        <div class="head-body">
+          <div class="name">Ronnaldo Leyva
+            <a href="https://www.facebook.com/ronnaldo.leyva.7" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 3 posts</span>
+            <span>💬 0 comments</span>
+            <span>🕒 2025-04-03</span>
+          </div>
+          
+          
+          <div class="excerpt">"Se busca una costurera que pueda hacer arreglos a shorts y pantalones!!" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3583383408560576/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">West Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div></div></div>
+</div>
+<script>
+document.getElementById('q').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.card').forEach(c => {
+    const txt = c.textContent.toLowerCase();
+    c.classList.toggle('hidden', q && txt.indexOf(q) < 0);
+  });
+});
+</script>
+</body></html>

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Posts Viewer — Hispanos en West Monroe</title>
+<style>
+  :root {
+    --bg: #f0f2f5;
+    --surface: #ffffff;
+    --hover: #f2f3f5;
+    --border: #dddfe2;
+    --border-light: #e4e6eb;
+    --text: #050505;
+    --text-secondary: #65676b;
+    --text-link: #0064d1;
+    --blue: #1877f2;
+    --blue-hover: #166fe5;
+    --blue-light: #e7f3ff;
+    --green: #42b72a;
+    --comment-bg: #f0f2f5;
+    --radius: 8px;
+    --shadow: 0 1px 2px rgba(0,0,0,0.1);
+    --shadow-lg: 0 2px 12px rgba(0,0,0,0.1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.34; -webkit-font-smoothing: antialiased;
+  }
+
+  /* Upload Screen */
+  #upload-screen {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 20px;
+  }
+  .upload-box {
+    background: var(--surface); border: 2px dashed var(--border);
+    border-radius: 12px; padding: 60px 40px; text-align: center;
+    max-width: 500px; width: 100%; cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s; box-shadow: var(--shadow);
+  }
+  .upload-box:hover, .upload-box.dragover { border-color: var(--blue); box-shadow: var(--shadow-lg); }
+  .upload-icon { font-size: 56px; margin-bottom: 16px; }
+  .upload-box h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .upload-box p { color: var(--text-secondary); font-size: 15px; margin-bottom: 24px; }
+  .upload-btn {
+    background: var(--blue); color: #fff; border: none;
+    padding: 10px 40px; border-radius: 6px; font-size: 15px;
+    font-weight: 600; cursor: pointer;
+  }
+  .upload-btn:hover { background: var(--blue-hover); }
+  #file-input { display: none; }
+
+  /* Main */
+  #main-screen { display: none; }
+
+  /* Top Bar */
+  .top-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 0 16px; display: flex; align-items: center;
+    justify-content: space-between; height: 56px;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .top-bar-left { display: flex; align-items: center; gap: 12px; }
+  .fb-logo {
+    width: 40px; height: 40px; background: var(--blue);
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-weight: 900; font-size: 22px; color: #fff;
+  }
+  .group-name { font-size: 16px; font-weight: 700; }
+  .file-label { color: var(--text-secondary); font-size: 12px; }
+  .top-bar-right { display: flex; align-items: center; gap: 8px; }
+  .search-input {
+    background: var(--comment-bg); border: none; color: var(--text);
+    padding: 8px 16px; border-radius: 20px; font-size: 15px;
+    width: 260px; outline: none;
+  }
+  .search-input::placeholder { color: var(--text-secondary); }
+  .search-input:focus { box-shadow: 0 0 0 2px var(--blue); }
+  .btn-pill {
+    background: var(--comment-bg); border: none; color: var(--text);
+    padding: 8px 16px; border-radius: 20px; font-size: 13px;
+    font-weight: 600; cursor: pointer;
+  }
+  .btn-pill:hover { background: var(--border-light); }
+
+  /* Stats */
+  .stats-bar {
+    max-width: 700px; margin: 16px auto 0;
+    display: flex; gap: 8px; padding: 0 16px; flex-wrap: wrap;
+  }
+  .stat-card {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 12px 16px; flex: 1; min-width: 100px;
+    text-align: center; box-shadow: var(--shadow);
+  }
+  .stat-label { font-size: 11px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; }
+  .stat-val { font-size: 22px; font-weight: 700; margin-top: 2px; }
+  .stat-val.blue { color: var(--blue); }
+  .stat-val.green { color: var(--green); }
+  .stat-val.orange { color: #f59e0b; }
+  .stat-val.pink { color: #e74c8b; }
+  .stat-val.purple { color: #8b5cf6; }
+
+  /* Progress bar */
+  .progress-wrap {
+    max-width: 700px; margin: 12px auto 0; padding: 0 16px;
+  }
+  .progress-bar-outer {
+    background: var(--border-light); border-radius: 10px; height: 10px;
+    overflow: hidden; box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);
+  }
+  .progress-bar-inner {
+    height: 100%; background: linear-gradient(90deg, var(--blue), var(--green));
+    border-radius: 10px; transition: width 0.3s;
+  }
+  .progress-text {
+    text-align: center; font-size: 12px; color: var(--text-secondary);
+    margin-top: 4px; font-weight: 600;
+  }
+
+  /* Tabs */
+  .view-tabs {
+    max-width: 700px; margin: 12px auto 0;
+    display: flex; gap: 4px; padding: 0 16px;
+  }
+  .view-tab {
+    background: transparent; border: none; color: var(--text-secondary);
+    padding: 10px 20px; border-radius: var(--radius);
+    font-size: 15px; cursor: pointer; font-weight: 600;
+  }
+  .view-tab:hover { background: var(--hover); }
+  .view-tab.active { background: var(--blue-light); color: var(--blue); }
+
+  /* Sort / Filter bar */
+  .filter-bar {
+    max-width: 700px; margin: 8px auto 0; padding: 0 16px;
+    display: flex; gap: 8px; align-items: center;
+  }
+  .filter-bar select, .filter-bar input {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; padding: 6px 12px; font-size: 13px;
+    color: var(--text); outline: none;
+  }
+  .filter-bar select:focus, .filter-bar input:focus { border-color: var(--blue); }
+  .filter-bar label { font-size: 13px; color: var(--text-secondary); font-weight: 600; }
+
+  /* Content */
+  .content { max-width: 700px; margin: 12px auto 40px; padding: 0 16px; }
+
+  /* Post Card */
+  .fb-post {
+    background: var(--surface); border-radius: var(--radius);
+    box-shadow: var(--shadow); margin-bottom: 16px; overflow: hidden;
+  }
+  .fb-post-header { display: flex; align-items: center; gap: 10px; padding: 12px 16px 0; }
+  .fb-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; color: #fff; flex-shrink: 0;
+    text-decoration: none;
+  }
+  .fb-post-info { flex: 1; min-width: 0; }
+  .fb-post-author { font-weight: 600; font-size: 15px; color: var(--text); text-decoration: none; }
+  .fb-post-author:hover { text-decoration: underline; }
+  .fb-post-time { font-size: 13px; color: var(--text-secondary); }
+  .fb-post-time a { color: var(--text-secondary); text-decoration: none; }
+  .fb-post-time a:hover { text-decoration: underline; }
+  .fb-post-id { font-size: 11px; color: var(--border); font-family: monospace; }
+
+  .fb-post-text {
+    padding: 8px 16px 12px; font-size: 15px; line-height: 1.5;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .fb-post-text.empty { color: var(--text-secondary); font-style: italic; font-size: 14px; }
+
+  /* Images */
+  .fb-post-images { width: 100%; display: grid; gap: 2px; }
+  .fb-post-images.g1 { grid-template-columns: 1fr; }
+  .fb-post-images.g2 { grid-template-columns: 1fr 1fr; }
+  .fb-post-images.g3 { grid-template-columns: 1fr 1fr; }
+  .fb-post-images.g3 img:first-child { grid-column: 1 / -1; }
+  .fb-post-images.gm { grid-template-columns: 1fr 1fr; }
+  .fb-post-images.gm img:first-child { grid-column: 1 / -1; }
+  .fb-post-images img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    min-height: 180px; max-height: 500px; cursor: pointer;
+  }
+  .fb-post-images img:hover { opacity: 0.95; }
+  .img-more-wrap { position: relative; overflow: hidden; }
+  .img-more-overlay {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.45);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 700; color: #fff; cursor: pointer;
+  }
+
+  /* Counts */
+  .fb-post-counts {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 16px 0; font-size: 15px; color: var(--text-secondary);
+  }
+  .fb-comments-toggle { cursor: pointer; }
+  .fb-comments-toggle:hover { text-decoration: underline; }
+
+  /* Actions */
+  .fb-post-actions {
+    display: flex; margin: 4px 16px 0; padding: 4px 0;
+    border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);
+  }
+  .fb-action-btn {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    gap: 6px; padding: 8px 0; border: none; background: transparent;
+    color: var(--text-secondary); font-size: 15px; font-weight: 600;
+    cursor: pointer; border-radius: 4px;
+  }
+  .fb-action-btn:hover { background: var(--hover); }
+
+  /* Comments */
+  .fb-comments-section { display: none; padding: 4px 16px 12px; }
+  .fb-comments-section.open { display: block; }
+  .fb-comment { display: flex; gap: 8px; padding: 6px 0; }
+  .fb-comment.reply { margin-left: 44px; }
+  .fb-comment-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0; margin-top: 2px;
+  }
+  .fb-comment-bubble { background: var(--comment-bg); border-radius: 18px; padding: 8px 12px; max-width: 85%; }
+  .fb-comment-author { font-weight: 600; font-size: 13px; }
+  .fb-comment-text { font-size: 15px; line-height: 1.37; word-break: break-word; }
+  .fb-comment-meta {
+    font-size: 12px; color: var(--text-secondary); margin-top: 2px;
+    padding-left: 12px; display: flex; gap: 12px; font-weight: 600;
+  }
+  .fb-comment-imgs { display: flex; gap: 4px; margin-top: 4px; }
+  .fb-comment-imgs img { height: 100px; border-radius: 8px; cursor: pointer; }
+
+  /* Members View */
+  .members-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 8px; }
+  .member-card {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 12px 16px; display: flex; align-items: center;
+    gap: 12px; box-shadow: var(--shadow);
+  }
+  .member-card:hover { box-shadow: var(--shadow-lg); }
+  .member-info { flex: 1; min-width: 0; }
+  .member-name { font-weight: 600; font-size: 15px; }
+  .member-details { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+  .member-details a { color: var(--text-link); text-decoration: none; }
+  .member-details a:hover { text-decoration: underline; }
+  .badge {
+    background: var(--blue-light); color: var(--blue);
+    padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 600;
+    white-space: nowrap;
+  }
+  .badge.done { background: #dcfce7; color: #16a34a; }
+  .badge.err { background: #fef2f2; color: #dc2626; }
+  .badge.prog { background: #fef3c7; color: #d97706; }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--comment-bg); padding: 10px 12px; text-align: left;
+    font-weight: 600; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--text-secondary); white-space: nowrap;
+    position: sticky; top: 0; cursor: pointer;
+  }
+  th:hover { background: var(--border-light); }
+  td { padding: 8px 12px; border-top: 1px solid var(--border-light); vertical-align: top; }
+  tr:hover td { background: var(--hover); }
+  td.trunc { max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* Image Modal */
+  .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; align-items: center; justify-content: center; cursor: pointer; }
+  .modal.open { display: flex; }
+  .modal img { max-width: 92vw; max-height: 92vh; border-radius: 4px; }
+
+  /* Lazy load placeholder */
+  .post-placeholder { min-height: 200px; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  @media (max-width: 720px) {
+    .content, .stats-bar, .view-tabs, .filter-bar, .progress-wrap { padding: 0 8px; }
+    .stats-bar { flex-wrap: wrap; }
+    .search-input { width: 160px; }
+    .members-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="upload-screen">
+  <div class="upload-box" id="drop-zone">
+    <div class="upload-icon">📊</div>
+    <h1>Posts Database Viewer</h1>
+    <p>Drop your <strong>database_posts.json</strong> here<br>to view scraped Facebook group posts.</p>
+    <button class="upload-btn" onclick="document.getElementById('file-input').click()">Choose File</button>
+    <input type="file" id="file-input" accept=".json">
+  </div>
+</div>
+
+<div id="main-screen">
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="fb-logo">f</div>
+      <div>
+        <div class="group-name" id="lbl-group">Group Posts</div>
+        <div class="file-label" id="lbl-file"></div>
+      </div>
+    </div>
+    <div class="top-bar-right">
+      <input class="search-input" id="search-box" type="text" placeholder="🔍 Search posts, authors...">
+      <button class="btn-pill" onclick="exportCSV()">⬇ CSV</button>
+      <button class="btn-pill" onclick="resetViewer()">✕</button>
+    </div>
+  </div>
+
+  <div class="stats-bar" id="stats-bar"></div>
+  <div class="progress-wrap" id="progress-wrap"></div>
+
+  <div class="view-tabs" id="view-tabs">
+    <button class="view-tab active" data-view="feed">Feed</button>
+    <button class="view-tab" data-view="members">Members</button>
+    <button class="view-tab" data-view="table">Table</button>
+  </div>
+
+  <div class="filter-bar" id="filter-bar">
+    <label>Sort:</label>
+    <select id="sort-select">
+      <option value="newest">Newest first</option>
+      <option value="oldest">Oldest first</option>
+      <option value="most-comments">Most comments</option>
+      <option value="author-az">Author A→Z</option>
+    </select>
+    <label>Author:</label>
+    <select id="author-filter"><option value="">All</option></select>
+    <label style="margin-left:auto;font-size:12px;color:var(--text-secondary)" id="lbl-showing"></label>
+  </div>
+
+  <div class="content" id="content"></div>
+</div>
+
+<div class="modal" id="img-modal"><img id="modal-img" src="" alt="Full size"></div>
+
+<script>
+let db = null;          // raw database
+let allPosts = [];      // array of post objects
+let filtered = [];      // after search/filter
+let currentView = 'feed';
+let fileName = '';
+let PAGE_SIZE = 30;     // lazy load batch size
+let loadedCount = 0;
+let loading = false;
+
+// ── File loading ──
+const dropZone = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+dropZone.addEventListener('click', () => fileInput.click());
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('dragover'); if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', e => { if (e.target.files[0]) loadFile(e.target.files[0]); });
+
+function loadFile(file) {
+  fileName = file.name;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const parsed = JSON.parse(e.target.result);
+      // Support both {meta,posts,...} format and flat array
+      if (parsed.posts && typeof parsed.posts === 'object') {
+        db = parsed;
+        allPosts = Object.values(parsed.posts);
+      } else if (Array.isArray(parsed)) {
+        db = { meta: {}, memberProgress: {}, posts: {} };
+        allPosts = parsed;
+      } else {
+        db = { meta: {}, memberProgress: {}, posts: parsed };
+        allPosts = Object.values(parsed);
+      }
+      filtered = allPosts.slice();
+      applySort();
+      populateAuthorFilter();
+      showMain();
+    } catch (err) { alert('Invalid JSON: ' + err.message); }
+  };
+  reader.readAsText(file);
+}
+
+function showMain() {
+  document.getElementById('upload-screen').style.display = 'none';
+  document.getElementById('main-screen').style.display = 'block';
+  document.getElementById('lbl-file').textContent = fileName;
+  if (db.meta?.groupId) document.getElementById('lbl-group').textContent = 'Group ' + db.meta.groupId;
+  // Try to detect group name from permalinks
+  const sample = allPosts.find(p => p.permalink?.includes('/groups/'));
+  if (sample) {
+    const m = sample.permalink.match(/groups\/([^/]+)/);
+    if (m && !/^\d+$/.test(m[1])) document.getElementById('lbl-group').textContent = m[1].replace(/[._-]/g, ' ');
+  }
+  renderStats();
+  renderProgress();
+  renderView();
+}
+
+function resetViewer() {
+  document.getElementById('upload-screen').style.display = 'flex';
+  document.getElementById('main-screen').style.display = 'none';
+  db = null; allPosts = []; filtered = []; fileInput.value = '';
+}
+
+// ── Utilities ──
+function esc(s) { if (!s) return ''; const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function initials(n) { return n ? n.split(' ').slice(0,2).map(w => w[0]||'').join('').toUpperCase() : '?'; }
+function colorFor(s) {
+  let h = 0; for (let i = 0; i < (s||'').length; i++) h = s.charCodeAt(i) + ((h << 5) - h);
+  const c = ['#1877f2','#42b72a','#f59e0b','#e74c8b','#8b5cf6','#ef4444','#06b6d4','#f97316','#6366f1','#14b8a6'];
+  return c[Math.abs(h) % c.length];
+}
+function fmtDate(ts) {
+  if (!ts) return '';
+  try {
+    const d = new Date(ts);
+    if (isNaN(d)) return ts;
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
+  } catch { return ts; }
+}
+function relTime(ts) {
+  if (!ts) return '';
+  try {
+    const d = new Date(ts);
+    const diff = Date.now() - d.getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 60) return mins + 'm';
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return hrs + 'h';
+    const days = Math.floor(hrs / 24);
+    if (days < 30) return days + 'd';
+    const months = Math.floor(days / 30);
+    if (months < 12) return months + 'mo';
+    return Math.floor(months / 12) + 'y';
+  } catch { return ''; }
+}
+
+// ── Search & Filter ──
+document.getElementById('search-box').addEventListener('input', () => { applyFilters(); renderView(); });
+document.getElementById('sort-select').addEventListener('change', () => { applySort(); renderView(); });
+document.getElementById('author-filter').addEventListener('change', () => { applyFilters(); renderView(); });
+
+function populateAuthorFilter() {
+  const sel = document.getElementById('author-filter');
+  const authors = [...new Set(allPosts.map(p => p.authorName).filter(Boolean))].sort();
+  sel.innerHTML = '<option value="">All (' + authors.length + ')</option>' +
+    authors.map(a => '<option value="' + esc(a) + '">' + esc(a) + '</option>').join('');
+}
+
+function applyFilters() {
+  const q = document.getElementById('search-box').value.toLowerCase();
+  const author = document.getElementById('author-filter').value;
+  filtered = allPosts.filter(p => {
+    if (author && p.authorName !== author) return false;
+    if (q) {
+      const hay = (p.message || '') + ' ' + (p.authorName || '') + ' ' +
+        (p.comments||[]).map(c => (c.author||'') + ' ' + (c.text||'')).join(' ');
+      if (!hay.toLowerCase().includes(q)) return false;
+    }
+    return true;
+  });
+  applySort();
+  renderStats();
+}
+
+function applySort() {
+  const s = document.getElementById('sort-select')?.value || 'newest';
+  switch (s) {
+    case 'newest': filtered.sort((a,b) => new Date(b.timestamp||0) - new Date(a.timestamp||0)); break;
+    case 'oldest': filtered.sort((a,b) => new Date(a.timestamp||0) - new Date(b.timestamp||0)); break;
+    case 'most-comments': filtered.sort((a,b) => (b.comments?.length||0) - (a.comments?.length||0)); break;
+    case 'author-az': filtered.sort((a,b) => (a.authorName||'').localeCompare(b.authorName||'')); break;
+  }
+}
+
+// ── Tabs ──
+document.getElementById('view-tabs').addEventListener('click', e => {
+  if (!e.target.classList.contains('view-tab')) return;
+  document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+  e.target.classList.add('active');
+  currentView = e.target.dataset.view;
+  document.getElementById('filter-bar').style.display = currentView === 'feed' ? 'flex' : 'none';
+  renderView();
+});
+
+// ── Stats ──
+function renderStats() {
+  const meta = db?.meta || {};
+  const totalPosts = filtered.length;
+  const totalAuthors = new Set(filtered.map(p => p.authorId).filter(Boolean)).size;
+  const totalComments = filtered.reduce((s,p) => s + (p.comments?.length || 0), 0);
+  const withImages = filtered.filter(p => (p.images||[]).some(u => u && !isAvatarThumb(u))).length;
+  const withText = filtered.filter(p => p.message).length;
+
+  document.getElementById('stats-bar').innerHTML = `
+    <div class="stat-card"><div class="stat-label">Posts</div><div class="stat-val blue">${totalPosts.toLocaleString()}</div></div>
+    <div class="stat-card"><div class="stat-label">Authors</div><div class="stat-val green">${totalAuthors}</div></div>
+    <div class="stat-card"><div class="stat-label">Comments</div><div class="stat-val orange">${totalComments}</div></div>
+    <div class="stat-card"><div class="stat-label">With Text</div><div class="stat-val purple">${withText}</div></div>
+    <div class="stat-card"><div class="stat-label">With Photos</div><div class="stat-val pink">${withImages}</div></div>
+  `;
+  document.getElementById('lbl-showing').textContent = `Showing ${filtered.length} of ${allPosts.length}`;
+}
+
+function renderProgress() {
+  const meta = db?.meta || {};
+  const mp = db?.memberProgress || {};
+  const done = Object.values(mp).filter(p => p.status === 'done').length;
+  const total = meta.totalMembers || Object.keys(mp).length || 1;
+  const pct = ((done / total) * 100).toFixed(1);
+  document.getElementById('progress-wrap').innerHTML = `
+    <div class="progress-bar-outer"><div class="progress-bar-inner" style="width:${pct}%"></div></div>
+    <div class="progress-text">${done} / ${total} members scraped (${pct}%)</div>
+  `;
+}
+
+// ── Render ──
+function renderView() {
+  const c = document.getElementById('content');
+  loadedCount = 0;
+  switch (currentView) {
+    case 'feed': renderFeed(c); break;
+    case 'members': renderMembers(c); break;
+    case 'table': renderTable(c); break;
+  }
+}
+
+// ──── FEED ────
+function renderFeed(container) {
+  if (!filtered.length) {
+    container.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:60px 0;font-size:16px;">No posts match your filters.</p>';
+    return;
+  }
+  container.innerHTML = '';
+  loadedCount = 0;
+  loadMorePosts(container);
+}
+
+// Infinite scroll
+window.addEventListener('scroll', () => {
+  if (currentView !== 'feed' || loading) return;
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 600) {
+    loadMorePosts(document.getElementById('content'));
+  }
+});
+
+function loadMorePosts(container) {
+  if (loadedCount >= filtered.length || loading) return;
+  loading = true;
+  const batch = filtered.slice(loadedCount, loadedCount + PAGE_SIZE);
+  const html = batch.map((post, i) => buildPostCard(post, loadedCount + i)).join('');
+  container.insertAdjacentHTML('beforeend', html);
+  loadedCount += batch.length;
+  loading = false;
+}
+
+const AVATAR_RE = /dst-jpg_s(?:74x74|80x80|100x100|120x120|160x160)/;
+function isAvatarThumb(url) { return AVATAR_RE.test(url); }
+
+function buildPostCard(post, idx) {
+  const author = post.authorName || 'Unknown';
+  const authorId = post.authorId || '';
+  const text = post.message || '';
+  const images = (post.images || []).filter(u => u && typeof u === 'string' && !isAvatarThumb(u));
+  const comments = post.comments || [];
+  const permalink = post.permalink || '';
+  const timestamp = post.timestamp;
+  const profileUrl = authorId ? 'https://www.facebook.com/profile.php?id=' + esc(authorId) : '#';
+  const timeStr = timestamp ? fmtDate(timestamp) : 'Unknown date';
+  const relStr = timestamp ? relTime(timestamp) : '';
+
+  // Images (max 4 shown)
+  let imgHtml = '';
+  if (images.length === 1) {
+    imgHtml = `<div class="fb-post-images g1"><img src="${esc(images[0])}" loading="lazy" onclick="openImg(this.src)" onerror="this.parentElement.remove()"></div>`;
+  } else if (images.length === 2) {
+    imgHtml = `<div class="fb-post-images g2">${images.map(u => `<img src="${esc(u)}" loading="lazy" onclick="openImg(this.src)" onerror="this.style.display='none'">`).join('')}</div>`;
+  } else if (images.length === 3) {
+    imgHtml = `<div class="fb-post-images g3">${images.map(u => `<img src="${esc(u)}" loading="lazy" onclick="openImg(this.src)" onerror="this.style.display='none'">`).join('')}</div>`;
+  } else if (images.length > 3) {
+    const shown = images.slice(0, 3);
+    const extra = images.length - 3;
+    imgHtml = `<div class="fb-post-images gm">
+      <img src="${esc(shown[0])}" loading="lazy" onclick="openImg(this.src)" onerror="this.style.display='none'">
+      <img src="${esc(shown[1])}" loading="lazy" onclick="openImg(this.src)" onerror="this.style.display='none'">
+      <div class="img-more-wrap" onclick="openImg('${esc(shown[2])}')">
+        <img src="${esc(shown[2])}" loading="lazy" onerror="this.parentElement.remove()">
+        ${extra > 0 ? `<div class="img-more-overlay">+${extra}</div>` : ''}
+      </div>
+    </div>`;
+  }
+
+  // Comments count line
+  let countsHtml = '';
+  if (comments.length > 0) {
+    countsHtml = `<div class="fb-post-counts">
+      <span></span>
+      <span class="fb-comments-toggle" onclick="toggleComments(${idx})">${comments.length} comment${comments.length !== 1 ? 's' : ''}</span>
+    </div>`;
+  }
+
+  // Comments section
+  let commentsHtml = '';
+  if (comments.length) {
+    commentsHtml = `<div class="fb-comments-section open" id="cmts-${idx}">
+      ${comments.map(c => {
+        const cImgs = (c.images||[]).filter(u => u && !isAvatarThumb(u));
+        return `<div class="fb-comment${c.isReply ? ' reply' : ''}">
+          <div class="fb-comment-avatar" style="background:${colorFor(c.author||'')}">${initials(c.author)}</div>
+          <div>
+            <div class="fb-comment-bubble">
+              <div class="fb-comment-author">${esc(c.author)}</div>
+              <div class="fb-comment-text">${esc(c.text)}</div>
+              ${cImgs.length ? `<div class="fb-comment-imgs">${cImgs.map(u => `<img src="${esc(u)}" loading="lazy" onclick="openImg(this.src)" onerror="this.remove()">`).join('')}</div>` : ''}
+            </div>
+            <div class="fb-comment-meta">
+              ${c.reactionCount ? `<span>👍 ${c.reactionCount}</span>` : ''}
+              ${c.timestamp ? `<span style="font-weight:400;cursor:default">${fmtDate(c.timestamp)}</span>` : ''}
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }
+
+  return `<div class="fb-post">
+    <div class="fb-post-header">
+      <a class="fb-avatar" style="background:${colorFor(author)}" href="${profileUrl}" target="_blank" rel="noopener">${initials(author)}</a>
+      <div class="fb-post-info">
+        <a class="fb-post-author" href="${profileUrl}" target="_blank" rel="noopener">${esc(author)}</a>
+        <div class="fb-post-time">${permalink ? `<a href="${esc(permalink)}" target="_blank" rel="noopener">${timeStr}</a>` : timeStr} ${relStr ? `· ${relStr} ago` : ''} · 🌐</div>
+      </div>
+      <span class="fb-post-id">${esc(post.postId||'')}</span>
+    </div>
+    ${text ? `<div class="fb-post-text">${esc(text)}</div>` : '<div class="fb-post-text empty">📷 Photo/shared post (no text)</div>'}
+    ${imgHtml}
+    ${countsHtml}
+    <div class="fb-post-actions">
+      <button class="fb-action-btn">👍 Like</button>
+      <button class="fb-action-btn" onclick="toggleComments(${idx})">💬 Comment${comments.length ? ' (' + comments.length + ')' : ''}</button>
+      <button class="fb-action-btn"${permalink ? ` onclick="window.open('${esc(permalink)}','_blank')"` : ''}>↗️ Open</button>
+    </div>
+    ${commentsHtml}
+  </div>`;
+}
+
+function toggleComments(idx) {
+  const el = document.getElementById('cmts-' + idx);
+  if (el) el.classList.toggle('open');
+}
+
+// ──── MEMBERS ────
+function renderMembers(container) {
+  const mp = db?.memberProgress || {};
+  const postsByAuthor = new Map();
+  allPosts.forEach(p => {
+    const id = p.authorId || 'unknown';
+    if (!postsByAuthor.has(id)) postsByAuthor.set(id, { name: p.authorName, count: 0 });
+    postsByAuthor.get(id).count++;
+  });
+
+  // Merge with memberProgress
+  const members = new Map();
+  for (const [uid, prog] of Object.entries(mp)) {
+    const info = postsByAuthor.get(uid) || { name: uid, count: 0 };
+    members.set(uid, { uid, name: info.name || uid, posts: prog.postsFound || info.count, status: prog.status });
+  }
+  // Add any authors not in progress
+  for (const [uid, info] of postsByAuthor) {
+    if (!members.has(uid)) members.set(uid, { uid, name: info.name, posts: info.count, status: 'done' });
+  }
+
+  const arr = [...members.values()].sort((a,b) => b.posts - a.posts);
+  const done = arr.filter(m => m.status === 'done').length;
+  const errs = arr.filter(m => m.status === 'error').length;
+  const inProg = arr.filter(m => m.status === 'in-progress').length;
+
+  container.innerHTML = `
+    <div style="margin-bottom:12px;font-size:14px;color:var(--text-secondary)">
+      <strong>${arr.length}</strong> members tracked · 
+      <span style="color:#16a34a">${done} done</span> · 
+      <span style="color:#d97706">${inProg} in-progress</span> · 
+      <span style="color:#dc2626">${errs} errors</span>
+    </div>
+    <div class="members-grid">
+      ${arr.map(m => {
+        const profileUrl = 'https://www.facebook.com/profile.php?id=' + esc(m.uid);
+        const badgeClass = m.status === 'done' ? 'done' : m.status === 'error' ? 'err' : 'prog';
+        return `<div class="member-card">
+          <a class="fb-avatar" style="background:${colorFor(m.name)};width:44px;height:44px;font-size:16px;text-decoration:none" href="${profileUrl}" target="_blank" rel="noopener">${initials(m.name)}</a>
+          <div class="member-info">
+            <div class="member-name"><a href="${profileUrl}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">${esc(m.name)}</a></div>
+            <div class="member-details">${m.posts} post${m.posts!==1?'s':''} · <a href="${profileUrl}" target="_blank" rel="noopener">Profile</a></div>
+          </div>
+          <span class="badge ${badgeClass}">${m.status}</span>
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+}
+
+// ──── TABLE ────
+function renderTable(container) {
+  if (!filtered.length) { container.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:60px 0;">No data.</p>'; return; }
+  const cols = ['postId','authorName','timestamp','message','images','comments','permalink'];
+  container.innerHTML = `<div class="table-wrap"><table>
+    <thead><tr>${cols.map(c => `<th>${esc(c)}</th>`).join('')}</tr></thead>
+    <tbody>${filtered.slice(0, 500).map(p => `<tr>
+      <td style="font-family:monospace;font-size:11px">${esc(p.postId||'')}</td>
+      <td>${esc(p.authorName||'')}</td>
+      <td style="white-space:nowrap">${fmtDate(p.timestamp)}</td>
+      <td class="trunc" title="${esc(p.message||'')}">${esc((p.message||'').slice(0,100))}</td>
+      <td>${(p.images||[]).length}</td>
+      <td>${(p.comments||[]).length}</td>
+      <td>${p.permalink ? `<a href="${esc(p.permalink)}" target="_blank" rel="noopener" style="color:var(--text-link)">Open ↗</a>` : ''}</td>
+    </tr>`).join('')}</tbody>
+  </table></div>`;
+  if (filtered.length > 500) container.insertAdjacentHTML('beforeend', `<p style="text-align:center;padding:12px;color:var(--text-secondary)">Showing 500 of ${filtered.length} — use search to narrow down.</p>`);
+}
+
+// ── Export CSV ──
+function exportCSV() {
+  const headers = ['postId','authorName','authorId','timestamp','message','images','videos','commentCount','comments','permalink','scrapedAt'];
+  const rows = filtered.map(p => headers.map(h => {
+    let v = p[h];
+    if (Array.isArray(v)) v = v.length;
+    if (typeof v === 'object') v = JSON.stringify(v);
+    return '"' + String(v||'').replace(/"/g, '""') + '"';
+  }));
+  const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'posts_export_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+}
+
+// ── Image Modal ──
+function openImg(src) {
+  document.getElementById('modal-img').src = src;
+  document.getElementById('img-modal').classList.add('open');
+}
+document.getElementById('img-modal').addEventListener('click', () => document.getElementById('img-modal').classList.remove('open'));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Categories — Hispanos FB Directory</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0d14;color:#e4e6eb;line-height:1.5}
+a{color:#4da3ff;text-decoration:none}a:hover{text-decoration:underline}
+.topbar{position:sticky;top:0;z-index:10;background:#11141d;border-bottom:1px solid #222836;padding:14px 20px;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.topbar h1{font-size:1.15rem;color:#fff}
+.topbar .sub{font-size:.78rem;color:#8b92a3}
+.topbar nav{display:flex;gap:8px;flex-wrap:wrap}
+.topbar nav a{padding:6px 12px;background:#161a24;border:1px solid #242a38;border-radius:6px;font-size:.8rem;color:#cdd3e0}
+.topbar nav a:hover{background:#1d2535;color:#fff;text-decoration:none}
+.topbar nav a.on{background:#1a2744;color:#4da3ff;border-color:#4da3ff}
+.wrap{max-width:1400px;margin:0 auto;padding:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:24px}
+.stat{background:#11141d;border:1px solid #1f2432;border-radius:10px;padding:16px}
+.stat .n{font-size:1.8rem;font-weight:700;color:#4da3ff;line-height:1}
+.stat .l{font-size:.72rem;color:#8b92a3;text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+.card{background:#11141d;border:1px solid #1f2432;border-radius:10px;overflow:hidden;transition:border-color .15s}
+.card:hover{border-color:#2d3548}
+.card.offer{border-left:3px solid #4ae0a0}
+.card.seek{border-left:3px solid #f0a84a}
+.card-head{padding:12px 16px;display:flex;gap:14px;align-items:flex-start}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4da3ff,#b48eff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.05rem;flex-shrink:0}
+.head-body{flex:1;min-width:0}
+.name{font-size:1.02rem;font-weight:600;color:#fff;margin-bottom:4px}
+.meta{font-size:.75rem;color:#8b92a3;display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.trades{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.trade{font-size:.72rem;padding:3px 10px;border-radius:12px;background:#1a2744;color:#4da3ff;border:1px solid #2c3f5e}
+.trade.offering{background:#0f2d22;color:#4ae0a0;border-color:#1f5540}
+.trade.seeking{background:#2d220f;color:#f0a84a;border-color:#55401f}
+.phones{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.phone{font-size:.86rem;font-weight:600;color:#4ae0a0;padding:4px 10px;background:#0f2d22;border-radius:6px;border:1px solid #1f5540}
+.phone a{color:inherit}
+.bio{font-size:.78rem;color:#8b92a3;font-style:italic}
+.sec{margin:24px 0 12px;font-size:1.1rem;color:#fff;padding-bottom:6px;border-bottom:1px solid #222836}
+.search{width:100%;padding:10px 14px;background:#161a24;border:1px solid #242a38;color:#e4e6eb;border-radius:8px;font-size:.95rem;outline:none;margin-bottom:16px}
+.search:focus{border-color:#4da3ff}
+.list{display:flex;flex-direction:column;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #1f2432}
+th{background:#0d1019;color:#8b92a3;font-weight:600;text-transform:uppercase;font-size:.7rem;letter-spacing:.5px;position:sticky;top:0;cursor:pointer;user-select:none}
+th:hover{color:#fff}
+tr:hover{background:#141823}
+.excerpt{font-size:.78rem;color:#8b92a3;margin-top:4px;line-height:1.4}
+.post-item{padding:10px 14px;background:#0d1019;border:1px solid #1a1f2c;border-radius:6px;margin-bottom:8px;font-size:.85rem}
+.post-item.offer{border-left:2px solid #4ae0a0}
+.post-item.seek{border-left:2px solid #f0a84a}
+.post-item .head{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;font-size:.72rem;color:#8b92a3}
+.post-item .body{color:#cdd3e0;white-space:pre-wrap;word-wrap:break-word}
+.hidden{display:none!important}
+@media (max-width:700px){.topbar{flex-direction:column;align-items:flex-start}}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.cat-card{background:#11141d;border:1px solid #1f2432;border-radius:10px;padding:18px;text-decoration:none;color:inherit;transition:all .2s;display:block}
+.cat-card:hover{border-color:#4da3ff;text-decoration:none;transform:translateY(-2px)}
+.cat-card h3{color:#fff;font-size:1.05rem;margin-bottom:8px}
+.cat-card .nums{display:flex;gap:14px;font-size:.78rem;color:#8b92a3}
+.cat-card .nums b{color:#4ae0a0;font-size:1rem}
+</style></head><body>
+<div class="topbar">
+  <div><h1>Service Categories</h1><div class="sub">55 active categories · Click any category to see details</div></div>
+  <nav><a href="../index.html" >Dashboard</a><a href="../directory.html" >Full Directory</a><a href="../phones.html" >Phone Lookup</a><a href="../businesses.html" >Top Businesses</a><a href="../categories/index.html" class="on">Categories</a></nav>
+</div>
+<div class="wrap">
+  <input type="text" class="search" id="q" placeholder="Search categories...">
+  <div class="cat-grid" id="grid">
+    <a class="cat-card" href="delivery.html">
+      <h3>Delivery</h3>
+      <div class="nums">
+        <span><b>58</b> offering</span>
+        <span><b>241</b> total</span>
+        <span><b>128</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="mechanic.html">
+      <h3>Mechanic</h3>
+      <div class="nums">
+        <span><b>29</b> offering</span>
+        <span><b>168</b> total</span>
+        <span><b>83</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="painting.html">
+      <h3>Painting</h3>
+      <div class="nums">
+        <span><b>24</b> offering</span>
+        <span><b>207</b> total</span>
+        <span><b>97</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="remodeling.html">
+      <h3>Remodeling</h3>
+      <div class="nums">
+        <span><b>21</b> offering</span>
+        <span><b>124</b> total</span>
+        <span><b>72</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="cleaning.html">
+      <h3>Cleaning</h3>
+      <div class="nums">
+        <span><b>21</b> offering</span>
+        <span><b>110</b> total</span>
+        <span><b>61</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="landscaping-lawn.html">
+      <h3>Landscaping &amp; Lawn</h3>
+      <div class="nums">
+        <span><b>18</b> offering</span>
+        <span><b>126</b> total</span>
+        <span><b>74</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="barber-hair.html">
+      <h3>Barber &amp; Hair</h3>
+      <div class="nums">
+        <span><b>17</b> offering</span>
+        <span><b>80</b> total</span>
+        <span><b>33</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="concrete-masonry.html">
+      <h3>Concrete &amp; Masonry</h3>
+      <div class="nums">
+        <span><b>16</b> offering</span>
+        <span><b>129</b> total</span>
+        <span><b>74</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="bakery-pastries.html">
+      <h3>Bakery &amp; Pastries</h3>
+      <div class="nums">
+        <span><b>16</b> offering</span>
+        <span><b>108</b> total</span>
+        <span><b>61</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="childcare.html">
+      <h3>Childcare</h3>
+      <div class="nums">
+        <span><b>16</b> offering</span>
+        <span><b>71</b> total</span>
+        <span><b>35</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="events-party.html">
+      <h3>Events &amp; Party</h3>
+      <div class="nums">
+        <span><b>16</b> offering</span>
+        <span><b>47</b> total</span>
+        <span><b>35</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="restaurant.html">
+      <h3>Restaurant</h3>
+      <div class="nums">
+        <span><b>14</b> offering</span>
+        <span><b>213</b> total</span>
+        <span><b>111</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="taxes-notary.html">
+      <h3>Taxes &amp; Notary</h3>
+      <div class="nums">
+        <span><b>13</b> offering</span>
+        <span><b>53</b> total</span>
+        <span><b>32</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="fencing.html">
+      <h3>Fencing</h3>
+      <div class="nums">
+        <span><b>12</b> offering</span>
+        <span><b>89</b> total</span>
+        <span><b>54</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="plumbing.html">
+      <h3>Plumbing</h3>
+      <div class="nums">
+        <span><b>11</b> offering</span>
+        <span><b>45</b> total</span>
+        <span><b>36</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="translation.html">
+      <h3>Translation</h3>
+      <div class="nums">
+        <span><b>10</b> offering</span>
+        <span><b>33</b> total</span>
+        <span><b>18</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="roofing.html">
+      <h3>Roofing</h3>
+      <div class="nums">
+        <span><b>9</b> offering</span>
+        <span><b>91</b> total</span>
+        <span><b>48</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="driver-rides.html">
+      <h3>Driver &amp; Rides</h3>
+      <div class="nums">
+        <span><b>8</b> offering</span>
+        <span><b>11</b> total</span>
+        <span><b>7</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="general-construction.html">
+      <h3>General Construction</h3>
+      <div class="nums">
+        <span><b>7</b> offering</span>
+        <span><b>66</b> total</span>
+        <span><b>35</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="nails.html">
+      <h3>Nails</h3>
+      <div class="nums">
+        <span><b>7</b> offering</span>
+        <span><b>28</b> total</span>
+        <span><b>10</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="hvac.html">
+      <h3>HVAC</h3>
+      <div class="nums">
+        <span><b>7</b> offering</span>
+        <span><b>26</b> total</span>
+        <span><b>18</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="labor-helper.html">
+      <h3>Labor / Helper</h3>
+      <div class="nums">
+        <span><b>6</b> offering</span>
+        <span><b>113</b> total</span>
+        <span><b>61</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="tree-services.html">
+      <h3>Tree Services</h3>
+      <div class="nums">
+        <span><b>6</b> offering</span>
+        <span><b>21</b> total</span>
+        <span><b>15</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="insurance.html">
+      <h3>Insurance</h3>
+      <div class="nums">
+        <span><b>6</b> offering</span>
+        <span><b>16</b> total</span>
+        <span><b>12</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="framing.html">
+      <h3>Framing</h3>
+      <div class="nums">
+        <span><b>5</b> offering</span>
+        <span><b>25</b> total</span>
+        <span><b>15</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="hauling-junk-removal.html">
+      <h3>Hauling &amp; Junk Removal</h3>
+      <div class="nums">
+        <span><b>5</b> offering</span>
+        <span><b>23</b> total</span>
+        <span><b>13</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="real-estate.html">
+      <h3>Real Estate</h3>
+      <div class="nums">
+        <span><b>5</b> offering</span>
+        <span><b>9</b> total</span>
+        <span><b>5</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="legal-services.html">
+      <h3>Legal Services</h3>
+      <div class="nums">
+        <span><b>4</b> offering</span>
+        <span><b>63</b> total</span>
+        <span><b>27</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="flooring-tile.html">
+      <h3>Flooring &amp; Tile</h3>
+      <div class="nums">
+        <span><b>4</b> offering</span>
+        <span><b>26</b> total</span>
+        <span><b>16</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="catering-home-food.html">
+      <h3>Catering &amp; Home Food</h3>
+      <div class="nums">
+        <span><b>4</b> offering</span>
+        <span><b>12</b> total</span>
+        <span><b>8</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="massage-spa.html">
+      <h3>Massage &amp; Spa</h3>
+      <div class="nums">
+        <span><b>4</b> offering</span>
+        <span><b>7</b> total</span>
+        <span><b>4</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="drywall.html">
+      <h3>Drywall</h3>
+      <div class="nums">
+        <span><b>3</b> offering</span>
+        <span><b>39</b> total</span>
+        <span><b>25</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="photography.html">
+      <h3>Photography</h3>
+      <div class="nums">
+        <span><b>3</b> offering</span>
+        <span><b>33</b> total</span>
+        <span><b>15</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="cabinets-countertops.html">
+      <h3>Cabinets &amp; Countertops</h3>
+      <div class="nums">
+        <span><b>3</b> offering</span>
+        <span><b>18</b> total</span>
+        <span><b>13</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="car-detailing.html">
+      <h3>Car Detailing</h3>
+      <div class="nums">
+        <span><b>3</b> offering</span>
+        <span><b>6</b> total</span>
+        <span><b>5</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="welding.html">
+      <h3>Welding</h3>
+      <div class="nums">
+        <span><b>2</b> offering</span>
+        <span><b>28</b> total</span>
+        <span><b>13</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="sewing-tailoring.html">
+      <h3>Sewing &amp; Tailoring</h3>
+      <div class="nums">
+        <span><b>2</b> offering</span>
+        <span><b>24</b> total</span>
+        <span><b>13</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="music-dj.html">
+      <h3>Music &amp; DJ</h3>
+      <div class="nums">
+        <span><b>2</b> offering</span>
+        <span><b>21</b> total</span>
+        <span><b>18</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="carpentry.html">
+      <h3>Carpentry</h3>
+      <div class="nums">
+        <span><b>2</b> offering</span>
+        <span><b>19</b> total</span>
+        <span><b>12</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="siding-stucco.html">
+      <h3>Siding &amp; Stucco</h3>
+      <div class="nums">
+        <span><b>2</b> offering</span>
+        <span><b>16</b> total</span>
+        <span><b>8</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="moving.html">
+      <h3>Moving</h3>
+      <div class="nums">
+        <span><b>2</b> offering</span>
+        <span><b>13</b> total</span>
+        <span><b>6</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="auto-body-paint.html">
+      <h3>Auto Body &amp; Paint</h3>
+      <div class="nums">
+        <span><b>2</b> offering</span>
+        <span><b>4</b> total</span>
+        <span><b>4</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="handyman.html">
+      <h3>Handyman</h3>
+      <div class="nums">
+        <span><b>2</b> offering</span>
+        <span><b>3</b> total</span>
+        <span><b>2</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="electrical.html">
+      <h3>Electrical</h3>
+      <div class="nums">
+        <span><b>1</b> offering</span>
+        <span><b>17</b> total</span>
+        <span><b>8</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="tutoring.html">
+      <h3>Tutoring</h3>
+      <div class="nums">
+        <span><b>1</b> offering</span>
+        <span><b>16</b> total</span>
+        <span><b>10</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="pool-service.html">
+      <h3>Pool Service</h3>
+      <div class="nums">
+        <span><b>1</b> offering</span>
+        <span><b>7</b> total</span>
+        <span><b>4</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="healthcare-worker.html">
+      <h3>Healthcare Worker</h3>
+      <div class="nums">
+        <span><b>1</b> offering</span>
+        <span><b>4</b> total</span>
+        <span><b>3</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="demolition.html">
+      <h3>Demolition</h3>
+      <div class="nums">
+        <span><b>1</b> offering</span>
+        <span><b>3</b> total</span>
+        <span><b>3</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="pressure-washing.html">
+      <h3>Pressure Washing</h3>
+      <div class="nums">
+        <span><b>1</b> offering</span>
+        <span><b>2</b> total</span>
+        <span><b>2</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="insulation.html">
+      <h3>Insulation</h3>
+      <div class="nums">
+        <span><b>0</b> offering</span>
+        <span><b>6</b> total</span>
+        <span><b>6</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="accounting.html">
+      <h3>Accounting</h3>
+      <div class="nums">
+        <span><b>0</b> offering</span>
+        <span><b>5</b> total</span>
+        <span><b>2</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="tire-service.html">
+      <h3>Tire Service</h3>
+      <div class="nums">
+        <span><b>0</b> offering</span>
+        <span><b>4</b> total</span>
+        <span><b>2</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="deck-patio.html">
+      <h3>Deck &amp; Patio</h3>
+      <div class="nums">
+        <span><b>0</b> offering</span>
+        <span><b>2</b> total</span>
+        <span><b>2</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="makeup.html">
+      <h3>Makeup</h3>
+      <div class="nums">
+        <span><b>0</b> offering</span>
+        <span><b>2</b> total</span>
+        <span><b>1</b> with phone</span>
+      </div>
+    </a><a class="cat-card" href="windows-doors.html">
+      <h3>Windows &amp; Doors</h3>
+      <div class="nums">
+        <span><b>0</b> offering</span>
+        <span><b>1</b> total</span>
+        <span><b>1</b> with phone</span>
+      </div>
+    </a>
+  </div>
+</div>
+<script>
+document.getElementById('q').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.cat-card').forEach(c => {
+    c.classList.toggle('hidden', q && c.textContent.toLowerCase().indexOf(q) < 0);
+  });
+});
+</script>
+</body></html>

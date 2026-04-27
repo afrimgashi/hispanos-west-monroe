@@ -1,0 +1,338 @@
+
+════════════════════════════════════════════════════════════════════════
+  1. FILE & TOP-LEVEL STRUCTURE
+════════════════════════════════════════════════════════════════════════
+File:            C:\Users\rinim\Desktop\scraping - Copy\hispanos members facebook\database_posts.json
+Size:            56.04 MB (58,764,889 bytes)
+Modified:        2026-04-22T14:53:17.117Z
+Top-level keys:  meta, memberProgress, posts
+
+════════════════════════════════════════════════════════════════════════
+  2. META
+════════════════════════════════════════════════════════════════════════
+  created             "2026-04-10T18:55:08.773Z"
+  lastUpdated         "2026-04-22T14:53:16.594Z"
+  groupId             "1437882213110717"
+  totalPosts          32429
+  membersProcessed    8497
+  totalMembers        8610
+  currentMemberIdx    8497
+
+════════════════════════════════════════════════════════════════════════
+  3. MEMBER PROGRESS
+════════════════════════════════════════════════════════════════════════
+Total member entries:           8,498
+Status breakdown:
+  done           8,497
+  in-progress    1
+Sum of postsFound:              32,390
+Max posts by single member:     1118 (userId=100078107146338)
+Members with lastCursor saved:  1
+Members with null/no cursor:    8,497
+
+postsFound distribution:
+  zero      6,336 members
+  1-5       1,451 members
+  6-20      446 members
+  21-100    200 members
+  100+      65 members
+
+════════════════════════════════════════════════════════════════════════
+  4. POSTS — FIELD INVENTORY & COMPLETENESS
+════════════════════════════════════════════════════════════════════════
+Total posts: 32,429
+
+Field                     Present   %       Types
+--------------------------------------------------------------------
+  postId                   32429  100.0%  string
+  permalink                32429  100.0%  string
+  authorName               32429  100.0%  string
+  authorId                 32429  100.0%  string
+  timestamp                32429  100.0%  string
+  message                  32429  100.0%  string
+  images                   32429  100.0%  array
+  videos                   32429  100.0%  array
+  reactions                32429  100.0%  object
+  commentCount             32429  100.0%  number
+  comments                 32429  100.0%  array
+  shares                   32429  100.0%  number
+  scrapedAt                32429  100.0%  string
+  _commentsEnriched        31230   96.3%  boolean
+
+════════════════════════════════════════════════════════════════════════
+  5. POSTS — CONTENT CHARACTERISTICS
+════════════════════════════════════════════════════════════════════════
+Message length distribution:
+  Empty (0 chars):    12,694  (39.1%)
+  Short  (<50):       3,419  (10.5%)
+  Medium (50-500):    15,724  (48.5%)
+  Long   (500+):      592  (1.8%)
+  Max length:         16,717 chars
+  Avg length:         92 chars
+
+Media:
+  Image-only posts:   22,470
+  Video-only posts:   0
+  Image + Video:      1
+  No media:           9,958
+  Total images:       56,637
+  Total videos:       1
+  Max images in post: 15
+
+Content signals (posts containing):
+  Phone number:       6,313  (19.5%)
+  Price ($xxx):       1,446  (4.5%)
+  URL / link:         316
+  Hashtag:            820
+  Mention (@):        165
+  Email:              11
+  Emoji:              6,780  (20.9%)
+
+════════════════════════════════════════════════════════════════════════
+  6. POSTS — ENGAGEMENT
+════════════════════════════════════════════════════════════════════════
+Total reactions:           6,958
+Total comments (field):    33,387
+Total shares:              0
+Posts with 0 reactions:    28,610 (88.2%)
+Posts with 0 comments:     23,072 (71.1%)
+Avg reactions/post:        0.21
+Avg comments/post:         1.03
+
+Reaction distribution:
+  0         28,610 posts
+  1-5       3,742 posts
+  6-20      67 posts
+  21-100    7 posts
+  100+      3 posts
+
+Most-reacted post:  753 reactions by "Candylover89"
+  
+  https://www.facebook.com/groups/1437882213110717/posts/2523159724636576/
+Most-commented post: 10 comments by "The Louisiana Scene"
+  
+Most-shared post:    0 shares by "undefined"
+
+════════════════════════════════════════════════════════════════════════
+  7. POSTS — TEMPORAL DISTRIBUTION
+════════════════════════════════════════════════════════════════════════
+Invalid/missing timestamps: 7760
+
+Posts by year:
+  2014      75  █
+  2015      51  
+  2016     111  █
+  2017     177  ██
+  2018     214  ██
+  2019     440  ████
+  2020    1063  █████████
+  2021    1326  ███████████
+  2022    2349  ████████████████████
+  2023    4162  ████████████████████████████████████
+  2024    5489  ███████████████████████████████████████████████
+  2025    6936  ████████████████████████████████████████████████████████████
+  2026    2276  ████████████████████
+
+Posts by day of week:
+  Sun   3663  ██████████████████████████████████
+  Mon   3120  █████████████████████████████
+  Tue   3100  █████████████████████████████
+  Wed   3162  █████████████████████████████
+  Thu   3412  ███████████████████████████████
+  Fri   3872  ████████████████████████████████████
+  Sat   4340  ████████████████████████████████████████
+
+Posts by UTC hour (peak activity times):
+  00:00   1398  ██████████████████████████
+  01:00   1107  █████████████████████
+  02:00    905  █████████████████
+  03:00    647  ████████████
+  04:00    302  ██████
+  05:00    142  ███
+  06:00     76  █
+  07:00     47  █
+  08:00     39  █
+  09:00     60  █
+  10:00     97  ██
+  11:00    482  █████████
+  12:00    920  █████████████████
+  13:00   1398  ██████████████████████████
+  14:00   1661  ███████████████████████████████
+  15:00   1975  █████████████████████████████████████
+  16:00   2158  ████████████████████████████████████████
+  17:00   1926  ████████████████████████████████████
+  18:00   1562  █████████████████████████████
+  19:00   1485  ████████████████████████████
+  20:00   1557  █████████████████████████████
+  21:00   1597  ██████████████████████████████
+  22:00   1585  █████████████████████████████
+  23:00   1543  █████████████████████████████
+
+Top 12 busiest months:
+  2026-03  768
+  2025-08  692
+  2025-12  645
+  2025-10  636
+  2026-01  621
+  2025-09  617
+  2026-02  616
+  2025-07  604
+  2025-11  561
+  2025-05  559
+  2025-02  544
+  2025-04  542
+
+════════════════════════════════════════════════════════════════════════
+  8. POSTS — AUTHOR ANALYSIS
+════════════════════════════════════════════════════════════════════════
+Unique authors:            2,418
+Posts without authorId:    0
+Authors with 1 post:       876
+Authors with 10+ posts:    466
+Authors with 100+ posts:   64
+
+Top 20 most prolific authors:
+   1108  Jesus Barbacoa                       (100078107146338)
+   1005  Refacciones Cenas Ramirez            (100082989493054)
+    675  Centro Compasion                     (100009813343128)
+    466  Latinfoodscafe                       (100057414251575)
+    442  Paqueteria Y Encargos El Paisa       (100053545400584)
+    440  Michael Strickland                   (518491325)
+    430  Taqueria border                      (100092256077384)
+    420  Mario Mata                           (618342335)
+    420  AM Antojitos Mexicanos               (100083060184150)
+    366  Merlin Pinto                         (100049196024550)
+    364  Vic’s Painting LLC                   (100083374209185)
+    364  Vanessa Rubio                        (100064957543426)
+    351  Gabriel Hernandez                    (100001468727661)
+    345  Ministerios Ebenezer Shreveport LA.  (100083883455682)
+    336  Casa Latina                          (100085867302246)
+    333  Andrea Ponce                         (100000036551519)
+    330  Susana Fernandez                     (100004055619883)
+    324  318 Latino                           (100063750204224)
+    308  Naty Lopez                           (100007345060381)
+    285  Hernandez Hernandez Hernandez        (100037363941887)
+
+════════════════════════════════════════════════════════════════════════
+  9. COMMENTS — FIELD INVENTORY
+════════════════════════════════════════════════════════════════════════
+Total comments (actual):    33,898
+  Top-level:                26,939
+  Replies:                  6,959
+  Without authorId:         0
+
+Comment fields:
+  commentId          33898  100.0%  string
+  author             33898  100.0%  string
+  authorId           33898  100.0%  string
+  text               33898  100.0%  string
+  timestamp          33898  100.0%  string
+  images             33898  100.0%  array
+  isReply            33898  100.0%  boolean
+  reactionCount      33898  100.0%  number
+
+Comment length:
+  Empty:                    1,841
+  Short (<30):              20,011
+  Medium (30-200):          11,785
+  Long (200+):              261
+  Max length:               1294
+  Avg length:               31
+Comments with phone #:      1,112
+Comments with emoji:        3,453
+Unique commenters:          5,871
+
+Top 15 most-active commenters:
+    291  Jesus Barbacoa                       (100078107146338)
+    218  Lorena Ayala                         (100054847467063)
+    215  Jose Rivera                          (100090538720464)
+    201  Luis Edgardo Herrera Isaula          (100060413357360)
+    196  Mayra Miranda                        (100005904018324)
+    193  Naty Lopez                           (100007345060381)
+    184  Erick Lara                           (1728923456)
+    176  Yuliana Fuentes                      (100008622884972)
+    172  Solecito Pelaez                      (100069834954761)
+    166  Roman Cuevas                         (100007881287916)
+    162  Carolina Guzmán                      (100001665341030)
+    158  Ivette Mendoza                       (564061388)
+    126  Mayito Gordo                         (100004726321946)
+    126  Merlin Pinto                         (100049196024550)
+    122  Anacaren Lynn                        (100011013573213)
+
+════════════════════════════════════════════════════════════════════════
+  10. DATA QUALITY & ANOMALIES
+════════════════════════════════════════════════════════════════════════
+Posts where commentCount != actual stored comments: 326
+  actual > declared: 326
+  actual < declared: 0
+  (this is normal — Facebook hides some comments / enrichment fetched extras/fewer)
+
+Mojibake (encoding corruption):
+  Posts affected:     0 (0.0%)
+  Comments affected:  0 (0.0%)
+
+Missing critical fields (posts):
+  No permalink:       0
+  No authorName:      0
+  No timestamp:       7760
+  Duplicate postId values in posts array: 0
+
+════════════════════════════════════════════════════════════════════════
+  11. LANGUAGE & VOCABULARY ESTIMATE
+════════════════════════════════════════════════════════════════════════
+Language heuristic on post messages:
+  Spanish markers only:   14,920
+  English markers only:   725
+  Both (mixed/Spanglish): 281
+  (no markers = short/no text / only emoji/phone)
+
+════════════════════════════════════════════════════════════════════════
+  12. UNIQUE PHONE NUMBERS — GLOBAL
+════════════════════════════════════════════════════════════════════════
+Total unique phone numbers:      1,297
+Phones shared by 2+ people:      205
+(shared phones = business lines or phone-number dedup opportunities)
+
+Top 10 most-shared phone numbers:
+  (318) 350-9122  used by 8 names: Viajes y Uber Express 24 horas , Hamburguesas y Hot Dogs El Norteño, Tamales Mexicanos Tamaulipecos , ...
+  (318) 547-7851  used by 7 names: RD Carlos, Dalia Lara, Jesus Alex Perez, ...
+  (318) 789-6227  used by 6 names: Michel Alvarez, Tamales Mexicanos Tamaulipecos , Viajes Y Uber Yossmi, ...
+  (318) 605-3673  used by 6 names: Azteca Grill, Saul Garcia, Hermindo Tambriz, ...
+  (318) 816-4173  used by 6 names: El Rinconcito de la abuela Licha, Angie Barahona, Eva Rojas, ...
+  (318) 537-0562  used by 5 names: Michel Alvarez, Viajes Y Uber Yossmi, Tamales Mexicanos Tamaulipecos , ...
+  (318) 953-7261  used by 5 names: Postres y Botanas Bravo, Brincolines Bravo, Lili’s Florals, ...
+  (318) 801-9465  used by 4 names: Michel Alvarez, Martin Hernandez, Hernandez Martines, ...
+  (318) 977-0217  used by 4 names: Leticia Martinez, Sanchez David, MD Machado, ...
+  (318) 331-5553  used by 4 names: Dylan Kelly, Orbin Guerrero, Carlos Robles, ...
+
+════════════════════════════════════════════════════════════════════════
+  13. IMAGE URL PATTERNS
+════════════════════════════════════════════════════════════════════════
+Total image URLs:  56,637
+Image hosts:
+    21866  scontent-atl3-3.xx.fbcdn.net
+    16571  scontent-atl3-2.xx.fbcdn.net
+    12714  scontent-atl3-1.xx.fbcdn.net
+     2340  scontent-ord5-2.xx.fbcdn.net
+     1718  scontent-ord5-3.xx.fbcdn.net
+     1425  scontent-ord5-1.xx.fbcdn.net
+        3  scontent.xx.fbcdn.net
+
+════════════════════════════════════════════════════════════════════════
+  14. SCRAPE COMPLETENESS SUMMARY
+════════════════════════════════════════════════════════════════════════
+Members scraped:            8,498 / 8,610
+Remaining to scrape:        112
+Posts captured:             32,429
+Comments captured:          33,898
+Unique authors (posters):   2,418
+Unique commenters:          5,871
+Unique participants total:  6,576
+Unique phone numbers:       1,297
+Total images collected:     56,637
+Total reactions captured:   6,958
+Date range:                 2014 → 2026
+
+═══════════════════════════════════════════════════════════════════════
+  Analysis complete. Runtime: 0.6s
+═══════════════════════════════════════════════════════════════════════

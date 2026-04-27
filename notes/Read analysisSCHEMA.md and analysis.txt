@@ -1,0 +1,41 @@
+Read analysis/SCHEMA.md and analysis/AGENT-LOOP.md, then run the loop until ALL DONE.
+
+Rules:
+- Do not stop between batches.
+- Do not ask for confirmation.
+- After writing batch-output.json, immediately run `node analysis/next-batch.js`.
+- If it succeeds, read the new batch-input.json and keep going.
+- Only stop on "❌" errors or "🎉 ALL DONE".
+
+batch-input.json is already prepared (batch 8, 50 posts). Begin.
+
+
+4. How to check progress at any time
+
+bash
+node -e "const d=require('./analysis/analysis-db.json'); console.log(Object.keys(d.results).length, '/ 32429 done')"
+
+
+Or regenerate the HTML report:
+
+bash
+node analysis/build-report.js
+
+
+
+Read analysis/SCHEMA.md and analysis/AGENT-LOOP.md, then run the loop until ALL DONE.
+
+Rules:
+- Do not stop between batches.
+- Do not ask for confirmation.
+- After writing batch-output.json, immediately run `node analysis/next-batch.js`.
+- If it succeeds, read the new batch-input.json and keep going.
+- Only stop on "❌" errors or "🎉 ALL DONE".
+- If "❌" validator error: fix only the flagged issues in batch-output.json and re-run `node analysis/next-batch.js`. Do not regenerate the whole batch.
+- Batches are 100 posts. Analyze all 100 in one batch-output.json write.
+
+Start now.
+
+
+
+

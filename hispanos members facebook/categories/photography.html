@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Photography — Hispanos FB Directory</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0d14;color:#e4e6eb;line-height:1.5}
+a{color:#4da3ff;text-decoration:none}a:hover{text-decoration:underline}
+.topbar{position:sticky;top:0;z-index:10;background:#11141d;border-bottom:1px solid #222836;padding:14px 20px;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.topbar h1{font-size:1.15rem;color:#fff}
+.topbar .sub{font-size:.78rem;color:#8b92a3}
+.topbar nav{display:flex;gap:8px;flex-wrap:wrap}
+.topbar nav a{padding:6px 12px;background:#161a24;border:1px solid #242a38;border-radius:6px;font-size:.8rem;color:#cdd3e0}
+.topbar nav a:hover{background:#1d2535;color:#fff;text-decoration:none}
+.topbar nav a.on{background:#1a2744;color:#4da3ff;border-color:#4da3ff}
+.wrap{max-width:1400px;margin:0 auto;padding:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:24px}
+.stat{background:#11141d;border:1px solid #1f2432;border-radius:10px;padding:16px}
+.stat .n{font-size:1.8rem;font-weight:700;color:#4da3ff;line-height:1}
+.stat .l{font-size:.72rem;color:#8b92a3;text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+.card{background:#11141d;border:1px solid #1f2432;border-radius:10px;overflow:hidden;transition:border-color .15s}
+.card:hover{border-color:#2d3548}
+.card.offer{border-left:3px solid #4ae0a0}
+.card.seek{border-left:3px solid #f0a84a}
+.card-head{padding:12px 16px;display:flex;gap:14px;align-items:flex-start}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4da3ff,#b48eff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.05rem;flex-shrink:0}
+.head-body{flex:1;min-width:0}
+.name{font-size:1.02rem;font-weight:600;color:#fff;margin-bottom:4px}
+.meta{font-size:.75rem;color:#8b92a3;display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.trades{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.trade{font-size:.72rem;padding:3px 10px;border-radius:12px;background:#1a2744;color:#4da3ff;border:1px solid #2c3f5e}
+.trade.offering{background:#0f2d22;color:#4ae0a0;border-color:#1f5540}
+.trade.seeking{background:#2d220f;color:#f0a84a;border-color:#55401f}
+.phones{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.phone{font-size:.86rem;font-weight:600;color:#4ae0a0;padding:4px 10px;background:#0f2d22;border-radius:6px;border:1px solid #1f5540}
+.phone a{color:inherit}
+.bio{font-size:.78rem;color:#8b92a3;font-style:italic}
+.sec{margin:24px 0 12px;font-size:1.1rem;color:#fff;padding-bottom:6px;border-bottom:1px solid #222836}
+.search{width:100%;padding:10px 14px;background:#161a24;border:1px solid #242a38;color:#e4e6eb;border-radius:8px;font-size:.95rem;outline:none;margin-bottom:16px}
+.search:focus{border-color:#4da3ff}
+.list{display:flex;flex-direction:column;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #1f2432}
+th{background:#0d1019;color:#8b92a3;font-weight:600;text-transform:uppercase;font-size:.7rem;letter-spacing:.5px;position:sticky;top:0;cursor:pointer;user-select:none}
+th:hover{color:#fff}
+tr:hover{background:#141823}
+.excerpt{font-size:.78rem;color:#8b92a3;margin-top:4px;line-height:1.4}
+.post-item{padding:10px 14px;background:#0d1019;border:1px solid #1a1f2c;border-radius:6px;margin-bottom:8px;font-size:.85rem}
+.post-item.offer{border-left:2px solid #4ae0a0}
+.post-item.seek{border-left:2px solid #f0a84a}
+.post-item .head{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;font-size:.72rem;color:#8b92a3}
+.post-item .body{color:#cdd3e0;white-space:pre-wrap;word-wrap:break-word}
+.hidden{display:none!important}
+@media (max-width:700px){.topbar{flex-direction:column;align-items:flex-start}}
+.cat-head{background:linear-gradient(135deg,#1a2744 0%,#2a1f44 100%);padding:32px 20px;border-radius:12px;margin-bottom:24px}
+.cat-head h2{font-size:1.8rem;color:#fff;margin-bottom:8px}
+.cat-head p{color:#cdd3e0;font-size:.9rem}
+.section{margin-top:24px}
+.section h3{color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section h3 .count{font-size:.75rem;background:#1a2744;color:#4da3ff;padding:3px 10px;border-radius:10px}
+</style></head><body>
+<div class="topbar">
+  <div><h1>Photography</h1><div class="sub"><a href="index.html" style="color:#8b92a3">← Dashboard</a> · <a href="index.html" style="color:#8b92a3">All categories</a></div></div>
+  <nav><a href="../index.html" >Dashboard</a><a href="../directory.html" >Full Directory</a><a href="../phones.html" >Phone Lookup</a><a href="../businesses.html" >Top Businesses</a><a href="../categories/index.html" class="on">Categories</a></nav>
+</div>
+<div class="wrap">
+  <div class="cat-head">
+    <h2>Photography</h2>
+    <p>33 people mentioned · 3 offering · 9 seeking · 15 with phone numbers</p>
+  </div>
+
+  <input type="text" class="search" id="q" placeholder="Search name or phone within Photography...">
+
+  <div class="section"><h3>🟢 Offering Services <span class="count">3</span></h3>
+    <div class="list" id="offer-list"><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">BG</div>
+        <div class="head-body">
+          <div class="name">Briant Garcia
+            <a href="https://www.facebook.com/BriantGarcia318" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 77% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 68 posts</span>
+            <span>💬 5 comments</span>
+            <span>🕒 2025-01-31</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(903) 646-8235">(903) 646-8235</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Legal Services</span><span class="trade">Electrical</span><span class="trade">Welding</span></div>
+          <div class="excerpt">"A sus ordenes, con más de 10 Años de experiencia. 
+Hacemos video y fotografía para el noroeste de Louisiana y el este de Texas. 
+318latino.com/briant" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3536745779891006/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">EM</div>
+        <div class="head-body">
+          <div class="name">Edith Marcelii
+            <a href="https://www.facebook.com/edith.marcelii.1" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 62% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 12 posts</span>
+            <span>💬 13 comments</span>
+            <span>🕒 2026-01-28</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 805-3699">(318) 805-3699</a></span><span class="phone"><a href="tel:(318) 789-3729">(318) 789-3729</a></span><span class="phone"><a href="tel:(318) 325-1092">(318) 325-1092</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">HVAC</span><span class="trade">Roofing</span><span class="trade">Concrete &amp; Masonry</span><span class="trade">Bakery &amp; Pastries</span></div>
+          <div class="excerpt">"The Pretty Picture Photography trabajo de calidad y súper honesta!! Se la recomiendo!" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4394038017495107/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">CA</div>
+        <div class="head-body">
+          <div class="name">Cielo Aglr
+            <a href="https://www.facebook.com/cielo.rios.31392" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 56% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 8 comments</span>
+            <span>🕒 2026-03-25</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Events &amp; Party</span></div>
+          <div class="excerpt">"Hola ✨Contácteme para cualquier necesidad de maquillaje, peinados y pestañas postizas💘.Maquilló para bodas , quinceañeras , sesión de fotos y mucho mas‼️También ofrezco servicio a domicilio , o servicio en mi localización😉Contácteme para mas información🫶🏼" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3559712097594374/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div></div></div>
+
+  <div class="section"><h3>Mentioned (intent unclear) <span class="count">21</span></h3>
+    <div class="list" id="unclear-list"><div class="card ">
+      <div class="card-head">
+        <div class="avatar">IM</div>
+        <div class="head-body">
+          <div class="name">Ivette Mendoza
+            <a href="https://www.facebook.com/ivette.mendoza" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 142 posts</span>
+            <span>💬 158 comments</span>
+            <span>🕒 2026-04-10</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 318-5086">(318) 318-5086</a></span><span class="phone"><a href="tel:(318) 368-5086">(318) 368-5086</a></span><span class="phone"><a href="tel:(425) 117-7734">(425) 117-7734</a></span><span class="phone"><a href="tel:(318) 468-5086">(318) 468-5086</a></span><span class="phone"><a href="tel:(318) 361-0381">(318) 361-0381</a></span><span class="phone"><a href="tel:(386) 684-3489">(386) 684-3489</a></span><span class="phone"><a href="tel:(318) 608-5767">(318) 608-5767</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Delivery</span><span class="trade">Childcare</span><span class="trade">Fencing</span><span class="trade">Translation</span><span class="trade">Nails</span></div>
+          <div class="excerpt">"Fotografía Monica Mendoza 
+Vídeo José Mexicano" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3774828866082695/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">MD</div>
+        <div class="head-body">
+          <div class="name">Maria Del Rosal
+            <a href="https://www.facebook.com/sulidelrosal" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 95 posts</span>
+            <span>💬 20 comments</span>
+            <span>🕒 2026-04-02</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(900) 424-1968">(900) 424-1968</a></span><span class="phone"><a href="tel:(595) 601-1606">(595) 601-1606</a></span><span class="phone"><a href="tel:(318) 497-1703">(318) 497-1703</a></span><span class="phone"><a href="tel:(318) 805-5788">(318) 805-5788</a></span><span class="phone"><a href="tel:(870) 904-9137">(870) 904-9137</a></span><span class="phone"><a href="tel:(318) 789-0755">(318) 789-0755</a></span><span class="phone"><a href="tel:(318) 791-5465">(318) 791-5465</a></span><span class="phone"><a href="tel:(318) 323-1631">(318) 323-1631</a></span><span class="phone"><a href="tel:(318) 267-4018">(318) 267-4018</a></span><span class="phone"><a href="tel:(615) 507-7780">(615) 507-7780</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Cleaning</span><span class="trade">Childcare</span><span class="trade">Concrete &amp; Masonry</span><span class="trade">Fencing</span><span class="trade">Delivery</span></div>
+          <div class="excerpt">"Anoche me robaron un generador y un compresor de mi camioneta de trabajo por si alguien se los ofrece favor de avisarme tomar fotografías para que ayude a la policía a identificarlos..." <a href="https://www.facebook.com/groups/westmonore.monroe/posts/2599997186899208/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">RS</div>
+        <div class="head-body">
+          <div class="name">Roxy Santos
+            <a href="https://www.facebook.com/roxyisgoofy" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 59 posts</span>
+            <span>💬 51 comments</span>
+            <span>🕒 2025-12-22</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(298) 909-8032">(298) 909-8032</a></span><span class="phone"><a href="tel:(318) 361-7370">(318) 361-7370</a></span><span class="phone"><a href="tel:(318) 546-3248">(318) 546-3248</a></span><span class="phone"><a href="tel:(318) 324-0111">(318) 324-0111</a></span><span class="phone"><a href="tel:(317) 683-2445">(317) 683-2445</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Painting</span><span class="trade">Taxes &amp; Notary</span><span class="trade">Plumbing</span><span class="trade">Electrical</span><span class="trade">Fencing</span></div>
+          <div class="excerpt">"Hernán Adolfo Mendez Hernández
+
+Escultura
+Pintura
+Dibujo
+Grabado
+Cerámica
+Artesanio
+Fotografía" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3796749380557310/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">University of Louisiana Monroe</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">DV</div>
+        <div class="head-body">
+          <div class="name">Dalixa Velasquez
+            <a href="https://www.facebook.com/dalixaa" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 21 posts</span>
+            <span>💬 83 comments</span>
+            <span>🕒 2026-04-16</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 538-8514">(318) 538-8514</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Delivery</span><span class="trade">Bakery &amp; Pastries</span><span class="trade">Translation</span><span class="trade">Welding</span></div>
+          <div class="excerpt">"En el 165 hay una boutique de pasteles allí te lo hacen igual que la fotografía " <a href="https://www.facebook.com/groups/westmonore.monroe/posts/2962746010624322/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">JH</div>
+        <div class="head-body">
+          <div class="name">Jariel Herrera
+            <a href="https://www.facebook.com/jariel.herrera.2025" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 16 posts</span>
+            <span>💬 43 comments</span>
+            <span>🕒 2026-03-04</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 331-8925">(318) 331-8925</a></span><span class="phone"><a href="tel:(318) 325-1869">(318) 325-1869</a></span><span class="phone"><a href="tel:(318) 538-2707">(318) 538-2707</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Mechanic</span><span class="trade">Remodeling</span></div>
+          <div class="excerpt">"Ford 89 $ precio y fotografía" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4552985074933733/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Louisiana Stone, LLC</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">OS</div>
+        <div class="head-body">
+          <div class="name">Oscar Sanchez
+            <a href="https://www.facebook.com/oscar.sanchez.301455" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 1 posts</span>
+            <span>💬 57 comments</span>
+            <span>🕒 2026-04-07</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 654-3564">(318) 654-3564</a></span></div>
+          
+          <div class="excerpt">"Valentin Coquehua exelente fotografo 👌🏼" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4228467227385521/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Cobaev 49</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">LG</div>
+        <div class="head-body">
+          <div class="name">Lisbeth Guerrero
+            <a href="https://www.facebook.com/lisbeth.e.montes" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 15 posts</span>
+            <span>💬 43 comments</span>
+            <span>🕒 2026-03-18</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 513-1212">(318) 513-1212</a></span><span class="phone"><a href="tel:(318) 512-8230">(318) 512-8230</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Delivery</span></div>
+          <div class="excerpt">"Euphoric Imagery Photography, LLC" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4416425015256407/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">West Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">CB</div>
+        <div class="head-body">
+          <div class="name">Che Balderas
+            <a href="https://www.facebook.com/che.balderas.141277" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 6 posts</span>
+            <span>💬 10 comments</span>
+            <span>🕒 2026-03-26</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 917-5093">(318) 917-5093</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Framing</span></div>
+          <div class="excerpt">"Algún fotógrafo porfecional ??" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4228467227385521/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">AL</div>
+        <div class="head-body">
+          <div class="name">Aracely Lemus
+            <a href="https://www.facebook.com/aracely.lemus.7169" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 10% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 9 posts</span>
+            <span>💬 15 comments</span>
+            <span>🕒 2026-03-20</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">General Construction</span><span class="trade">Cleaning</span><span class="trade">Tutoring</span><span class="trade">Plumbing</span></div>
+          <div class="excerpt">"Leslie Vallery Photography" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4474159899482918/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">West Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">CG</div>
+        <div class="head-body">
+          <div class="name">Carolina Guzmán
+            <a href="https://www.facebook.com/caro.guzq" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 8 posts</span>
+            <span>💬 162 comments</span>
+            <span>🕒 2026-03-06</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Flooring &amp; Tile</span><span class="trade">Remodeling</span><span class="trade">Translation</span><span class="trade">Delivery</span><span class="trade">Tree Services</span></div>
+          <div class="excerpt">"Si, Linda Puac es fotógrafa profesional" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3774828866082695/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">CUCS</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">MM</div>
+        <div class="head-body">
+          <div class="name">Maria Morales
+            <a href="https://www.facebook.com/maria.morales.650696" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 7 posts</span>
+            <span>💬 29 comments</span>
+            <span>🕒 2025-08-15</span>
+          </div>
+          
+          
+          <div class="excerpt">"Sesión de fotos por solamente $45!
+
+Hablen con Tyanny Barajas si están ￼￼ interesados ￼" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/2568928920006035/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at JPMorganChase</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">CC</div>
+        <div class="head-body">
+          <div class="name">Claudia Contreras
+            <a href="https://www.facebook.com/claudia.contrera.56" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 1 posts</span>
+            <span>💬 14 comments</span>
+            <span>🕒 2024-04-06</span>
+          </div>
+          
+          
+          <div class="excerpt">"No se ve nada en la fotografía" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/2647367658828827/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Bachiderato 12</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">JG</div>
+        <div class="head-body">
+          <div class="name">Julio Gonzalez
+            <a href="https://www.facebook.com/julio.gonzalez.773456" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 0 posts</span>
+            <span>💬 14 comments</span>
+            <span>🕒 2026-04-07</span>
+          </div>
+          
+          
+          <div class="excerpt">"Valentin Coquehua excelente fotógrafo" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4228467227385521/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Cambridge, Massachusetts</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">JM</div>
+        <div class="head-body">
+          <div class="name">Jose Manuel Moreno
+            <a href="https://www.facebook.com/manuel.mendezmoreno.965" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 0 posts</span>
+            <span>💬 11 comments</span>
+            <span>🕒 2022-12-10</span>
+          </div>
+          
+          
+          <div class="excerpt">"Quien fue el fotógrafo" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3467035273528724/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Aeropostale</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">ER</div>
+        <div class="head-body">
+          <div class="name">Edu Romeo Sants
+            <a href="https://www.facebook.com/eduardo.santosromero.58" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 5 posts</span>
+            <span>💬 6 comments</span>
+            <span>🕒 2026-04-10</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Sewing &amp; Tailoring</span></div>
+          <div class="excerpt">"ALGÚN FOTÓGRAFO CON LAS 3B PARA EL 18 DE ABRIL" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4631427957089444/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Coyoacán</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">KF</div>
+        <div class="head-body">
+          <div class="name">Krmn Flores
+            <a href="https://www.facebook.com/krmfl0rs" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 0 posts</span>
+            <span>💬 8 comments</span>
+            <span>🕒 2025-12-16</span>
+          </div>
+          
+          
+          <div class="excerpt">"Missy M. Emory Photography" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4362840603948182/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">LF</div>
+        <div class="head-body">
+          <div class="name">Leslye Flores
+            <a href="https://www.facebook.com/profile.php?id=100077518677250" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 0 posts</span>
+            <span>💬 4 comments</span>
+            <span>🕒 2025-04-18</span>
+          </div>
+          
+          
+          <div class="excerpt">"Crystal Flores Photography la mejor" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4228467227385521/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Ruston, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">MM</div>
+        <div class="head-body">
+          <div class="name">Miguel Montellano
+            <a href="https://www.facebook.com/miguel.montellano.363290" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 0 posts</span>
+            <span>💬 4 comments</span>
+            <span>🕒 2026-03-10</span>
+          </div>
+          
+          
+          <div class="excerpt">"interior and exterior photography" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4594748187424088/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Montellano concrete LLc</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">ZÚ</div>
+        <div class="head-body">
+          <div class="name">Zuly Ús
+            <a href="https://www.facebook.com/zully.usss" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 1 comments</span>
+            <span>🕒 2024-05-06</span>
+          </div>
+          
+          
+          <div class="excerpt">"Buen día, de casualidad alguien sabe de un fotógrafo hispano, me avisan por favor 🙏" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3536745779891006/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">West Monroe High School</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">CB</div>
+        <div class="head-body">
+          <div class="name">Claudia Bueno
+            <a href="https://www.facebook.com/claudia.bueno.7315" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 0 comments</span>
+            <span>🕒 2026-01-07</span>
+          </div>
+          
+          
+          <div class="excerpt">"Buenas Noches, Habra una persona que se dedique a fotografía y video para una boda?" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3774828866082695/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">LM</div>
+        <div class="head-body">
+          <div class="name">Luz Martin
+            <a href="https://www.facebook.com/100053307534365" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 0 posts</span>
+            <span>💬 1 comments</span>
+            <span>🕒 2023-05-01</span>
+          </div>
+          
+          
+          <div class="excerpt">"Quizás devén d conspirar la fotografía que usan." <a href="https://www.facebook.com/groups/1437882213110717/posts/692110616257272/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div></div></div>
+
+  <div class="section"><h3>🟡 Seeking Services <span class="count">9</span></h3>
+    <div class="list" id="seek-list"><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">LM</div>
+        <div class="head-body">
+          <div class="name">Lupita Morato
+            <a href="https://www.facebook.com/lupita.morato.260539" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 62 posts</span>
+            <span>💬 75 comments</span>
+            <span>🕒 2026-04-19</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 614-5220">(318) 614-5220</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Bakery &amp; Pastries</span><span class="trade">Delivery</span><span class="trade">Events &amp; Party</span><span class="trade">Sewing &amp; Tailoring</span><span class="trade">Barber &amp; Hair</span></div>
+          <div class="excerpt">"Recomendaciones de algún fotógrafo y video" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4327577260807850/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">West Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">VJ</div>
+        <div class="head-body">
+          <div class="name">VL Jaqueline
+            <a href="https://www.facebook.com/sheyla.v23" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 64 posts</span>
+            <span>💬 16 comments</span>
+            <span>🕒 2026-03-27</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 323-5545">(318) 323-5545</a></span><span class="phone"><a href="tel:(318) 855-4935">(318) 855-4935</a></span><span class="phone"><a href="tel:(318) 855-4132">(318) 855-4132</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Delivery</span><span class="trade">Concrete &amp; Masonry</span></div>
+          <div class="excerpt">"Alguien que haga sesión de fotos en Monroe o West Monroe?" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4474159899482918/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Unitech Training Academy Career Services</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">EF</div>
+        <div class="head-body">
+          <div class="name">Edward Ferrero
+            <a href="https://www.facebook.com/edward.ferrero.94" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 6 posts</span>
+            <span>💬 34 comments</span>
+            <span>🕒 2022-08-12</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 331-2044">(318) 331-2044</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Labor / Helper</span></div>
+          <div class="excerpt">"Se necesita un fotografo.....por favor recomiendame si conoces a alguien......" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/2780091338889791/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">IP</div>
+        <div class="head-body">
+          <div class="name">Ivan Perez
+            <a href="https://www.facebook.com/ache.axel.9" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 10 posts</span>
+            <span>💬 9 comments</span>
+            <span>🕒 2026-03-13</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 789-9430">(318) 789-9430</a></span><span class="phone"><a href="tel:(318) 380-1828">(318) 380-1828</a></span><span class="phone"><a href="tel:(318) 557-5739">(318) 557-5739</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Roofing</span><span class="trade">Labor / Helper</span></div>
+          <div class="excerpt">"Buenas noches
+Algún fotógrafo que me recomienden xfavor
+Gracias 😁" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4416425015256407/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Roofing</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">AM</div>
+        <div class="head-body">
+          <div class="name">Aracely Moreira Isaula
+            <a href="https://www.facebook.com/aracely.moreira.isaula" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 7 posts</span>
+            <span>💬 3 comments</span>
+            <span>🕒 2025-09-22</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 948-1015">(318) 948-1015</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Painting</span><span class="trade">Concrete &amp; Masonry</span><span class="trade">Barber &amp; Hair</span></div>
+          <div class="excerpt">"Hola buenas tardes, alguien que me recomiende un fotógrafo profesional ya sea aquí en West Monroe o Monroe.
+Gracias de antemano!" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3660107560888160/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">VJ</div>
+        <div class="head-body">
+          <div class="name">Vzqz Janet
+            <a href="https://www.facebook.com/janet.vazquezrojas" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 26 posts</span>
+            <span>💬 36 comments</span>
+            <span>🕒 2026-03-01</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Nails</span><span class="trade">Sewing &amp; Tailoring</span></div>
+          <div class="excerpt">"Hola estoy buscando un fotógrafo para una sesión de fotos conocen a alguien?? 😉" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3700577863507796/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Eros, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">AR</div>
+        <div class="head-body">
+          <div class="name">Arlen Ramirez Resendiz
+            <a href="https://www.facebook.com/moxhurita" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 9 posts</span>
+            <span>💬 14 comments</span>
+            <span>🕒 2025-09-09</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Mechanic</span></div>
+          <div class="excerpt">"Busco recomendaciones!!! 
+
+Ando buscando un fotógrafo para sesión, de primer año de una nena." <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3037077659857823/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Universidad de Montemorelos</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">MR</div>
+        <div class="head-body">
+          <div class="name">Madeling Rodriguez
+            <a href="https://www.facebook.com/madeling.rodriguez.885701" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 10 posts</span>
+            <span>💬 10 comments</span>
+            <span>🕒 2026-03-19</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Events &amp; Party</span><span class="trade">Sewing &amp; Tailoring</span></div>
+          <div class="excerpt">"Hola estoy buscando un fotógrafo alguien que recomiende uno??" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4394038017495107/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">North Charleston, South Carolina</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">AA</div>
+        <div class="head-body">
+          <div class="name">Alejandra AS
+            <a href="https://www.facebook.com/as.sanchez.853119" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 10 posts</span>
+            <span>💬 1 comments</span>
+            <span>🕒 2025-12-06</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Painting</span></div>
+          <div class="excerpt">"Buenas tardes, ando buscando a alguien que haga sesiones de fotos. Si tienen algún fotógrafo que recomienden, me pueden 
+compartir su contacto. ¡Gracias!" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4492465564319018/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div></div></div>
+</div>
+<script>
+document.getElementById('q').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.card').forEach(c => {
+    const txt = c.textContent.toLowerCase();
+    c.classList.toggle('hidden', q && txt.indexOf(q) < 0);
+  });
+});
+</script>
+</body></html>

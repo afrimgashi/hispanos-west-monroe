@@ -1,0 +1,8 @@
+Read analysis/SCHEMA.md and analysis/AGENT-LOOP.md, then run the loop until ALL DONE.
+
+Rules:
+- Do not stop between batches.
+- Do not ask for confirmation.
+- After writing batch-output.json, immediately run `node analysis/next-batch.js`.
+- If it succeeds, read the new batch-input.json and keep going.
+- Only stop on "❌" errors or "🎉 ALL DONE".

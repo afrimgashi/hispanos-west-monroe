@@ -1,0 +1,244 @@
+
+════════════════════════════════════════════════════════════════════════
+  DATABASE_POSTS.JSON  —  STRUCTURAL WALKTHROUGH
+════════════════════════════════════════════════════════════════════════
+File size:        56.04 MB  (58,764,889 bytes)
+Root type:        object
+Root keys:        meta, memberProgress, posts
+
+════════════════════════════════════════════════════════════════════════
+  LEVEL 1 — ROOT OBJECT
+════════════════════════════════════════════════════════════════════════
+Access:  db = JSON.parse(fs.readFileSync(...))
+
+  db.meta       → object with 7 keys
+  db.memberProgress       → object with 8,498 keys
+  db.posts       → object with 32,429 keys
+
+════════════════════════════════════════════════════════════════════════
+  LEVEL 2 — db.meta
+════════════════════════════════════════════════════════════════════════
+The header / state-tracking object.
+
+  db.meta.created              string   "2026-04-10T18:55:08.773Z"
+  db.meta.lastUpdated          string   "2026-04-22T14:53:16.594Z"
+  db.meta.groupId              string   "1437882213110717"
+  db.meta.totalPosts           number   32429
+  db.meta.membersProcessed     number   8497
+  db.meta.totalMembers         number   8610
+  db.meta.currentMemberIdx     number   8497
+
+════════════════════════════════════════════════════════════════════════
+  LEVEL 2 — db.memberProgress
+════════════════════════════════════════════════════════════════════════
+Object keyed by userId. Total entries: 8,498
+
+Access:  db.memberProgress["<userId>"]
+
+Example (db.memberProgress["17820959"]):
+    {
+      "status": "done",
+      "postsFound": 0,
+      "lastCursor": null
+    }
+
+Field inventory across all memberProgress entries:
+  .status             string×8498          examples: "done"  |  "in-progress"
+  .postsFound         number×8498          examples: 0  |  1
+  .lastCursor         null×8497, string×1  examples: null  |  "AQHSj4fd6d9Aw8__d6mm2iZ4GSpZbhidrXmS-9hv…"
+
+════════════════════════════════════════════════════════════════════════
+  LEVEL 2 — db.posts
+════════════════════════════════════════════════════════════════════════
+Object keyed by postId. Total posts: 32,429
+
+Access:  db.posts["<postId>"]    OR    Object.values(db.posts)
+
+════════════════════════════════════════════════════════════════════════
+  LEVEL 3 — A SINGLE POST (db.posts["<id>"])
+════════════════════════════════════════════════════════════════════════
+Every post has the same shape. Fields with type distribution:
+
+  .postId               string×32429         non-empty 100%   ex: "2880358202196437"
+  .permalink            string×32429         non-empty 100%   ex: "https://www.facebook.com/groups/westmonore.monroe/posts/2880…"
+  .authorName           string×32429         non-empty 100%   ex: "Marcela Barron"
+  .authorId             string×32429         non-empty 100%   ex: "54103120"
+  .timestamp            string×32429         non-empty  76%   ex: "2020-10-28T00:45:19.000Z"
+  .message              string×32429         non-empty  61%   ex: "Alguien sabe donde se vende pan de muerto aqui en west Monro…"
+  .images               array×32429          non-empty  69%   ex: (nested)
+  .videos               array×32429          non-empty   0%   ex: (nested)
+  .reactions            object×32429         non-empty 100%   ex: (nested)
+  .commentCount         number×32429         non-empty 100%   ex: 7
+  .comments             array×32429          non-empty  30%   ex: (nested)
+  .shares               number×32429         non-empty 100%   ex: 0
+  .scrapedAt            string×32429         non-empty 100%   ex: "2026-04-10T18:55:01.756Z"
+  ._commentsEnriched    boolean×31230        non-empty 100%   ex: true
+
+Example post (first record, truncated strings):
+    {
+      "postId": "2880358202196437",
+      "permalink": "https://www.facebook.com/groups/westmonore.monroe/posts/2880358202196437/",
+      "authorName": "Marcela Barron",
+      "authorId": "54103120",
+      "timestamp": "2020-10-28T00:45:19.000Z",
+      "message": "Alguien sabe donde se vende pan de muerto aqui en west Monroe o Monroe?",
+      "images": [],
+      "videos": [],
+      "reactions": {
+        "total": 2
+      },
+      "commentCount": 7,
+      "comments": [
+        {
+          "commentId": "Y29tbWVudDoyODgwMzU4MjAyMTk2NDM3XzI4ODAzOTk4NDU1MjU2MDY=",
+          "author": "Grace Stephanie FarBer",
+          "authorId": "1013414370",
+          "text": "Lorena Vilche trae los viernes , creo en especial ese pan lo traerá el próximo viernes ",
+          "timestamp": "2020-10-28T01:51:11.000Z",
+          "images": [],
+          "isReply": false,
+          "reactionCount": 2
+        },
+        "… + 6 more"
+      ],
+      "shares": 0,
+      "scrapedAt": "2026-04-10T18:55:01.756Z",
+      "_commentsEnriched": true
+    }
+
+════════════════════════════════════════════════════════════════════════
+  LEVEL 4 — post.reactions  (every post has one)
+════════════════════════════════════════════════════════════════════════
+Keys present on reactions objects:
+  .reactions.total        number×32429     ex: 2 | 0
+
+Example post.reactions:
+    {"total":2}
+
+════════════════════════════════════════════════════════════════════════
+  LEVEL 4 — post.images (array of URL strings)
+════════════════════════════════════════════════════════════════════════
+Posts with at least one image:  22,471
+Total image URLs:               56,637
+Images per post:                min 1, max 15, avg 2.5
+
+Example (first 2 URLs):
+    https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/565659677_809810065080093_8791443346640907598_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=13d280&_nc_ohc=2oLyDPgANl8Q7kNvwGebaR1&_nc_oc=AdoUZFxMuEYjNhruw-n8riY_xESRMQNRxFniMc6QeVvWd92n3wV2-iWBcvi2Q5hs-9uTgnD5eDbuV5-kt7ykIZFL&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&_nc_gid=Dmbm80jdkkAgfH6xPzzDow&_nc_ss=7a3a8&oh=00_Af285gJugLU0OxwhePU-Eml1aNeFlQkzDltm3D2C_lZ3dA&oe=69DF2B59
+    https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/566237131_809806218413811_7747114150099846591_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=13d280&_nc_ohc=1gJnaAcKa1MQ7kNvwHEdzu4&_nc_oc=AdpptlsdpRKuXDFmNeR1g3x-MQFJ5rztl4KTbQ1RIabgrXEHMFa4Z0SwZbfCDrAeC9RC8rUMyVTQTBt2k4vPm8MO&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&_nc_gid=Dmbm80jdkkAgfH6xPzzDow&_nc_ss=7a3a8&oh=00_Af2tLGCwlkdzXCUu9tZdWPWPXyygI1aDgvMgM4LNUzBJbw&oe=69DF0259
+
+════════════════════════════════════════════════════════════════════════
+  LEVEL 4 — post.videos (array)
+════════════════════════════════════════════════════════════════════════
+Posts with videos:              1
+
+Example post.videos[0]:
+    "https://scontent-atl3-1.xx.fbcdn.net/v/t39.32055-6/412863580_1394760534464776_8660794104469291958_n.mp4?_nc_cat=106&ccb=1-7&_nc_sid=a135c4&_nc_ohc=JZ9CHXT6ILkQ7kNvwFLRWTr&_nc_oc=AdrEjdm26HLdMR7CdtSZNzE2RvVt9vziqa4YG848cx3rvx1pfsFRSAo4Ug4cGHaczNaZL60Xv0jhOFCRYU7Yr8h5&_nc_zt=14&_nc_ht=scontent-atl3-1.xx&_nc_gid=wLjw3D5Ip4Aup2wAjvKL1A&_nc_ss=7a3a8&oh=00_Af05vn6qXhGjeUSI1YMeOGdgS4qtlsjwCmV5exy47n6yJw&oe=69E1D723"
+
+════════════════════════════════════════════════════════════════════════
+  LEVEL 4 — post.comments (array of comment objects)
+════════════════════════════════════════════════════════════════════════
+Total comment objects:          33,898
+Most comments on a single post: 10
+
+
+════════════════════════════════════════════════════════════════════════
+  LEVEL 5 — a single comment (post.comments[i])
+════════════════════════════════════════════════════════════════════════
+Field inventory across all comment objects:
+  .commentId          string×33898         non-empty 100%   ex: "Y29tbWVudDoyODgwMzU4MjAyMTk2NDM3XzI4ODAzOTk4NDU1MjU2MDY…"
+  .author             string×33898         non-empty 100%   ex: "Grace Stephanie FarBer"
+  .authorId           string×33898         non-empty 100%   ex: "1013414370"
+  .text               string×33898         non-empty  95%   ex: "Lorena Vilche trae los viernes , creo en especial ese p…"
+  .timestamp          string×33898         non-empty 100%   ex: "2020-10-28T01:51:11.000Z"
+  .images             array×33898          non-empty   0%   ex: (nested)
+  .isReply            boolean×33898        non-empty 100%   ex: false
+  .reactionCount      number×33898         non-empty 100%   ex: 2
+
+Example comment:
+    {
+      "commentId": "Y29tbWVudDoyODgwMzU4MjAyMTk2NDM3XzI4ODAzOTk4NDU1MjU2MDY=",
+      "author": "Grace Stephanie FarBer",
+      "authorId": "1013414370",
+      "text": "Lorena Vilche trae los viernes , creo en especial ese pan lo traerá el próximo viernes ",
+      "timestamp": "2020-10-28T01:51:11.000Z",
+      "images": [],
+      "isReply": false,
+      "reactionCount": 2
+    }
+
+════════════════════════════════════════════════════════════════════════
+  JSON PATHS CHEAT SHEET — how to access anything
+════════════════════════════════════════════════════════════════════════
+
+Root
+├── db.meta.groupId                     → "1437882213110717"
+├── db.meta.totalPosts                  → 32429
+├── db.meta.totalMembers                → 8610
+├── db.meta.lastUpdated                 → ISO timestamp
+│
+├── db.memberProgress["<userId>"]       → scraping status for one member
+│   ├── .name                           → "Jesus Barbacoa"
+│   ├── .status                         → "done" | "in-progress" | "pending"
+│   ├── .postsFound                     → number
+│   └── .lastCursor                     → pagination token (for resume)
+│
+└── db.posts["<postId>"]                → ONE POST
+    ├── .postId                         → Facebook post ID
+    ├── .permalink                      → https://facebook.com/groups/.../posts/.../
+    ├── .authorId  /  .authorName       → who wrote the post
+    ├── .timestamp                      → ISO date
+    ├── .message                        → full text of post
+    ├── .images[i]                      → fbcdn.net URL (EXPIRES in ~1 week)
+    ├── .videos[i]                      → rare, almost never populated
+    ├── .reactions.total                → count
+    ├── .reactions.like / .love / ...   → per-emoji counts (mostly 0s)
+    ├── .commentCount                   → Facebook's declared count
+    ├── .shares                         → always 0 (scraper doesn't capture)
+    ├── .scrapedAt                      → when WE fetched this post
+    ├── ._commentsEnriched              → true once we fetched deep comments
+    └── .comments[i]                    → ONE COMMENT
+        ├── .commentId                  → Facebook comment ID
+        ├── .authorId / .author         → who wrote the comment
+        ├── .text                       → comment body
+        ├── .timestamp                  → ISO
+        ├── .isReply                    → true if it's a reply-to-comment
+        ├── .reactionCount              → count of reactions on the comment
+        └── .images[i]                  → attached to the comment (rare)
+
+
+════════════════════════════════════════════════════════════════════════
+  PLAYGROUND — copy/paste these to explore
+════════════════════════════════════════════════════════════════════════
+
+// Load:
+const db = JSON.parse(require('fs').readFileSync('hispanos members facebook/database_posts.json','utf8'));
+const posts = Object.values(db.posts);
+
+// Every post text mentioning "pintura":
+posts.filter(p => /pintura|pintor/i.test(p.message)).length;
+
+// All posts by one author:
+posts.filter(p => p.authorId === '100078107146338');
+
+// All comments on a specific post:
+db.posts['<postId>'].comments;
+
+// Phone numbers across all posts (naive):
+const phones = new Set();
+for (const p of posts) (p.message.match(/\b3\d{2}[- ]?\d{3}[- ]?\d{4}\b/g) || []).forEach(n => phones.add(n));
+
+// Busiest commenters:
+const byCommenter = {};
+for (const p of posts) for (const c of (p.comments||[])) byCommenter[c.author] = (byCommenter[c.author]||0) + 1;
+Object.entries(byCommenter).sort((a,b)=>b[1]-a[1]).slice(0,10);
+
+// Posts where someone offered a service (naive — contains "se hace" or "ofrezco"):
+posts.filter(p => /\b(se hace|ofrezco|hago|vendo)\b/i.test(p.message)).length;
+
+// Every post from this week:
+const oneWeekAgo = Date.now() - 7*86400000;
+posts.filter(p => new Date(p.timestamp).getTime() >= oneWeekAgo);
+
+// Who replied to whom (reply chains):
+posts.flatMap(p => p.comments.filter(c => c.isReply));
+

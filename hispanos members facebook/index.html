@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hispanos FB Directory — Dashboard</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0d14;color:#e4e6eb;line-height:1.5}
+a{color:#4da3ff;text-decoration:none}a:hover{text-decoration:underline}
+.topbar{position:sticky;top:0;z-index:10;background:#11141d;border-bottom:1px solid #222836;padding:14px 20px;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.topbar h1{font-size:1.15rem;color:#fff}
+.topbar .sub{font-size:.78rem;color:#8b92a3}
+.topbar nav{display:flex;gap:8px;flex-wrap:wrap}
+.topbar nav a{padding:6px 12px;background:#161a24;border:1px solid #242a38;border-radius:6px;font-size:.8rem;color:#cdd3e0}
+.topbar nav a:hover{background:#1d2535;color:#fff;text-decoration:none}
+.topbar nav a.on{background:#1a2744;color:#4da3ff;border-color:#4da3ff}
+.wrap{max-width:1400px;margin:0 auto;padding:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:24px}
+.stat{background:#11141d;border:1px solid #1f2432;border-radius:10px;padding:16px}
+.stat .n{font-size:1.8rem;font-weight:700;color:#4da3ff;line-height:1}
+.stat .l{font-size:.72rem;color:#8b92a3;text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+.card{background:#11141d;border:1px solid #1f2432;border-radius:10px;overflow:hidden;transition:border-color .15s}
+.card:hover{border-color:#2d3548}
+.card.offer{border-left:3px solid #4ae0a0}
+.card.seek{border-left:3px solid #f0a84a}
+.card-head{padding:12px 16px;display:flex;gap:14px;align-items:flex-start}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4da3ff,#b48eff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.05rem;flex-shrink:0}
+.head-body{flex:1;min-width:0}
+.name{font-size:1.02rem;font-weight:600;color:#fff;margin-bottom:4px}
+.meta{font-size:.75rem;color:#8b92a3;display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.trades{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.trade{font-size:.72rem;padding:3px 10px;border-radius:12px;background:#1a2744;color:#4da3ff;border:1px solid #2c3f5e}
+.trade.offering{background:#0f2d22;color:#4ae0a0;border-color:#1f5540}
+.trade.seeking{background:#2d220f;color:#f0a84a;border-color:#55401f}
+.phones{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.phone{font-size:.86rem;font-weight:600;color:#4ae0a0;padding:4px 10px;background:#0f2d22;border-radius:6px;border:1px solid #1f5540}
+.phone a{color:inherit}
+.bio{font-size:.78rem;color:#8b92a3;font-style:italic}
+.sec{margin:24px 0 12px;font-size:1.1rem;color:#fff;padding-bottom:6px;border-bottom:1px solid #222836}
+.search{width:100%;padding:10px 14px;background:#161a24;border:1px solid #242a38;color:#e4e6eb;border-radius:8px;font-size:.95rem;outline:none;margin-bottom:16px}
+.search:focus{border-color:#4da3ff}
+.list{display:flex;flex-direction:column;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #1f2432}
+th{background:#0d1019;color:#8b92a3;font-weight:600;text-transform:uppercase;font-size:.7rem;letter-spacing:.5px;position:sticky;top:0;cursor:pointer;user-select:none}
+th:hover{color:#fff}
+tr:hover{background:#141823}
+.excerpt{font-size:.78rem;color:#8b92a3;margin-top:4px;line-height:1.4}
+.post-item{padding:10px 14px;background:#0d1019;border:1px solid #1a1f2c;border-radius:6px;margin-bottom:8px;font-size:.85rem}
+.post-item.offer{border-left:2px solid #4ae0a0}
+.post-item.seek{border-left:2px solid #f0a84a}
+.post-item .head{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;font-size:.72rem;color:#8b92a3}
+.post-item .body{color:#cdd3e0;white-space:pre-wrap;word-wrap:break-word}
+.hidden{display:none!important}
+@media (max-width:700px){.topbar{flex-direction:column;align-items:flex-start}}
+.hero{background:linear-gradient(135deg,#1a2744 0%,#2a1f44 100%);padding:40px 20px;border-radius:16px;margin-bottom:24px;text-align:center}
+.hero h2{font-size:2rem;color:#fff;margin-bottom:8px}
+.hero p{color:#b48eff;font-size:1rem}
+.quick-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:24px}
+.ql{background:#11141d;border:1px solid #1f2432;border-radius:10px;padding:20px;text-decoration:none;color:inherit;transition:all .2s}
+.ql:hover{border-color:#4da3ff;background:#161a24;text-decoration:none}
+.ql .icon{font-size:1.8rem;margin-bottom:8px}
+.ql h3{color:#fff;font-size:1rem;margin-bottom:6px}
+.ql p{color:#8b92a3;font-size:.8rem}
+</style></head><body>
+<div class="topbar">
+  <div><h1>Hispanos Facebook Directory</h1><div class="sub">11,350 people · 32,429 posts · 33,898 comments</div></div>
+  <nav><a href="index.html" class="on">Dashboard</a><a href="directory.html" >Full Directory</a><a href="phones.html" >Phone Lookup</a><a href="businesses.html" >Top Businesses</a><a href="categories/index.html" >Categories</a></nav>
+</div>
+<div class="wrap">
+  <div class="hero">
+    <h2>Your Community Intelligence Hub</h2>
+    <p>Every member, every post, every phone number — searchable and cross-referenced.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="n">11,350</div><div class="l">People Indexed</div></div>
+    <div class="stat"><div class="n">2,418</div><div class="l">Active Posters</div></div>
+    <div class="stat"><div class="n">301</div><div class="l">Offering Services</div></div>
+    <div class="stat"><div class="n">995</div><div class="l">With Phone Numbers</div></div>
+    <div class="stat"><div class="n">1,297</div><div class="l">Unique Phone #s</div></div>
+    <div class="stat"><div class="n">32,429</div><div class="l">Posts Captured</div></div>
+    <div class="stat"><div class="n">33,898</div><div class="l">Comments Captured</div></div>
+    <div class="stat"><div class="n">59</div><div class="l">Service Categories</div></div>
+  </div>
+
+  <h2 class="sec">Quick Access</h2>
+  <div class="quick-links">
+    <a class="ql" href="directory.html"><div class="icon">👥</div><h3>Full Directory</h3><p>Browse every person with full post & comment history. Search, filter, export.</p></a>
+    <a class="ql" href="phones.html"><div class="icon">📞</div><h3>Phone Lookup</h3><p>Reverse-search any phone number. See who shares numbers (referrals).</p></a>
+    <a class="ql" href="categories/index.html"><div class="icon">🔧</div><h3>By Category</h3><p>One page per trade: painters, plumbers, food, etc. Shareable links.</p></a>
+    <a class="ql" href="businesses.html"><div class="icon">🏪</div><h3>Top Businesses</h3><p>Most-active posters — the community's anchor businesses.</p></a>
+  </div>
+
+  <h2 class="sec">Top Categories (by people offering services)</h2>
+  <div style="margin-bottom:24px">
+    <table>
+      <thead><tr><th>Category</th><th>Offering</th><th>Total People</th><th>Link</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Delivery</strong></td>
+          <td style="color:#4ae0a0;font-weight:600">58</td>
+          <td>241</td>
+          <td><a href="categories/delivery.html">View →</a></td>
+        </tr><tr>
+          <td><strong>Mechanic</strong></td>
+          <td style="color:#4ae0a0;font-weight:600">29</td>
+          <td>168</td>
+          <td><a href="categories/mechanic.html">View →</a></td>
+        </tr><tr>
+          <td><strong>Painting</strong></td>
+          <td style="color:#4ae0a0;font-weight:600">24</td>
+          <td>207</td>
+          <td><a href="categories/painting.html">View →</a></td>
+        </tr><tr>
+          <td><strong>Remodeling</strong></td>
+          <td style="color:#4ae0a0;font-weight:600">21</td>
+          <td>124</td>
+          <td><a href="categories/remodeling.html">View →</a></td>
+        </tr><tr>
+          <td><strong>Cleaning</strong></td>
+          <td style="color:#4ae0a0;font-weight:600">21</td>
+          <td>110</td>
+          <td><a href="categories/cleaning.html">View →</a></td>
+        </tr><tr>
+          <td><strong>Landscaping &amp; Lawn</strong></td>
+          <td style="color:#4ae0a0;font-weight:600">18</td>
+          <td>126</td>
+          <td><a href="categories/landscaping-lawn.html">View →</a></td>
+        </tr><tr>
+          <td><strong>Barber &amp; Hair</strong></td>
+          <td style="color:#4ae0a0;font-weight:600">17</td>
+          <td>80</td>
+          <td><a href="categories/barber-hair.html">View →</a></td>
+        </tr><tr>
+          <td><strong>Concrete &amp; Masonry</strong></td>
+          <td style="color:#4ae0a0;font-weight:600">16</td>
+          <td>129</td>
+          <td><a href="categories/concrete-masonry.html">View →</a></td>
+        </tr><tr>
+          <td><strong>Bakery &amp; Pastries</strong></td>
+          <td style="color:#4ae0a0;font-weight:600">16</td>
+          <td>108</td>
+          <td><a href="categories/bakery-pastries.html">View →</a></td>
+        </tr><tr>
+          <td><strong>Childcare</strong></td>
+          <td style="color:#4ae0a0;font-weight:600">16</td>
+          <td>71</td>
+          <td><a href="categories/childcare.html">View →</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sec">All Categories</h2>
+  <div class="trades" style="margin-bottom:24px"><a href="categories/delivery.html" class="trade">Delivery (241)</a> <a href="categories/restaurant.html" class="trade">Restaurant (213)</a> <a href="categories/painting.html" class="trade">Painting (207)</a> <a href="categories/mechanic.html" class="trade">Mechanic (168)</a> <a href="categories/concrete-masonry.html" class="trade">Concrete &amp; Masonry (129)</a> <a href="categories/landscaping-lawn.html" class="trade">Landscaping &amp; Lawn (126)</a> <a href="categories/remodeling.html" class="trade">Remodeling (124)</a> <a href="categories/labor-helper.html" class="trade">Labor / Helper (113)</a> <a href="categories/cleaning.html" class="trade">Cleaning (110)</a> <a href="categories/bakery-pastries.html" class="trade">Bakery &amp; Pastries (108)</a> <a href="categories/roofing.html" class="trade">Roofing (91)</a> <a href="categories/fencing.html" class="trade">Fencing (89)</a> <a href="categories/barber-hair.html" class="trade">Barber &amp; Hair (80)</a> <a href="categories/childcare.html" class="trade">Childcare (71)</a> <a href="categories/general-construction.html" class="trade">General Construction (66)</a> <a href="categories/legal-services.html" class="trade">Legal Services (63)</a> <a href="categories/taxes-notary.html" class="trade">Taxes &amp; Notary (53)</a> <a href="categories/events-party.html" class="trade">Events &amp; Party (47)</a> <a href="categories/plumbing.html" class="trade">Plumbing (45)</a> <a href="categories/drywall.html" class="trade">Drywall (39)</a> <a href="categories/translation.html" class="trade">Translation (33)</a> <a href="categories/photography.html" class="trade">Photography (33)</a> <a href="categories/nails.html" class="trade">Nails (28)</a> <a href="categories/welding.html" class="trade">Welding (28)</a> <a href="categories/hvac.html" class="trade">HVAC (26)</a> <a href="categories/flooring-tile.html" class="trade">Flooring &amp; Tile (26)</a> <a href="categories/framing.html" class="trade">Framing (25)</a> <a href="categories/sewing-tailoring.html" class="trade">Sewing &amp; Tailoring (24)</a> <a href="categories/hauling-junk-removal.html" class="trade">Hauling &amp; Junk Removal (23)</a> <a href="categories/tree-services.html" class="trade">Tree Services (21)</a> <a href="categories/music-dj.html" class="trade">Music &amp; DJ (21)</a> <a href="categories/carpentry.html" class="trade">Carpentry (19)</a> <a href="categories/cabinets-countertops.html" class="trade">Cabinets &amp; Countertops (18)</a> <a href="categories/electrical.html" class="trade">Electrical (17)</a> <a href="categories/insurance.html" class="trade">Insurance (16)</a> <a href="categories/siding-stucco.html" class="trade">Siding &amp; Stucco (16)</a> <a href="categories/tutoring.html" class="trade">Tutoring (16)</a> <a href="categories/moving.html" class="trade">Moving (13)</a> <a href="categories/catering-home-food.html" class="trade">Catering &amp; Home Food (12)</a> <a href="categories/driver-rides.html" class="trade">Driver &amp; Rides (11)</a> <a href="categories/real-estate.html" class="trade">Real Estate (9)</a> <a href="categories/massage-spa.html" class="trade">Massage &amp; Spa (7)</a> <a href="categories/pool-service.html" class="trade">Pool Service (7)</a> <a href="categories/car-detailing.html" class="trade">Car Detailing (6)</a> <a href="categories/insulation.html" class="trade">Insulation (6)</a> <a href="categories/accounting.html" class="trade">Accounting (5)</a> <a href="categories/auto-body-paint.html" class="trade">Auto Body &amp; Paint (4)</a> <a href="categories/healthcare-worker.html" class="trade">Healthcare Worker (4)</a> <a href="categories/tire-service.html" class="trade">Tire Service (4)</a> <a href="categories/handyman.html" class="trade">Handyman (3)</a> <a href="categories/demolition.html" class="trade">Demolition (3)</a> <a href="categories/pressure-washing.html" class="trade">Pressure Washing (2)</a> <a href="categories/deck-patio.html" class="trade">Deck &amp; Patio (2)</a> <a href="categories/makeup.html" class="trade">Makeup (2)</a> <a href="categories/windows-doors.html" class="trade">Windows &amp; Doors (1)</a></div>
+
+  <h2 class="sec">Most Recently Active (last 20 people who posted)</h2>
+  <div class="list">
+    <div class="card offer"><div class="card-head">
+        <div class="avatar">AL</div>
+        <div class="head-body">
+          <div class="name">Anacaren Lynn <a href="https://www.facebook.com/anacarenlynn" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 69</span><span>💬 122</span><span>🕒 2026-04-21</span></div>
+          <div class="trades"><span class="trade offering">Delivery</span><span class="trade ">Restaurant</span><span class="trade ">Bakery &amp; Pastries</span><span class="trade seeking">Mechanic</span></div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 620-9955">(318) 620-9955</a></span><span class="phone"><a href="tel:(903) 261-5877">(903) 261-5877</a></span></div>
+        </div>
+      </div></div><div class="card "><div class="card-head">
+        <div class="avatar">W&amp;</div>
+        <div class="head-body">
+          <div class="name">Williams &amp; Omar construction LLC  <a href="https://www.facebook.com/61579406117878" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 1</span><span>💬 0</span><span>🕒 2026-04-21</span></div>
+          <div class="trades"><span class="trade ">Bakery &amp; Pastries</span></div>
+          
+        </div>
+      </div></div><div class="card "><div class="card-head">
+        <div class="avatar">LT</div>
+        <div class="head-body">
+          <div class="name">Lex Thornton <a href="https://www.facebook.com/100002090865453" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 0</span><span>💬 1</span><span>🕒 2026-04-20</span></div>
+          
+          
+        </div>
+      </div></div><div class="card "><div class="card-head">
+        <div class="avatar">SG</div>
+        <div class="head-body">
+          <div class="name">Sara Greys Gonzalez Perales <a href="https://www.facebook.com/saragreys.gonzalezperales" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 0</span><span>💬 3</span><span>🕒 2026-04-20</span></div>
+          
+          
+        </div>
+      </div></div><div class="card seek"><div class="card-head">
+        <div class="avatar">IR</div>
+        <div class="head-body">
+          <div class="name">Irlanda Romero <a href="https://www.facebook.com/irlanda.romero.5" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 77</span><span>💬 34</span><span>🕒 2026-04-20</span></div>
+          <div class="trades"><span class="trade seeking">Restaurant</span><span class="trade ">Taxes &amp; Notary</span><span class="trade ">Catering &amp; Home Food</span><span class="trade ">Bakery &amp; Pastries</span></div>
+          
+        </div>
+      </div></div><div class="card "><div class="card-head">
+        <div class="avatar">AN</div>
+        <div class="head-body">
+          <div class="name">Arturo Nieves <a href="https://www.facebook.com/arturo.nieves.54" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 3</span><span>💬 13</span><span>🕒 2026-04-20</span></div>
+          
+          <div class="phones"><span class="phone"><a href="tel:(318) 605-3673">(318) 605-3673</a></span></div>
+        </div>
+      </div></div><div class="card "><div class="card-head">
+        <div class="avatar">JR</div>
+        <div class="head-body">
+          <div class="name">Jose Ricardo Gonzalez <a href="https://www.facebook.com/profile.php?id=61575897234429" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 0</span><span>💬 6</span><span>🕒 2026-04-19</span></div>
+          <div class="trades"><span class="trade ">Framing</span><span class="trade ">Painting</span></div>
+          
+        </div>
+      </div></div><div class="card "><div class="card-head">
+        <div class="avatar">JA</div>
+        <div class="head-body">
+          <div class="name">Jose Aquino Martinez <a href="https://www.facebook.com/jose.aquinomartinez.9" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 0</span><span>💬 3</span><span>🕒 2026-04-19</span></div>
+          
+          
+        </div>
+      </div></div><div class="card "><div class="card-head">
+        <div class="avatar">AL</div>
+        <div class="head-body">
+          <div class="name">Angel Lara <a href="https://www.facebook.com/angel.lara.85212" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 0</span><span>💬 6</span><span>🕒 2026-04-19</span></div>
+          
+          
+        </div>
+      </div></div><div class="card seek"><div class="card-head">
+        <div class="avatar">MG</div>
+        <div class="head-body">
+          <div class="name">Mayito Gordo <a href="https://www.facebook.com/mario.fonseca.5243" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 25</span><span>💬 126</span><span>🕒 2026-04-19</span></div>
+          <div class="trades"><span class="trade seeking">Concrete &amp; Masonry</span><span class="trade seeking">Hauling &amp; Junk Removal</span><span class="trade seeking">Labor / Helper</span><span class="trade seeking">Painting</span></div>
+          
+        </div>
+      </div></div><div class="card "><div class="card-head">
+        <div class="avatar">VC</div>
+        <div class="head-body">
+          <div class="name">Valentin Coquehua <a href="https://www.facebook.com/valentin.coquehua" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 0</span><span>💬 60</span><span>🕒 2026-04-19</span></div>
+          <div class="trades"><span class="trade ">Painting</span></div>
+          
+        </div>
+      </div></div><div class="card "><div class="card-head">
+        <div class="avatar">JM</div>
+        <div class="head-body">
+          <div class="name">José Mexicano <a href="https://www.facebook.com/kenshinivm" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 0</span><span>💬 38</span><span>🕒 2026-04-19</span></div>
+          <div class="trades"><span class="trade ">Painting</span></div>
+          
+        </div>
+      </div></div><div class="card "><div class="card-head">
+        <div class="avatar">EG</div>
+        <div class="head-body">
+          <div class="name">Ericka G. Lara <a href="https://www.facebook.com/erickamarisol.laraalejandro" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 4</span><span>💬 19</span><span>🕒 2026-04-19</span></div>
+          
+          
+        </div>
+      </div></div><div class="card "><div class="card-head">
+        <div class="avatar">GB</div>
+        <div class="head-body">
+          <div class="name">Geovany Barrera <a href="https://www.facebook.com/geovany.barrera.432727" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 1</span><span>💬 22</span><span>🕒 2026-04-19</span></div>
+          
+          
+        </div>
+      </div></div><div class="card offer"><div class="card-head">
+        <div class="avatar">LM</div>
+        <div class="head-body">
+          <div class="name">Lupita Morato <a href="https://www.facebook.com/lupita.morato.260539" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 62</span><span>💬 75</span><span>🕒 2026-04-19</span></div>
+          <div class="trades"><span class="trade offering">Bakery &amp; Pastries</span><span class="trade offering">Delivery</span><span class="trade seeking">Events &amp; Party</span><span class="trade seeking">Sewing &amp; Tailoring</span></div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 614-5220">(318) 614-5220</a></span></div>
+        </div>
+      </div></div><div class="card offer"><div class="card-head">
+        <div class="avatar">AL</div>
+        <div class="head-body">
+          <div class="name">Adrian Leyva <a href="https://www.facebook.com/edder.leyva" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 6</span><span>💬 24</span><span>🕒 2026-04-17</span></div>
+          <div class="trades"><span class="trade offering">Plumbing</span><span class="trade offering">HVAC</span><span class="trade offering">Remodeling</span><span class="trade ">Concrete &amp; Masonry</span></div>
+          <div class="phones"><span class="phone"><a href="tel:(868) 299-4900">(868) 299-4900</a></span><span class="phone"><a href="tel:(318) 261-4041">(318) 261-4041</a></span></div>
+        </div>
+      </div></div><div class="card "><div class="card-head">
+        <div class="avatar">LD</div>
+        <div class="head-body">
+          <div class="name">Leily Dubon <a href="https://www.facebook.com/leily.dubon.5" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 0</span><span>💬 2</span><span>🕒 2026-04-16</span></div>
+          
+          
+        </div>
+      </div></div><div class="card offer"><div class="card-head">
+        <div class="avatar">DV</div>
+        <div class="head-body">
+          <div class="name">Dalixa Velasquez <a href="https://www.facebook.com/dalixaa" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 21</span><span>💬 83</span><span>🕒 2026-04-16</span></div>
+          <div class="trades"><span class="trade offering">Delivery</span><span class="trade seeking">Bakery &amp; Pastries</span><span class="trade ">Translation</span><span class="trade seeking">Welding</span></div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 538-8514">(318) 538-8514</a></span></div>
+        </div>
+      </div></div><div class="card "><div class="card-head">
+        <div class="avatar">ST</div>
+        <div class="head-body">
+          <div class="name">Susy Torres <a href="https://www.facebook.com/susy.torres.3572" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 0</span><span>💬 10</span><span>🕒 2026-04-16</span></div>
+          <div class="trades"><span class="trade ">Landscaping &amp; Lawn</span></div>
+          
+        </div>
+      </div></div><div class="card offer"><div class="card-head">
+        <div class="avatar">JB</div>
+        <div class="head-body">
+          <div class="name">Jesus Barbacoa <a href="https://www.facebook.com/jesus.barbacoa.2025" target="_blank" style="font-size:.75rem;margin-left:6px">FB ↗</a></div>
+          <div class="meta"><span>📝 1108</span><span>💬 291</span><span>🕒 2026-04-16</span></div>
+          <div class="trades"><span class="trade offering">Bakery &amp; Pastries</span><span class="trade offering">Events &amp; Party</span><span class="trade offering">Barber &amp; Hair</span><span class="trade ">Mechanic</span></div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 692-9106">(318) 692-9106</a></span><span class="phone"><a href="tel:(469) 857-9219">(469) 857-9219</a></span></div>
+        </div>
+      </div></div>
+  </div>
+</div></body></html>

@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>General Construction — Hispanos FB Directory</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0d14;color:#e4e6eb;line-height:1.5}
+a{color:#4da3ff;text-decoration:none}a:hover{text-decoration:underline}
+.topbar{position:sticky;top:0;z-index:10;background:#11141d;border-bottom:1px solid #222836;padding:14px 20px;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.topbar h1{font-size:1.15rem;color:#fff}
+.topbar .sub{font-size:.78rem;color:#8b92a3}
+.topbar nav{display:flex;gap:8px;flex-wrap:wrap}
+.topbar nav a{padding:6px 12px;background:#161a24;border:1px solid #242a38;border-radius:6px;font-size:.8rem;color:#cdd3e0}
+.topbar nav a:hover{background:#1d2535;color:#fff;text-decoration:none}
+.topbar nav a.on{background:#1a2744;color:#4da3ff;border-color:#4da3ff}
+.wrap{max-width:1400px;margin:0 auto;padding:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:24px}
+.stat{background:#11141d;border:1px solid #1f2432;border-radius:10px;padding:16px}
+.stat .n{font-size:1.8rem;font-weight:700;color:#4da3ff;line-height:1}
+.stat .l{font-size:.72rem;color:#8b92a3;text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+.card{background:#11141d;border:1px solid #1f2432;border-radius:10px;overflow:hidden;transition:border-color .15s}
+.card:hover{border-color:#2d3548}
+.card.offer{border-left:3px solid #4ae0a0}
+.card.seek{border-left:3px solid #f0a84a}
+.card-head{padding:12px 16px;display:flex;gap:14px;align-items:flex-start}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4da3ff,#b48eff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.05rem;flex-shrink:0}
+.head-body{flex:1;min-width:0}
+.name{font-size:1.02rem;font-weight:600;color:#fff;margin-bottom:4px}
+.meta{font-size:.75rem;color:#8b92a3;display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.trades{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.trade{font-size:.72rem;padding:3px 10px;border-radius:12px;background:#1a2744;color:#4da3ff;border:1px solid #2c3f5e}
+.trade.offering{background:#0f2d22;color:#4ae0a0;border-color:#1f5540}
+.trade.seeking{background:#2d220f;color:#f0a84a;border-color:#55401f}
+.phones{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.phone{font-size:.86rem;font-weight:600;color:#4ae0a0;padding:4px 10px;background:#0f2d22;border-radius:6px;border:1px solid #1f5540}
+.phone a{color:inherit}
+.bio{font-size:.78rem;color:#8b92a3;font-style:italic}
+.sec{margin:24px 0 12px;font-size:1.1rem;color:#fff;padding-bottom:6px;border-bottom:1px solid #222836}
+.search{width:100%;padding:10px 14px;background:#161a24;border:1px solid #242a38;color:#e4e6eb;border-radius:8px;font-size:.95rem;outline:none;margin-bottom:16px}
+.search:focus{border-color:#4da3ff}
+.list{display:flex;flex-direction:column;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #1f2432}
+th{background:#0d1019;color:#8b92a3;font-weight:600;text-transform:uppercase;font-size:.7rem;letter-spacing:.5px;position:sticky;top:0;cursor:pointer;user-select:none}
+th:hover{color:#fff}
+tr:hover{background:#141823}
+.excerpt{font-size:.78rem;color:#8b92a3;margin-top:4px;line-height:1.4}
+.post-item{padding:10px 14px;background:#0d1019;border:1px solid #1a1f2c;border-radius:6px;margin-bottom:8px;font-size:.85rem}
+.post-item.offer{border-left:2px solid #4ae0a0}
+.post-item.seek{border-left:2px solid #f0a84a}
+.post-item .head{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;font-size:.72rem;color:#8b92a3}
+.post-item .body{color:#cdd3e0;white-space:pre-wrap;word-wrap:break-word}
+.hidden{display:none!important}
+@media (max-width:700px){.topbar{flex-direction:column;align-items:flex-start}}
+.cat-head{background:linear-gradient(135deg,#1a2744 0%,#2a1f44 100%);padding:32px 20px;border-radius:12px;margin-bottom:24px}
+.cat-head h2{font-size:1.8rem;color:#fff;margin-bottom:8px}
+.cat-head p{color:#cdd3e0;font-size:.9rem}
+.section{margin-top:24px}
+.section h3{color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section h3 .count{font-size:.75rem;background:#1a2744;color:#4da3ff;padding:3px 10px;border-radius:10px}
+</style></head><body>
+<div class="topbar">
+  <div><h1>General Construction</h1><div class="sub"><a href="index.html" style="color:#8b92a3">← Dashboard</a> · <a href="index.html" style="color:#8b92a3">All categories</a></div></div>
+  <nav><a href="../index.html" >Dashboard</a><a href="../directory.html" >Full Directory</a><a href="../phones.html" >Phone Lookup</a><a href="../businesses.html" >Top Businesses</a><a href="../categories/index.html" class="on">Categories</a></nav>
+</div>
+<div class="wrap">
+  <div class="cat-head">
+    <h2>General Construction</h2>
+    <p>66 people mentioned · 7 offering · 30 seeking · 35 with phone numbers</p>
+  </div>
+
+  <input type="text" class="search" id="q" placeholder="Search name or phone within General Construction...">
+
+  <div class="section"><h3>🟢 Offering Services <span class="count">7</span></h3>
+    <div class="list" id="offer-list"><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">JC</div>
+        <div class="head-body">
+          <div class="name">Julio Cesar Vazquez Saldaña
+            <a href="https://www.facebook.com/julio.cesar.vazquez.saldana.2025" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 77% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 32 posts</span>
+            <span>💬 103 comments</span>
+            <span>🕒 2026-02-08</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(214) 980-3388">(214) 980-3388</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Barber &amp; Hair</span><span class="trade">Labor / Helper</span><span class="trade">Concrete &amp; Masonry</span><span class="trade">Tutoring</span><span class="trade">Plumbing</span></div>
+          <div class="excerpt">"Buenos días, va de nuez , ocupo ayudantes para trabajar en la construcción, específicamente en el ladrillo, no importa si sabes o no aquí le enseñamos , lo importante es que traiga ganas de jalar , los contacto por inbox allí les doy mi número de teléfono" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3906311886267725/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">KL</div>
+        <div class="head-body">
+          <div class="name">Karla Lorena Sturr
+            <a href="https://www.facebook.com/lorena.arce.1829" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 77% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 9 posts</span>
+            <span>💬 0 comments</span>
+            <span>🕒 2019-06-05</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 395-7799">(318) 395-7799</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Cleaning</span></div>
+          <div class="excerpt">"Richelle&#39;s cleaning Corp 
+Servicios de limpieza en West Monroe  casas de construccion casas  residenciales y  oficinas  contactanos  Al :318-395-7799
+Website:richellescleaningcorp.gadaddysites.com
+Email:richelle39s19@yahoo.com
+Lunes a viernes 8am a 5pm" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/2430266880538907/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Université de Genève</div>
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">PH</div>
+        <div class="head-body">
+          <div class="name">Pedroyclaudia Hernandez
+            <a href="https://www.facebook.com/pedroyclaudia.hernandez" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 56% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 46 posts</span>
+            <span>💬 101 comments</span>
+            <span>🕒 2026-03-26</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Mechanic</span><span class="trade">Siding &amp; Stucco</span><span class="trade">Landscaping &amp; Lawn</span><span class="trade">Concrete &amp; Masonry</span><span class="trade">Translation</span></div>
+          <div class="excerpt">"Un comentario o reflexion que espero no se tome a mal. Para los que no me conocen tengo 25 anios viviendo en la area de Monroe de los cuales 20 como contratista independiente de servicios de jardineria. (Tal vez con seguridad el primer hispano contratista de jardineria). Trabajo …" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/2495189020713359/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">UASLP CAMPUS HUASTECA</div>
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">PF</div>
+        <div class="head-body">
+          <div class="name">Pamela Figueroa
+            <a href="https://www.facebook.com/pamela.figueroa.800359" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 56% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 55 posts</span>
+            <span>💬 19 comments</span>
+            <span>🕒 2026-04-09</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Cleaning</span><span class="trade">Barber &amp; Hair</span><span class="trade">Childcare</span><span class="trade">Delivery</span><span class="trade">Painting</span></div>
+          <div class="excerpt">"Muy bueno días con el permiso de el administrador de el grupo 
+
+Tengo un muchacho que está sin trabajo si alguien anda trabajo de lo que sea en construcción y ocupa un chalán avísenme gracias" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4010867182478861/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">JN</div>
+        <div class="head-body">
+          <div class="name">Jenny Nails &amp; Spa
+            <a href="https://www.facebook.com/ramirezrobledoyenifer" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 56% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 3 posts</span>
+            <span>💬 1 comments</span>
+            <span>🕒 2023-01-28</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Nails</span></div>
+          <div class="excerpt">"Citas disponibles apartir de mañana 
+Gel semipermanente desde $30 
+Pedicura más gel semipermanente $45 
+Reconstrucción de uñas
+Uñas acrilicas 
+Baño de acrílico
+Decoraciónes con 3D, perlas,,stiker,, papel oro y mucho más Horario de atención 10 am a 8pm" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3507547442810840/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">LS</div>
+        <div class="head-body">
+          <div class="name">Luis Silvestre Garcia Verdin
+            <a href="https://www.facebook.com/letxenyarem.garciaverdin" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 49% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 1 comments</span>
+            <span>🕒 2023-04-02</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Concrete &amp; Masonry</span></div>
+          <div class="excerpt">"Buen día, busco trabajo de medio tiempo por las tardes, o tiempo completo fines de semana, tengo experiencia en el área de construcción como chalán de albañil, chófer, mesero y en cocina, aprendo rápido a cualquier trabajo" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3576641209234796/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">RC</div>
+        <div class="head-body">
+          <div class="name">Roman Cuevas
+            <a href="https://www.facebook.com/roman.cuevas.995379" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 47% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 84 posts</span>
+            <span>💬 166 comments</span>
+            <span>🕒 2026-04-08</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 789-6227">(318) 789-6227</a></span><span class="phone"><a href="tel:(713) 557-4689">(713) 557-4689</a></span><span class="phone"><a href="tel:(318) 538-8812">(318) 538-8812</a></span><span class="phone"><a href="tel:(318) 692-0374">(318) 692-0374</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Cleaning</span><span class="trade">Remodeling</span><span class="trade">Painting</span><span class="trade">Cabinets &amp; Countertops</span><span class="trade">Moving</span></div>
+          <div class="excerpt">"Algún trabajo para mañana en construcción" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4410911222474453/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div></div></div>
+
+  <div class="section"><h3>Mentioned (intent unclear) <span class="count">29</span></h3>
+    <div class="list" id="unclear-list"><div class="card ">
+      <div class="card-head">
+        <div class="avatar">VZ</div>
+        <div class="head-body">
+          <div class="name">Victoria Zuniga
+            <a href="https://www.facebook.com/carlos.n.tori" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 35% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 5 posts</span>
+            <span>💬 12 comments</span>
+            <span>🕒 2026-02-17</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 805-2609">(318) 805-2609</a></span><span class="phone"><a href="tel:(318) 803-4917">(318) 803-4917</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Concrete &amp; Masonry</span></div>
+          <div class="excerpt">"🧱 Hands of Construction LLC — ¡Ahora Aceptando Nuevos Proyectos! 🏗️
+¡Hola a todos! 👋 Mi nombre es Tori, dueña de Hands of Construction LLC. Somos una compañía local de construcción y actualmente estamos aceptando nuevos trabajos.
+
+Nos especializamos en:
+
+✔️ Losas de concreto
+
+…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4571275406438033/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">University of Louisiana Monroe</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">BG</div>
+        <div class="head-body">
+          <div class="name">Bellingham Goes
+            <a href="https://www.facebook.com/bellingham.goes" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 35% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 7 posts</span>
+            <span>💬 7 comments</span>
+            <span>🕒 2024-12-16</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(504) 422-8847">(504) 422-8847</a></span><span class="phone"><a href="tel:(318) 803-7853">(318) 803-7853</a></span><span class="phone"><a href="tel:(501) 503-7189">(501) 503-7189</a></span><span class="phone"><a href="tel:(318) 914-3519">(318) 914-3519</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Remodeling</span><span class="trade">Painting</span><span class="trade">Cleaning</span></div>
+          <div class="excerpt">"Buenas noches para todos si alguien tiene algún trabajo que quieran dar trabajo en contratos en construcción remodelación freime ,saire y todo lo que es construcción necesito un trabajo no tengo por ahorita y pues la verdad les agradecería si nos pudiéramos poner de acuerdo para …" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3765543967011185/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">New Orleans, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">KV</div>
+        <div class="head-body">
+          <div class="name">Kique Vlaskez
+            <a href="https://www.facebook.com/henrrique.montes" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 35% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 4 posts</span>
+            <span>💬 9 comments</span>
+            <span>🕒 2025-09-20</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(469) 445-5295">(469) 445-5295</a></span></div>
+          
+          <div class="excerpt">"Buenos días necesito jente q sepa trabajar en construcción porfavor necesito clavadores y cortadores llamar al 4694455295" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4332485003650409/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">El Progreso, Yoro</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">BV</div>
+        <div class="head-body">
+          <div class="name">Beyrin Velasquez
+            <a href="https://www.facebook.com/beyrin.velasquez" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 35% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 7 posts</span>
+            <span>💬 4 comments</span>
+            <span>🕒 2026-04-07</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(469) 445-5295">(469) 445-5295</a></span></div>
+          
+          <div class="excerpt">"Hola Dios les bendiga, se necesita personal de construcción fraiming, si está interesado porfavor llamar al (469)-445-5295." <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4370981093134133/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">West Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">DF</div>
+        <div class="head-body">
+          <div class="name">Denis Fuentes
+            <a href="https://www.facebook.com/Df200018" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 35% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 1 posts</span>
+            <span>💬 0 comments</span>
+            <span>🕒 2025-07-23</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 977-2148">(318) 977-2148</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Painting</span><span class="trade">Remodeling</span></div>
+          <div class="excerpt">"Hola, con el permiso del administrador, vengo a ofrecerle mis servicios de todo tipo de remodelación, construcción y pintura, y mucho más. Si alguien necesita una persona de ayuda, por favor, avíseme. Para cualquier pregunta o duda que tenga, por favor, llámeme 3189772148" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4340115986220644/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Framingham, Massachusetts</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">MS</div>
+        <div class="head-body">
+          <div class="name">Michael Strickland
+            <a href="https://www.facebook.com/migueleeuula" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 440 posts</span>
+            <span>💬 88 comments</span>
+            <span>🕒 2026-04-08</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 366-2334">(318) 366-2334</a></span><span class="phone"><a href="tel:(318) 914-4777">(318) 914-4777</a></span><span class="phone"><a href="tel:(338) 878-5539">(338) 878-5539</a></span><span class="phone"><a href="tel:(318) 450-1412">(318) 450-1412</a></span><span class="phone"><a href="tel:(318) 372-8718">(318) 372-8718</a></span><span class="phone"><a href="tel:(615) 576-7505">(615) 576-7505</a></span><span class="phone"><a href="tel:(350) 012-1690">(350) 012-1690</a></span><span class="phone"><a href="tel:(318) 235-9955">(318) 235-9955</a></span><span class="phone"><a href="tel:(318) 738-0019">(318) 738-0019</a></span><span class="phone"><a href="tel:(288) 512-5956">(288) 512-5956</a></span><span class="phone"><a href="tel:(261) 522-0350">(261) 522-0350</a></span><span class="phone"><a href="tel:(226) 387-1986">(226) 387-1986</a></span><span class="phone"><a href="tel:(218) 294-1911">(218) 294-1911</a></span><span class="phone"><a href="tel:(346) 476-7258">(346) 476-7258</a></span><span class="phone"><a href="tel:(225) 754-4477">(225) 754-4477</a></span><span class="phone"><a href="tel:(910) 206-7791">(910) 206-7791</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Roofing</span><span class="trade">Fencing</span><span class="trade">Landscaping &amp; Lawn</span><span class="trade">Concrete &amp; Masonry</span><span class="trade">Translation</span></div>
+          <div class="excerpt">"CONTRATISTAS ANTE EL JUEZ DEL UNIVERSO 
+
+Yo creo que muchas contratistas de construcción van a escuchar al Juez del universo decirles:
+
+&quot;...Apartaos de mí, malditos, al fuego eterno preparado para el diablo y sus ángeles.&quot; (Mateo 25:41) &quot;porque trabajé por ti 3 semanas y nunca me…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4552172605014980/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Representante del Rey at Ambasador</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">MD</div>
+        <div class="head-body">
+          <div class="name">Maria Del Rosal
+            <a href="https://www.facebook.com/sulidelrosal" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 95 posts</span>
+            <span>💬 20 comments</span>
+            <span>🕒 2026-04-02</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(900) 424-1968">(900) 424-1968</a></span><span class="phone"><a href="tel:(595) 601-1606">(595) 601-1606</a></span><span class="phone"><a href="tel:(318) 497-1703">(318) 497-1703</a></span><span class="phone"><a href="tel:(318) 805-5788">(318) 805-5788</a></span><span class="phone"><a href="tel:(870) 904-9137">(870) 904-9137</a></span><span class="phone"><a href="tel:(318) 789-0755">(318) 789-0755</a></span><span class="phone"><a href="tel:(318) 791-5465">(318) 791-5465</a></span><span class="phone"><a href="tel:(318) 323-1631">(318) 323-1631</a></span><span class="phone"><a href="tel:(318) 267-4018">(318) 267-4018</a></span><span class="phone"><a href="tel:(615) 507-7780">(615) 507-7780</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Cleaning</span><span class="trade">Childcare</span><span class="trade">Concrete &amp; Masonry</span><span class="trade">Fencing</span><span class="trade">Delivery</span></div>
+          <div class="excerpt">"Buenos días 
+Si aún no han ordenado su playera del 85 aniversario de la iglesia hoy es el último día para hacerlo,
+Pueden pasar a la oficina a ordenar con la señora Dinielle Price ella estará en la oficina hasta el mediodía, o más tarde yo estaré de 4 a 6 de la tarde en la iglesi…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4233617106870533/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">AL</div>
+        <div class="head-body">
+          <div class="name">Areli Lemus
+            <a href="https://www.facebook.com/areli.lemus.253451" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 72 posts</span>
+            <span>💬 19 comments</span>
+            <span>🕒 2026-01-27</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(877) 855-8111">(877) 855-8111</a></span><span class="phone"><a href="tel:(318) 789-0755">(318) 789-0755</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Remodeling</span><span class="trade">Taxes &amp; Notary</span><span class="trade">Cleaning</span><span class="trade">Delivery</span><span class="trade">Painting</span></div>
+          <div class="excerpt">"Tenemos diferentes servicios desde pintura de auto, yardas, construcción, servicios financieros y otros más!" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4213580422207535/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Consultant/ consultora at Princess House en Español</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">IR</div>
+        <div class="head-body">
+          <div class="name">Isaul Rodriguez
+            <a href="https://www.facebook.com/isaul.rodriguez.50" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 15 posts</span>
+            <span>💬 74 comments</span>
+            <span>🕒 2026-04-08</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 680-3544">(318) 680-3544</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Fencing</span><span class="trade">Cleaning</span><span class="trade">Restaurant</span><span class="trade">Painting</span></div>
+          <div class="excerpt">"Si tienes como movilizarte hay trabajo en Columbia a49 minutos de aquí a mi me dijeron les buscará personas q quieran trabajar de limpieza es en construcción de un hospital" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3928115750754005/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at En el reino de Dios</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">FM</div>
+        <div class="head-body">
+          <div class="name">Floridalma Matute
+            <a href="https://www.facebook.com/profile.php?id=100080630353582" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 20 posts</span>
+            <span>💬 31 comments</span>
+            <span>🕒 2023-05-09</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 537-7426">(318) 537-7426</a></span><span class="phone"><a href="tel:(346) 375-3774">(346) 375-3774</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Restaurant</span><span class="trade">Painting</span><span class="trade">Flooring &amp; Tile</span><span class="trade">Bakery &amp; Pastries</span></div>
+          <div class="excerpt">"Ola a Migos asemos este tipo de tra bajo rufin pinturas pisos lonas detoto Loque es construcción si desea mandé mensagitos lo a tenderemos" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3492389007660017/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">TH</div>
+        <div class="head-body">
+          <div class="name">Tony Hernandez
+            <a href="https://www.facebook.com/tony.hernandez.781972" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 0 posts</span>
+            <span>💬 39 comments</span>
+            <span>🕒 2026-04-05</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 404-4414">(318) 404-4414</a></span></div>
+          
+          <div class="excerpt">"Martínez Carlos 3184044414 yamale a el trabaja en la construcción" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3791703687728546/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Houston, Texas</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">KE</div>
+        <div class="head-body">
+          <div class="name">Kaitlyn Evans
+            <a href="https://www.facebook.com/kaitlyn.evans.7568" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 19 posts</span>
+            <span>💬 17 comments</span>
+            <span>🕒 2025-08-27</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 977-8674">(318) 977-8674</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Childcare</span><span class="trade">Fencing</span></div>
+          <div class="excerpt">"Q construccion mi esposo estas trabajando de rufing" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4379827315582844/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Louisiana Delta Community College</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">AC</div>
+        <div class="head-body">
+          <div class="name">Alexa Castro
+            <a href="https://www.facebook.com/alexa.castro.548916" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 5 comments</span>
+            <span>🕒 2026-02-17</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 376-8184">(318) 376-8184</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Cleaning</span></div>
+          <div class="excerpt">"Si necesitas algun tipo de limpieza 🧼 Residencial o comercial, casa,  limpieza de construcción, oficinas puede contactarnos 📞 (318)376-8184" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3746818265550422/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">University of Louisiana Monroe</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">AZ</div>
+        <div class="head-body">
+          <div class="name">Areli Zazueta
+            <a href="https://www.facebook.com/Areli.N.Zazueta" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 4 posts</span>
+            <span>💬 2 comments</span>
+            <span>🕒 2025-03-10</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(328) 345-8110">(328) 345-8110</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">HVAC</span><span class="trade">Mechanic</span></div>
+          <div class="excerpt">"Casa en renta 
+
+•3 recámaras con armario 
+• 2 baños completos
+• sala
+•cocina (Incluido : Lavavajillas, Frigorífico)
+•área de lavado 
+•garaje
+• Sistema de calefacción: Aire forzado
+•1,782 sqft en construcción
+•0.29 acres lot
+• se aceptan mascotas (depósito por mascotas ) 
+• propie…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4185568535008724/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">MM</div>
+        <div class="head-body">
+          <div class="name">Mónica Mazariegos
+            <a href="https://www.facebook.com/profile.php?id=100032490363485" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 0 comments</span>
+            <span>🕒 2019-07-31</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 503-2073">(318) 503-2073</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Painting</span><span class="trade">Flooring &amp; Tile</span><span class="trade">Carpentry</span><span class="trade">Labor / Helper</span></div>
+          <div class="excerpt">"Hola buenas tardes familia. Yo tomé la decisión de escribir en está página porque sinceramente estoy en BUSCA de algún trabajo en la construcción. He trabajo en la pintura, en colocar pisos y ayudante de carpintería. Pero si hubiera algún trabajo diferente a esas, no dude en llam…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/2334878610077735/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at EN LA OBRA DE DIOS, LA MEJOR EMPRESA DEL MUNDO ENTERO =)</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">RC</div>
+        <div class="head-body">
+          <div class="name">Rosendo Capitan Perales
+            <a href="https://www.facebook.com/rosendocapitan.perales" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 0 posts</span>
+            <span>💬 1 comments</span>
+            <span>🕒 2020-08-31</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 404-4414">(318) 404-4414</a></span></div>
+          
+          <div class="excerpt">"318 4044414 llama es en construccion" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/2825388724360052/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Calera, Alabama</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">MA</div>
+        <div class="head-body">
+          <div class="name">Maria Alva
+            <a href="https://www.facebook.com/maria.alva.08" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 15% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 11 posts</span>
+            <span>💬 18 comments</span>
+            <span>🕒 2025-11-19</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Painting</span><span class="trade">Roofing</span><span class="trade">Labor / Helper</span><span class="trade">Cleaning</span><span class="trade">Mechanic</span></div>
+          <div class="excerpt">"Buenos días!!! Feliz lunes  a todos !!!! Busco  trabajo de pintura, limpieza, construcción !!! De antemano muchas gracias !!!" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3868694420029472/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Miami Beach, Florida</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">KR</div>
+        <div class="head-body">
+          <div class="name">Kimm Ramirez
+            <a href="https://www.facebook.com/kimm.ramirezhughs.7" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 15% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 9 comments</span>
+            <span>🕒 2026-04-07</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Cleaning</span><span class="trade">Labor / Helper</span><span class="trade">Delivery</span><span class="trade">Painting</span></div>
+          <div class="excerpt">"Buenos días 😊 Busco trabajo de construcción. Tengo experiencia de ayudante y limpieza de construcción pero estoy disponible para aprender de lo que sea. Ahí me mandan mensaje si saben de algo. Gracias 💚" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4616364908595749/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">RM</div>
+        <div class="head-body">
+          <div class="name">Rosales Mendoza
+            <a href="https://www.facebook.com/yesenia.rosalesmendoza" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 15% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 1 posts</span>
+            <span>💬 0 comments</span>
+            <span>🕒 2025-07-30</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Drywall</span></div>
+          <div class="excerpt">"Busco trabajo de construcción, sheetrock, freme  de metal, cielos acústicos, poner FRP, quien conozca de una compañía que esté contratando se les agradecerá!!!!" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4347086845523558/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">RM</div>
+        <div class="head-body">
+          <div class="name">Ramiro Mendes
+            <a href="https://www.facebook.com/ramiro.mendes.9" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 10% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 24 posts</span>
+            <span>💬 55 comments</span>
+            <span>🕒 2026-03-26</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Roofing</span><span class="trade">Framing</span><span class="trade">Remodeling</span><span class="trade">Siding &amp; Stucco</span><span class="trade">Labor / Helper</span></div>
+          <div class="excerpt">"Alguien de acá q tenga general contractor license?" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3879576812274566/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">West Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">LV</div>
+        <div class="head-body">
+          <div class="name">Leon Vera
+            <a href="https://www.facebook.com/leon.vera.489189" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 5 posts</span>
+            <span>💬 63 comments</span>
+            <span>🕒 2025-05-18</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Fencing</span><span class="trade">Remodeling</span><span class="trade">Cabinets &amp; Countertops</span><span class="trade">Siding &amp; Stucco</span><span class="trade">Restaurant</span></div>
+          <div class="excerpt">"Buen día gente se ocupa gente trabajo es alabama yla fkorida ( es construcción el trabajo)" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4179783975587180/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Vera Construction LLC</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">BV</div>
+        <div class="head-body">
+          <div class="name">Brittany Vargas
+            <a href="https://www.facebook.com/brittany.damian.3" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 5 posts</span>
+            <span>💬 32 comments</span>
+            <span>🕒 2026-04-12</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Fencing</span></div>
+          <div class="excerpt">"Alguien sabe donde ocupa alguien para trabajar en construcción" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3083856981846557/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">JC</div>
+        <div class="head-body">
+          <div class="name">Jonny Corea
+            <a href="https://www.facebook.com/jonny.corea.94" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 6 posts</span>
+            <span>💬 12 comments</span>
+            <span>🕒 2025-08-25</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Events &amp; Party</span></div>
+          <div class="excerpt">"Con el permiso de el administrador nesecito un chalán que quiera trabajar de construcción" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4379827315582844/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">JC</div>
+        <div class="head-body">
+          <div class="name">Jaam Contruction
+            <a href="https://www.facebook.com/jaam.contruction" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 1 posts</span>
+            <span>💬 10 comments</span>
+            <span>🕒 2026-02-20</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Labor / Helper</span></div>
+          <div class="excerpt">"Ocupó 2 maestros y 2 ayudantes  para la construcción" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3592940424271541/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Self-Employed</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">SG</div>
+        <div class="head-body">
+          <div class="name">Sandra Guazman
+            <a href="https://www.facebook.com/sandra.guazman.2025" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 4 posts</span>
+            <span>💬 5 comments</span>
+            <span>🕒 2025-10-29</span>
+          </div>
+          
+          
+          <div class="excerpt">"Hola buenas noches con el permiso del administrador quiero saber quién tiene trabajo e construcción para mí hermano gracias" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4437396963159212/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">JD</div>
+        <div class="head-body">
+          <div class="name">Jesus DeDios
+            <a href="https://www.facebook.com/mrmexicanozborn" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 1 posts</span>
+            <span>💬 8 comments</span>
+            <span>🕒 2025-09-08</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Restaurant</span></div>
+          <div class="excerpt">"Me acaban de avisar que la migra también está ahorita chequeándolo igual en los sitios de construcción donde trabaja la raza pa que tengan cuidado bendiciones a todo" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3374551959443723/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Captain (nautical) at an under cover secret agent. spy.</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">HH</div>
+        <div class="head-body">
+          <div class="name">Hernandez Hernandez Jr.
+            <a href="https://www.facebook.com/profile.php?id=61552768220749" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 4 posts</span>
+            <span>💬 2 comments</span>
+            <span>🕒 2025-01-12</span>
+          </div>
+          
+          
+          <div class="excerpt">"Algun trabajo para un amigo en construcción para mañana" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4115388975360014/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">BJ</div>
+        <div class="head-body">
+          <div class="name">Barney Jaqueline Romero Amesty
+            <a href="https://www.facebook.com/barneyjaqueline.romeroamesty" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 0 posts</span>
+            <span>💬 4 comments</span>
+            <span>🕒 2026-03-15</span>
+          </div>
+          
+          
+          <div class="excerpt">"Estoy en monroe tengo carro aún necesitas? Para esto o para yardas o construcción" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4569287163303524/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">CU</div>
+        <div class="head-body">
+          <div class="name">Candys Umanzor
+            <a href="https://www.facebook.com/100009263880064" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 0 posts</span>
+            <span>💬 1 comments</span>
+            <span>🕒 2017-08-31</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Concrete &amp; Masonry</span></div>
+          <div class="excerpt">"Cual bloquear quirla es que tienen que ser ellos saben que sin los latinos este estado no sacan las construcciones adelante yo le pido a Dios que quiten esa ley del todo" <a href="https://www.facebook.com/groups/1437882213110717/posts/1389862867798863/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div></div></div>
+
+  <div class="section"><h3>🟡 Seeking Services <span class="count">30</span></h3>
+    <div class="list" id="seek-list"><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">DR</div>
+        <div class="head-body">
+          <div class="name">Dani Ramirez
+            <a href="https://www.facebook.com/ramirez.bartimeo" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 30% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 38 posts</span>
+            <span>💬 5 comments</span>
+            <span>🕒 2026-03-01</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 547-6140">(318) 547-6140</a></span><span class="phone"><a href="tel:(239) 850-7672">(239) 850-7672</a></span></div>
+          
+          <div class="excerpt">"Buenas noches con el permiso del administrador estoy buscando 5 personas para trabajar en construcción de fibra óptica subterráneo información al WhatsApp 3185476140
+2398507672" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4546016622297245/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Sam Houston, Texas</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">MM</div>
+        <div class="head-body">
+          <div class="name">Miguel Mora
+            <a href="https://www.facebook.com/miguel.mora.313" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 30% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 10 posts</span>
+            <span>💬 4 comments</span>
+            <span>🕒 2024-07-08</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 791-9962">(318) 791-9962</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Insulation</span><span class="trade">Labor / Helper</span><span class="trade">Hauling &amp; Junk Removal</span></div>
+          <div class="excerpt">"Muchas gracias. Ya tengo a dos personas. Tengo varios mensajes y les mandaré mensaje si ocupo mas personas. 
+
+Estoy buscando a un trabajador para trabajar en construcción. Que pueda levantar 100 libras, no tenga miedo a las alturas, y sea movido." <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3773123609586554/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Technical Support Technician at UPC</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">JB</div>
+        <div class="head-body">
+          <div class="name">Jesus Barbacoa
+            <a href="https://www.facebook.com/jesus.barbacoa.2025" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 1108 posts</span>
+            <span>💬 291 comments</span>
+            <span>🕒 2026-04-16</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 692-9106">(318) 692-9106</a></span><span class="phone"><a href="tel:(469) 857-9219">(469) 857-9219</a></span><span class="phone"><a href="tel:(469) 305-6535">(469) 305-6535</a></span><span class="phone"><a href="tel:(407) 372-2579">(407) 372-2579</a></span><span class="phone"><a href="tel:(318) 682-9106">(318) 682-9106</a></span><span class="phone"><a href="tel:(318) 738-8021">(318) 738-8021</a></span><span class="phone"><a href="tel:(956) 587-2357">(956) 587-2357</a></span><span class="phone"><a href="tel:(318) 816-2484">(318) 816-2484</a></span><span class="phone"><a href="tel:(470) 574-9900">(470) 574-9900</a></span><span class="phone"><a href="tel:(318) 789-6400">(318) 789-6400</a></span><span class="phone"><a href="tel:(318) 393-3705">(318) 393-3705</a></span><span class="phone"><a href="tel:(404) 784-4132">(404) 784-4132</a></span><span class="phone"><a href="tel:(972) 814-7261">(972) 814-7261</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Bakery &amp; Pastries</span><span class="trade">Events &amp; Party</span><span class="trade">Barber &amp; Hair</span><span class="trade">Mechanic</span><span class="trade">Restaurant</span></div>
+          <div class="excerpt">"Proyecto Construccion de Mool en Mobile Alabama
+
+Porfavor si necesita un contratista de pintura o drywall confiable
+Danos la oportunidad de trabajar
+Nuestras cotizaciones son 100% gratuitas y estaríamos mas que encantados de cotizar cualquier proyecto que pueda tener
+
+Si no puede…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3510049279227323/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">JB</div>
+        <div class="head-body">
+          <div class="name">Jazmin Barahona
+            <a href="https://www.facebook.com/jazmin.barahona.52" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 109 posts</span>
+            <span>💬 46 comments</span>
+            <span>🕒 2026-01-13</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 450-1046">(318) 450-1046</a></span><span class="phone"><a href="tel:(318) 914-7092">(318) 914-7092</a></span><span class="phone"><a href="tel:(318) 816-4173">(318) 816-4173</a></span><span class="phone"><a href="tel:(318) 460-4656">(318) 460-4656</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Nails</span><span class="trade">Landscaping &amp; Lawn</span><span class="trade">Childcare</span></div>
+          <div class="excerpt">"Buenos días, se buscan 3 personas  para trabajar en construcción, lo único es que  la compañía para la que se está trabajando pide que las personas tengan seguro social, si está interesado envíen un mensje por favor, muchas gracias! Buen día" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4315651412000435/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">West Monroe High School</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">MH</div>
+        <div class="head-body">
+          <div class="name">Maria Hernandez
+            <a href="https://www.facebook.com/orbelina.hernandez.908" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 47 posts</span>
+            <span>💬 72 comments</span>
+            <span>🕒 2026-04-11</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(225) 475-0352">(225) 475-0352</a></span><span class="phone"><a href="tel:(832) 384-2305">(832) 384-2305</a></span><span class="phone"><a href="tel:(318) 267-6498">(318) 267-6498</a></span><span class="phone"><a href="tel:(337) 309-7074">(337) 309-7074</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Cleaning</span><span class="trade">Taxes &amp; Notary</span><span class="trade">Legal Services</span><span class="trade">Restaurant</span><span class="trade">Barber &amp; Hair</span></div>
+          <div class="excerpt">"Hola buenas noches alguien sabe del algún trabajo para mujer por favor hay alguien que nesecita trabajo ya sé de limpieza o en construcción o restaurante" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4450269998538575/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Sam Houston, Texas</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">HM</div>
+        <div class="head-body">
+          <div class="name">Hector Mendez Lopez
+            <a href="https://www.facebook.com/hector.mendez.9655806" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 21 posts</span>
+            <span>💬 40 comments</span>
+            <span>🕒 2026-03-29</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 791-6083">(318) 791-6083</a></span><span class="phone"><a href="tel:(318) 537-4825">(318) 537-4825</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Fencing</span><span class="trade">Concrete &amp; Masonry</span><span class="trade">Painting</span><span class="trade">Restaurant</span><span class="trade">Siding &amp; Stucco</span></div>
+          <div class="excerpt">"Buenas tardes a todos  amigos 
+Solo para personas que trabajan construcción,  que es recomendable , hay una casa que pide poner stucco encima del ladrillo,  otros sugieren usar foam encima del ladrillo debido al mal tiempo se entra aire entre ladrillo y foam y se cae el trabajo, …" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3035490076683248/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Final Inspector at Hector mendez construction &amp; renovation LLC</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">DG</div>
+        <div class="head-body">
+          <div class="name">Danelia Garin
+            <a href="https://www.facebook.com/danelia.garin" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 37 posts</span>
+            <span>💬 16 comments</span>
+            <span>🕒 2025-10-01</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 497-3772">(318) 497-3772</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Delivery</span><span class="trade">Labor / Helper</span></div>
+          <div class="excerpt">"Buenas noches con el permiso del administrador estoy buscando ayudantes para trabajar en construcción interesado escribirme al meserger" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4317245998507643/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">C.E.B  Alba Nora  Gunera</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">BO</div>
+        <div class="head-body">
+          <div class="name">Brian OG
+            <a href="https://www.facebook.com/brianthemaya01" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 36 comments</span>
+            <span>🕒 2026-03-16</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 261-4041">(318) 261-4041</a></span></div>
+          
+          <div class="excerpt">"Necesito gente responsable para trabajo en construcción !!! El
+Pago será de acorde a sus capacidades , interesados comunicarse vía mensaje  ." <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3140090602889861/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">HP</div>
+        <div class="head-body">
+          <div class="name">Hernandez Patricia
+            <a href="https://www.facebook.com/brallan.linderos.9" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 25 posts</span>
+            <span>💬 11 comments</span>
+            <span>🕒 2026-01-27</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 267-2090">(318) 267-2090</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Painting</span><span class="trade">Remodeling</span></div>
+          <div class="excerpt">"Hola buenos días con el permiso del grupo les informo que están ocupando dos hobres pero uno tiene que saber usar máquinas  es en la construcción de un ospital en Columbia y necesitan trasporte ho eso se arreila si no tienen los interesados comentenme" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3929496763949237/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Houston, Texas</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">LL</div>
+        <div class="head-body">
+          <div class="name">Lopez Lucho
+            <a href="https://www.facebook.com/lopez.lucho.420958" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 22 posts</span>
+            <span>💬 10 comments</span>
+            <span>🕒 2026-03-18</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(415) 619-0399">(415) 619-0399</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Remodeling</span><span class="trade">Concrete &amp; Masonry</span><span class="trade">Labor / Helper</span><span class="trade">Drywall</span><span class="trade">Bakery &amp; Pastries</span></div>
+          <div class="excerpt">"Alguien que sepa de un trabajo  de  construcción" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3946827418882838/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Arquitectura -Diseño y Contrucción</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">AC</div>
+        <div class="head-body">
+          <div class="name">Ac Cardenas
+            <a href="https://www.facebook.com/hector.cardenasvelasquez" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 8 posts</span>
+            <span>💬 8 comments</span>
+            <span>🕒 2026-02-11</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 348-6575">(318) 348-6575</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Framing</span><span class="trade">Concrete &amp; Masonry</span></div>
+          <div class="excerpt">"￼Buenas tardes estoy buscando gente con experiencia en construccion framing 
+Que tenga como moverse los trabajos son serca en Monroe 
+Si nececita trabajo llamar 318-348-6575  
+Gente seria" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4355962841302625/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Denver, Colorado</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">DM</div>
+        <div class="head-body">
+          <div class="name">Dunia Moreno
+            <a href="https://www.facebook.com/profile.php?id=100080924528979" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 10 posts</span>
+            <span>💬 5 comments</span>
+            <span>🕒 2025-11-17</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 538-3327">(318) 538-3327</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Painting</span><span class="trade">Mechanic</span><span class="trade">HVAC</span></div>
+          <div class="excerpt">"Buenos días , ando en busca de trabajo he trabajado en pintura gasolinera, y construcción si tiene una oportunidad para mí favor escribirme , si no tiene trabajo para una mujer no escriba pq hombre no busco muchas gracias" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4301167480115495/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">JD</div>
+        <div class="head-body">
+          <div class="name">Juan Delgado
+            <a href="https://www.facebook.com/profile.php?id=100048563735427" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 1 posts</span>
+            <span>💬 13 comments</span>
+            <span>🕒 2022-05-04</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 557-1432">(318) 557-1432</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Concrete &amp; Masonry</span><span class="trade">Labor / Helper</span></div>
+          <div class="excerpt">"Necesito 3 ayudantes para trabajar en construcción (ladrillo) si alguien está interesado mande msj" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3297963723769214/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Stucco man</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">MP</div>
+        <div class="head-body">
+          <div class="name">Manuel Pa
+            <a href="https://www.facebook.com/manuel.pa.2024" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 3 posts</span>
+            <span>💬 2 comments</span>
+            <span>🕒 2024-09-11</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 977-0947">(318) 977-0947</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Remodeling</span></div>
+          <div class="excerpt">"Buenos dias atodos gente west monreo vendociones hestoy buscando trabajo en lo que sea se de un poco remodelasion y se de construccion se los agradesco de carazon puedo avisarme al 3189770947" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3965034033728843/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">AM</div>
+        <div class="head-body">
+          <div class="name">Angela Martinez
+            <a href="https://www.facebook.com/AngiiBonita" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 3 posts</span>
+            <span>💬 1 comments</span>
+            <span>🕒 2025-03-30</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 355-0408">(318) 355-0408</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Painting</span><span class="trade">Cleaning</span></div>
+          <div class="excerpt">"Buen día estoy buscando empleo,   de limpieza, pintura o cocina, también me interesa la construcción." <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3650600508505532/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">SS</div>
+        <div class="head-body">
+          <div class="name">Santos Sac
+            <a href="https://www.facebook.com/profile.php?id=61551658407852" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 0 comments</span>
+            <span>🕒 2024-04-22</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 692-9901">(318) 692-9901</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Restaurant</span></div>
+          <div class="excerpt">"Busco trabajo sea de restaurante o de construcción ayúdenme necesito trabajar llámame al 3186929901" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3879527625612818/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">LP</div>
+        <div class="head-body">
+          <div class="name">La Princess Rodriguez
+            <a href="https://www.facebook.com/la.princess.rodriguez.900233" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 18% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 23 posts</span>
+            <span>💬 23 comments</span>
+            <span>🕒 2026-03-07</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Painting</span><span class="trade">Restaurant</span><span class="trade">Barber &amp; Hair</span></div>
+          <div class="excerpt">"Hola buenas tardes and buscando trabjo ssi alguien sabe de uno me lo pueden aser saber así sea de aseo pintura construcción .muchas grasias" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3788830801349168/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">DG</div>
+        <div class="head-body">
+          <div class="name">Darling Garcia
+            <a href="https://www.facebook.com/darling.garcia.827739" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 10% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 37 posts</span>
+            <span>💬 12 comments</span>
+            <span>🕒 2026-03-08</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Childcare</span><span class="trade">Painting</span><span class="trade">Cleaning</span></div>
+          <div class="excerpt">"Hola buenas tarde amigo estoy buscando empleo de lava vajillas. ama de casa. construcción. pintura mesera quien me pueda ayudar se lo agradecería mucho gracias" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3850155521883362/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Maracaibo, Venezuela</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">ER</div>
+        <div class="head-body">
+          <div class="name">Elías Ramírez
+            <a href="https://www.facebook.com/elias.ramirez.276197" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 10% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 8 posts</span>
+            <span>💬 13 comments</span>
+            <span>🕒 2026-01-08</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Painting</span><span class="trade">Restaurant</span><span class="trade">Remodeling</span></div>
+          <div class="excerpt">"Hola buenos días para todos bendiciones hay un muchacho que anda en busca de trabajo él sabe un poco de pintura construcción remodelación si alguien tuviera se les agradecería mucho bendiciones para todos" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4054819694750276/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">NG</div>
+        <div class="head-body">
+          <div class="name">Nelci Garcia
+            <a href="https://www.facebook.com/nelci.garcia.161" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 10% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 11 posts</span>
+            <span>💬 5 comments</span>
+            <span>🕒 2024-11-25</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Childcare</span><span class="trade">Painting</span><span class="trade">Remodeling</span></div>
+          <div class="excerpt">"Hola buenas noches busco trabajo ya sea de pintura remodelacion construcción o  aseo  muchas bendiciones 🙏" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3793342720897976/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">I.T.C.A. Instituto Tiburcio Carias Andino</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">ME</div>
+        <div class="head-body">
+          <div class="name">Mainor Enrriquez
+            <a href="https://www.facebook.com/mainor.enrriquez" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 10% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 6 posts</span>
+            <span>💬 9 comments</span>
+            <span>🕒 2025-08-24</span>
+          </div>
+          
+          
+          <div class="excerpt">"Estoy buscando trabajo en construcción gracias" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3741611056071143/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">New York, New York</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">MR</div>
+        <div class="head-body">
+          <div class="name">Marlin Ramirez
+            <a href="https://www.facebook.com/marlin.ramirez.350357" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 10% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 1 posts</span>
+            <span>💬 2 comments</span>
+            <span>🕒 2026-04-08</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Cleaning</span></div>
+          <div class="excerpt">"Se necesitan personas para trabajar en construcción en Ruston" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4629076573991249/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">ML</div>
+        <div class="head-body">
+          <div class="name">Marisol Linares
+            <a href="https://www.facebook.com/marisol.linares.52012" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 18 posts</span>
+            <span>💬 26 comments</span>
+            <span>🕒 2025-08-12</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Delivery</span><span class="trade">Cleaning</span><span class="trade">Makeup</span><span class="trade">Childcare</span><span class="trade">Landscaping &amp; Lawn</span></div>
+          <div class="excerpt">"Necesito una chica que quiera trabajar en limpieza de casas  y limpieza de construcción  con experiencia!!!!!" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3513354112230173/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Housekeeper (servant)</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">AL</div>
+        <div class="head-body">
+          <div class="name">Aracely Lemus
+            <a href="https://www.facebook.com/aracely.lemus.7169" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 9 posts</span>
+            <span>💬 15 comments</span>
+            <span>🕒 2026-03-20</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Photography</span><span class="trade">Cleaning</span><span class="trade">Tutoring</span><span class="trade">Plumbing</span></div>
+          <div class="excerpt">"Necesito 1 persona para limpieza de casa de construcción" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3399217553643830/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">West Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">GL</div>
+        <div class="head-body">
+          <div class="name">Gabriela Linares Ferrer
+            <a href="https://www.facebook.com/gabriela.linaresferrer" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 8 posts</span>
+            <span>💬 15 comments</span>
+            <span>🕒 2025-11-01</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Cleaning</span><span class="trade">Mechanic</span><span class="trade">Delivery</span></div>
+          <div class="excerpt">"Hola necesito personal para limpieza de construcción hombre o mujer con experiencia pago bien la hora para limpiar cristales el día de hoy ￼!" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3599538750278375/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">ME</div>
+        <div class="head-body">
+          <div class="name">Maynor Enrique
+            <a href="https://www.facebook.com/profile.php?id=100089863673401" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 4 posts</span>
+            <span>💬 7 comments</span>
+            <span>🕒 2023-08-09</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Delivery</span></div>
+          <div class="excerpt">"Estoy buscando trabajo por una semana en construcción si alguien sabe de algo avisarme porfavor gracias" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3678678542364395/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Algona, Iowa</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">LA</div>
+        <div class="head-body">
+          <div class="name">Lorenzo Aguilar
+            <a href="https://www.facebook.com/lorenzo.aguilar.159218" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 6 comments</span>
+            <span>🕒 2024-12-01</span>
+          </div>
+          
+          
+          <div class="excerpt">"Alguien que tenga jale en construcción para mañana" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4023105071255072/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">GL</div>
+        <div class="head-body">
+          <div class="name">Greisi López
+            <a href="https://www.facebook.com/profile.php?id=61560807746110" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 5 posts</span>
+            <span>💬 0 comments</span>
+            <span>🕒 2025-02-17</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Painting</span></div>
+          <div class="excerpt">"Ola buenos días ando buscando trabajo si alguien sabe de uno me lo puede aser saber así sea de aseo pintura construcción  de lo ke sea necesito trabajar muchas gracias" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3914821578750089/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">JD</div>
+        <div class="head-body">
+          <div class="name">Jose Daniel
+            <a href="https://www.facebook.com/jose.daniel.204424" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 3 posts</span>
+            <span>💬 0 comments</span>
+            <span>🕒 2026-04-01</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Concrete &amp; Masonry</span><span class="trade">Labor / Helper</span></div>
+          <div class="excerpt">"Alguien que ocupe en construccion tengo herramienta y transporte mensaje en privado Gracias" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4147093352189576/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">CN</div>
+        <div class="head-body">
+          <div class="name">Cottons Nancy
+            <a href="https://www.facebook.com/nancysifuentes02" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 1 comments</span>
+            <span>🕒 2022-05-06</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Labor / Helper</span><span class="trade">Mechanic</span></div>
+          <div class="excerpt">"Se necesitan dos ayudantes para construcción que tengan transportación. Mandarme un mensaje privado por favor si está interesado!" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3296767940555459/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div></div></div>
+</div>
+<script>
+document.getElementById('q').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.card').forEach(c => {
+    const txt = c.textContent.toLowerCase();
+    c.classList.toggle('hidden', q && txt.indexOf(q) < 0);
+  });
+});
+</script>
+</body></html>

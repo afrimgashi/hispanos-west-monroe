@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FB Group Data Viewer</title>
+<style>
+  :root {
+    --bg: #f0f2f5;
+    --surface: #ffffff;
+    --hover: #f2f3f5;
+    --border: #dddfe2;
+    --border-light: #e4e6eb;
+    --text: #050505;
+    --text-secondary: #65676b;
+    --text-link: #0064d1;
+    --blue: #1877f2;
+    --blue-hover: #166fe5;
+    --blue-light: #e7f3ff;
+    --green: #42b72a;
+    --reaction-bg: #f0f2f5;
+    --comment-bg: #f0f2f5;
+    --radius: 8px;
+    --shadow: 0 1px 2px rgba(0,0,0,0.1);
+    --shadow-lg: 0 2px 12px rgba(0,0,0,0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.34;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Upload Screen */
+  #upload-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: var(--bg);
+  }
+
+  .upload-box {
+    background: var(--surface);
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-shadow: var(--shadow);
+  }
+
+  .upload-box:hover, .upload-box.dragover {
+    border-color: var(--blue);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .upload-icon { font-size: 56px; margin-bottom: 16px; }
+
+  .upload-box h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .upload-box p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .upload-btn {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .upload-btn:hover { background: var(--blue-hover); }
+
+  #file-input { display: none; }
+
+  /* Main Layout */
+  #main-screen { display: none; }
+
+  /* Top Bar */
+  .top-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .top-bar .fb-logo {
+    width: 40px;
+    height: 40px;
+    background: var(--blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 22px;
+    color: #fff;
+  }
+
+  .top-bar .group-name {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .top-bar .file-name {
+    color: var(--text-secondary);
+    font-size: 12px;
+  }
+
+  .top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .search-input {
+    background: var(--reaction-bg);
+    border: none;
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 15px;
+    width: 240px;
+    outline: none;
+    transition: box-shadow 0.2s;
+  }
+
+  .search-input::placeholder { color: var(--text-secondary); }
+  .search-input:focus { box-shadow: 0 0 0 2px var(--blue); }
+
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--reaction-bg);
+    border: none;
+    color: var(--text);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .btn-icon:hover { background: var(--border-light); }
+
+  .btn-pill {
+    background: var(--reaction-bg);
+    border: none;
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-pill:hover { background: var(--border-light); }
+
+  /* Stats Bar */
+  .stats-bar {
+    max-width: 680px;
+    margin: 16px auto 0;
+    display: flex;
+    gap: 8px;
+    padding: 0 16px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    flex: 1;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+
+  .stat-card .label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .stat-card .value {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  .stat-card .value.blue { color: var(--blue); }
+  .stat-card .value.green { color: var(--green); }
+  .stat-card .value.orange { color: #f59e0b; }
+  .stat-card .value.pink { color: #e74c8b; }
+
+  /* View Tabs */
+  .view-tabs {
+    max-width: 680px;
+    margin: 12px auto 0;
+    display: flex;
+    gap: 4px;
+    padding: 0 16px;
+  }
+
+  .view-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.15s;
+  }
+
+  .view-tab:hover { background: var(--hover); }
+  .view-tab.active { background: var(--blue-light); color: var(--blue); }
+
+  /* Feed Content */
+  .content {
+    max-width: 680px;
+    margin: 12px auto 40px;
+    padding: 0 16px;
+  }
+
+  /* ===== Facebook Post Card ===== */
+  .fb-post {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .fb-post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px 0;
+  }
+
+  .fb-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .fb-post-info { flex: 1; min-width: 0; }
+
+  .fb-post-author {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .fb-post-author:hover { text-decoration: underline; }
+
+  .fb-post-time {
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .fb-post-time a {
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+
+  .fb-post-time a:hover { text-decoration: underline; }
+
+  .fb-post-menu {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fb-post-menu:hover { background: var(--hover); }
+
+  /* Post Text */
+  .fb-post-text {
+    padding: 8px 16px 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .fb-post-text.empty {
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  /* Post Images */
+  .fb-post-images {
+    width: 100%;
+    display: grid;
+    gap: 2px;
+    cursor: pointer;
+  }
+
+  .fb-post-images.img-1 { grid-template-columns: 1fr; }
+  .fb-post-images.img-2 { grid-template-columns: 1fr 1fr; }
+  .fb-post-images.img-3 { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+  .fb-post-images.img-3 img:first-child { grid-column: 1 / -1; }
+  .fb-post-images.img-many { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+  .fb-post-images.img-many img:first-child { grid-column: 1 / -1; }
+
+  .fb-post-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 200px;
+    max-height: 500px;
+    transition: opacity 0.15s;
+  }
+
+  .fb-post-images img:hover { opacity: 0.95; }
+
+  .fb-post-images .img-more-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fb-post-images .img-more-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  /* Reactions & Comments Count */
+  .fb-post-counts {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px 0;
+    font-size: 15px;
+    color: var(--text-secondary);
+  }
+
+  .fb-reactions-count {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .fb-reactions-count .emoji-icons {
+    display: flex;
+  }
+
+  .fb-reactions-count .emoji-icons span {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    border: 2px solid #fff;
+    margin-right: -4px;
+  }
+
+  .fb-comments-count { cursor: pointer; }
+  .fb-comments-count:hover { text-decoration: underline; }
+
+  /* Action Buttons */
+  .fb-post-actions {
+    display: flex;
+    margin: 4px 16px 0;
+    padding: 4px 0;
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .fb-action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 0;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.15s;
+  }
+
+  .fb-action-btn:hover { background: var(--hover); }
+  .fb-action-btn .icon { font-size: 18px; }
+
+  /* Comments Section */
+  .fb-comments-section {
+    display: none;
+    padding: 4px 16px 12px;
+  }
+
+  .fb-comments-section.open { display: block; }
+
+  .fb-comment {
+    display: flex;
+    gap: 8px;
+    padding: 6px 0;
+  }
+
+  .fb-comment-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .fb-comment-bubble {
+    background: var(--comment-bg);
+    border-radius: 18px;
+    padding: 8px 12px;
+    max-width: 85%;
+  }
+
+  .fb-comment-author {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  .fb-comment-author:hover { text-decoration: underline; }
+
+  .fb-comment-text {
+    font-size: 15px;
+    line-height: 1.37;
+    color: var(--text);
+    word-break: break-word;
+  }
+
+  .fb-comment-meta {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+    padding-left: 12px;
+    display: flex;
+    gap: 12px;
+    font-weight: 600;
+  }
+
+  .fb-comment-meta span { cursor: pointer; }
+  .fb-comment-meta span:hover { text-decoration: underline; }
+
+  .fb-comment.reply { margin-left: 44px; }
+
+  /* Write comment placeholder */
+  .fb-write-comment {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px 12px;
+  }
+
+  .fb-write-comment-input {
+    flex: 1;
+    background: var(--comment-bg);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 15px;
+    color: var(--text-secondary);
+    outline: none;
+    cursor: default;
+  }
+
+  /* Table View */
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  th {
+    background: var(--reaction-bg);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+  }
+
+  td {
+    padding: 10px 16px;
+    border-top: 1px solid var(--border-light);
+    vertical-align: top;
+    max-width: 300px;
+  }
+
+  tr:hover td { background: var(--hover); }
+
+  td.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Raw JSON */
+  .json-raw {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    border-radius: var(--radius);
+    padding: 20px;
+    overflow: auto;
+    font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 80vh;
+    box-shadow: var(--shadow);
+  }
+
+  .json-key { color: #9cdcfe; }
+  .json-string { color: #ce9178; }
+  .json-number { color: #b5cea8; }
+  .json-bool { color: #569cd6; }
+  .json-null { color: #569cd6; }
+
+  /* Members */
+  .members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 8px;
+  }
+
+  .member-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s;
+  }
+
+  .member-card:hover { box-shadow: var(--shadow-lg); }
+
+  .member-info { flex: 1; min-width: 0; }
+  .member-info .name { font-weight: 600; font-size: 15px; }
+
+  .member-info .details {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  .member-info .details a {
+    color: var(--text-link);
+    text-decoration: none;
+  }
+
+  .member-info .details a:hover { text-decoration: underline; }
+
+  .badge {
+    background: var(--blue-light);
+    color: var(--blue);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* Image Modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal-overlay img {
+    max-width: 92vw;
+    max-height: 92vh;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+  @media (max-width: 700px) {
+    .content, .stats-bar, .view-tabs { padding: 0 8px; }
+    .stats-bar { flex-wrap: wrap; }
+    .stat-card { min-width: 0; }
+    .search-input { width: 140px; }
+    .fb-post-images img { min-height: 150px; }
+    .members-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Upload -->
+<div id="upload-screen">
+  <div class="upload-box" id="drop-zone">
+    <div class="upload-icon">📂</div>
+    <h1>Facebook Data Viewer</h1>
+    <p>Drop your JSON file here or click to browse.<br>View scraped Facebook group posts in a familiar layout.</p>
+    <button class="upload-btn" onclick="document.getElementById('file-input').click()">Choose File</button>
+    <input type="file" id="file-input" accept=".json">
+  </div>
+</div>
+
+<!-- Main -->
+<div id="main-screen">
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="fb-logo">f</div>
+      <div>
+        <div class="group-name" id="group-name-label">Group Posts</div>
+        <div class="file-name" id="file-name-label"></div>
+      </div>
+    </div>
+    <div class="top-bar-right">
+      <input type="text" class="search-input" id="search-box" placeholder="🔍 Search posts...">
+      <button class="btn-pill" onclick="exportCSV()">⬇ CSV</button>
+      <button class="btn-icon" onclick="resetViewer()" title="Load new file">↩</button>
+    </div>
+  </div>
+
+  <div class="stats-bar" id="stats-bar"></div>
+
+  <div class="view-tabs" id="view-tabs">
+    <button class="view-tab active" data-view="cards">Feed</button>
+    <button class="view-tab" data-view="table">Table</button>
+    <button class="view-tab" data-view="members">Members</button>
+    <button class="view-tab" data-view="raw">Raw JSON</button>
+  </div>
+
+  <div class="content" id="content"></div>
+</div>
+
+<!-- Image Modal -->
+<div class="modal-overlay" id="image-modal">
+  <img id="modal-img" src="" alt="Full image">
+</div>
+
+<script>
+  let rawData = [];
+  let filteredData = [];
+  let currentView = 'cards';
+  let fileName = '';
+
+  const dropZone = document.getElementById('drop-zone');
+  const fileInput = document.getElementById('file-input');
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', e => { if (e.target.files[0]) loadFile(e.target.files[0]); });
+
+  function loadFile(file) {
+    fileName = file.name;
+    const reader = new FileReader();
+    reader.onload = e => {
+      try {
+        let parsed = JSON.parse(e.target.result);
+        if (!Array.isArray(parsed)) parsed = [parsed];
+        rawData = parsed;
+        filteredData = rawData;
+        showMainScreen();
+      } catch (err) {
+        alert('Invalid JSON: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function showMainScreen() {
+    document.getElementById('upload-screen').style.display = 'none';
+    document.getElementById('main-screen').style.display = 'block';
+    document.getElementById('file-name-label').textContent = fileName;
+    if (rawData[0] && rawData[0].permalink) {
+      const m = rawData[0].permalink.match(/groups\/([^/]+)/);
+      if (m) document.getElementById('group-name-label').textContent = m[1].replace(/[._-]/g, ' ');
+    }
+    renderStats();
+    renderView();
+  }
+
+  function resetViewer() {
+    document.getElementById('upload-screen').style.display = 'flex';
+    document.getElementById('main-screen').style.display = 'none';
+    rawData = []; filteredData = []; fileInput.value = '';
+  }
+
+  document.getElementById('search-box').addEventListener('input', e => {
+    const q = e.target.value.toLowerCase();
+    filteredData = q ? rawData.filter(item => JSON.stringify(item).toLowerCase().includes(q)) : rawData;
+    renderStats();
+    renderView();
+  });
+
+  document.getElementById('view-tabs').addEventListener('click', e => {
+    if (!e.target.classList.contains('view-tab')) return;
+    document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+    e.target.classList.add('active');
+    currentView = e.target.dataset.view;
+    renderView();
+  });
+
+  function renderStats() {
+    const d = filteredData;
+    const posts = d.length;
+    const authors = new Set(d.map(p => p.author || p.memberName || '').filter(Boolean)).size;
+    const comments = d.reduce((s, p) => s + (Array.isArray(p.comments) ? p.comments.length : 0), 0);
+    const withImg = d.filter(p => Array.isArray(p.images) && p.images.length).length;
+
+    document.getElementById('stats-bar').innerHTML = `
+      <div class="stat-card"><div class="label">Posts</div><div class="value blue">${posts}</div></div>
+      <div class="stat-card"><div class="label">Authors</div><div class="value green">${authors}</div></div>
+      <div class="stat-card"><div class="label">Comments</div><div class="value orange">${comments}</div></div>
+      <div class="stat-card"><div class="label">With Photos</div><div class="value pink">${withImg}</div></div>
+    `;
+  }
+
+  function renderView() {
+    const c = document.getElementById('content');
+    switch (currentView) {
+      case 'cards': renderFeed(c); break;
+      case 'table': renderTable(c); break;
+      case 'members': renderMembers(c); break;
+      case 'raw': renderRaw(c); break;
+    }
+  }
+
+  function esc(str) {
+    if (!str) return '';
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
+  function initials(name) {
+    if (!name) return '?';
+    return name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  }
+
+  function colorFor(str) {
+    let h = 0;
+    for (let i = 0; i < str.length; i++) h = str.charCodeAt(i) + ((h << 5) - h);
+    const colors = ['#1877f2','#42b72a','#f59e0b','#e74c8b','#8b5cf6','#ef4444','#06b6d4','#f97316','#6366f1','#14b8a6'];
+    return colors[Math.abs(h) % colors.length];
+  }
+
+  function parseReactions(str) {
+    if (!str) return null;
+    const m = str.match(/(\w+):\s*(\d+)/);
+    if (!m) return { type: 'Like', count: str };
+    const emojiMap = { Like: '👍', Love: '❤️', Haha: '😂', Wow: '😮', Sad: '😢', Angry: '😡', Care: '🤗' };
+    return { type: m[1], emoji: emojiMap[m[1]] || '👍', count: m[2] + ' ' + (str.split(m[2] + ' ')[1] || '') };
+  }
+
+  // ===== Facebook Feed =====
+  function renderFeed(container) {
+    if (!filteredData.length) {
+      container.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:60px 0;font-size:16px;">No posts to show.</p>';
+      return;
+    }
+
+    container.innerHTML = filteredData.map((post, idx) => {
+      const author = post.author || post.memberName || post.name || 'Unknown';
+      const text = post.text || post.content || post.message || '';
+      const images = Array.isArray(post.images) ? post.images : [];
+      const comments = Array.isArray(post.comments) ? post.comments : [];
+      const reactions = parseReactions(post.reactions);
+      const permalink = post.permalink || post.url || '';
+      const memberId = post.memberId || '';
+      const scrapedAt = post.scrapedAt ? new Date(post.scrapedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+
+      // Images grid
+      let imgHtml = '';
+      if (images.length === 1) {
+        imgHtml = `<div class="fb-post-images img-1"><img src="${esc(images[0])}" loading="lazy" onclick="openImage(this.src)" onerror="this.parentElement.remove()"></div>`;
+      } else if (images.length === 2) {
+        imgHtml = `<div class="fb-post-images img-2">${images.map(u => `<img src="${esc(u)}" loading="lazy" onclick="openImage(this.src)" onerror="this.style.display='none'">`).join('')}</div>`;
+      } else if (images.length === 3) {
+        imgHtml = `<div class="fb-post-images img-3">${images.map(u => `<img src="${esc(u)}" loading="lazy" onclick="openImage(this.src)" onerror="this.style.display='none'">`).join('')}</div>`;
+      } else if (images.length > 3) {
+        const shown = images.slice(0, 3);
+        const extra = images.length - 3;
+        imgHtml = `<div class="fb-post-images img-many">
+          <img src="${esc(shown[0])}" loading="lazy" onclick="openImage(this.src)" onerror="this.style.display='none'">
+          <img src="${esc(shown[1])}" loading="lazy" onclick="openImage(this.src)" onerror="this.style.display='none'">
+          <div class="img-more-wrapper" onclick="openImage('${esc(shown[2])}')">
+            <img src="${esc(shown[2])}" loading="lazy" onerror="this.parentElement.remove()">
+            ${extra > 0 ? `<div class="img-more-overlay">+${extra}</div>` : ''}
+          </div>
+        </div>`;
+      }
+
+      // Reactions & counts bar
+      let countsHtml = '';
+      const hasReactions = reactions && reactions.count;
+      const hasComments = comments.length > 0;
+      if (hasReactions || hasComments) {
+        countsHtml = `<div class="fb-post-counts">
+          <div class="fb-reactions-count">
+            ${hasReactions ? `<div class="emoji-icons"><span style="background:#1877f2">${reactions.emoji || '👍'}</span></div> <span>${esc(String(reactions.count))}</span>` : ''}
+          </div>
+          ${hasComments ? `<div class="fb-comments-count" onclick="toggleComments(${idx})">${comments.length} comment${comments.length > 1 ? 's' : ''}</div>` : ''}
+        </div>`;
+      }
+
+      // Comments
+      let commentsHtml = '';
+      if (comments.length) {
+        commentsHtml = `<div class="fb-comments-section" id="comments-${idx}">
+          ${comments.map(c => `
+            <div class="fb-comment${c.isReply ? ' reply' : ''}">
+              <div class="fb-comment-avatar" style="background:${colorFor(c.author || '')}">${initials(c.author)}</div>
+              <div>
+                <div class="fb-comment-bubble">
+                  <div class="fb-comment-author">${esc(c.author)}</div>
+                  <div class="fb-comment-text">${esc(c.text)}</div>
+                </div>
+                <div class="fb-comment-meta">
+                  <span>Like</span>
+                  <span>Reply</span>
+                  ${c.timestamp ? `<span style="font-weight:400;cursor:default">${esc(c.timestamp)}</span>` : ''}
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>`;
+      }
+
+      const profileUrl = memberId ? `https://www.facebook.com/profile.php?id=${esc(memberId)}` : '#';
+
+      return `
+      <div class="fb-post">
+        <div class="fb-post-header">
+          <a href="${profileUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:none">
+            <div class="fb-avatar" style="background:${colorFor(author)}">${initials(author)}</div>
+          </a>
+          <div class="fb-post-info">
+            <a class="fb-post-author" href="${profileUrl}" target="_blank" rel="noopener noreferrer">${esc(author)}</a>
+            <div class="fb-post-time">
+              ${permalink ? `<a href="${esc(permalink)}" target="_blank" rel="noopener noreferrer">${scrapedAt || 'View post'}</a>` : (scrapedAt || '')}
+               · 🌐
+            </div>
+          </div>
+          <button class="fb-post-menu" title="Post options">⋯</button>
+        </div>
+
+        ${text ? `<div class="fb-post-text">${esc(text)}</div>` : '<div class="fb-post-text empty">No text content</div>'}
+
+        ${imgHtml}
+
+        ${countsHtml}
+
+        <div class="fb-post-actions">
+          <button class="fb-action-btn"><span class="icon">👍</span> Like</button>
+          <button class="fb-action-btn" onclick="toggleComments(${idx})"><span class="icon">💬</span> Comment</button>
+          <button class="fb-action-btn"><span class="icon">↗️</span> Share</button>
+        </div>
+
+        ${commentsHtml}
+
+        ${hasComments ? `
+        <div class="fb-write-comment">
+          <div class="fb-comment-avatar" style="background:#65676b;width:32px;height:32px;font-size:12px">You</div>
+          <div class="fb-write-comment-input">Write a comment...</div>
+        </div>` : ''}
+      </div>`;
+    }).join('');
+  }
+
+  function toggleComments(idx) {
+    const el = document.getElementById('comments-' + idx);
+    if (el) el.classList.toggle('open');
+  }
+
+  // Table
+  function renderTable(container) {
+    if (!filteredData.length) {
+      container.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:60px 0;">No records.</p>';
+      return;
+    }
+    const keys = [...new Set(filteredData.flatMap(Object.keys))];
+    container.innerHTML = `<div class="table-wrapper"><table>
+      <thead><tr>${keys.map(k => `<th>${esc(k)}</th>`).join('')}</tr></thead>
+      <tbody>${filteredData.map(row => `<tr>${keys.map(k => {
+        let v = row[k];
+        if (v == null) return '<td style="color:var(--text-secondary)">—</td>';
+        if (Array.isArray(v)) return `<td title="${esc(JSON.stringify(v))}">[${v.length}]</td>`;
+        if (typeof v === 'object') return `<td title="${esc(JSON.stringify(v))}">{…}</td>`;
+        const s = String(v);
+        if (s.startsWith('http')) return `<td><a href="${esc(s)}" target="_blank" rel="noopener noreferrer" style="color:var(--text-link)">Link ↗</a></td>`;
+        return `<td class="truncate" title="${esc(s)}">${esc(s.length > 80 ? s.slice(0, 80) + '…' : s)}</td>`;
+      }).join('')}</tr>`).join('')}</tbody></table></div>`;
+  }
+
+  // Members
+  function renderMembers(container) {
+    const map = new Map();
+    filteredData.forEach(p => {
+      const id = p.memberId || p.author || '';
+      const name = p.memberName || p.author || 'Unknown';
+      if (!id) return;
+      if (!map.has(id)) map.set(id, { id, name, posts: 0, comments: 0 });
+      const m = map.get(id);
+      m.posts++;
+      m.comments += Array.isArray(p.comments) ? p.comments.length : 0;
+    });
+    const members = [...map.values()].sort((a, b) => b.posts - a.posts);
+    if (!members.length) { container.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:60px 0;">No members found.</p>'; return; }
+    container.innerHTML = '<div class="members-grid">' + members.map(m => `
+      <div class="member-card">
+        <div class="fb-avatar" style="background:${colorFor(m.name)};width:48px;height:48px;font-size:18px">${initials(m.name)}</div>
+        <div class="member-info">
+          <div class="name">${esc(m.name)}</div>
+          <div class="details"><a href="https://www.facebook.com/profile.php?id=${esc(m.id)}" target="_blank" rel="noopener noreferrer">View Profile</a> · ${m.comments} comments</div>
+        </div>
+        <span class="badge">${m.posts}</span>
+      </div>
+    `).join('') + '</div>';
+  }
+
+  // Raw JSON
+  function renderRaw(container) {
+    const j = JSON.stringify(filteredData, null, 2)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"([^"]+)":/g, '<span class="json-key">"$1"</span>:')
+      .replace(/: "([^"]*)"/g, ': <span class="json-string">"$1"</span>')
+      .replace(/: (-?\d+\.?\d*)/g, ': <span class="json-number">$1</span>')
+      .replace(/: (true|false)/g, ': <span class="json-bool">$1</span>')
+      .replace(/: (null)/g, ': <span class="json-null">null</span>');
+    container.innerHTML = `<pre class="json-raw">${j}</pre>`;
+  }
+
+  function openImage(src) {
+    document.getElementById('modal-img').src = src;
+    document.getElementById('image-modal').classList.add('open');
+  }
+
+  document.getElementById('image-modal').addEventListener('click', () => {
+    document.getElementById('image-modal').classList.remove('open');
+  });
+
+  function exportCSV() {
+    if (!filteredData.length) return;
+    const keys = [...new Set(filteredData.flatMap(Object.keys))];
+    const rows = [keys.map(k => `"${k}"`).join(',')];
+    filteredData.forEach(row => {
+      rows.push(keys.map(k => {
+        let v = row[k];
+        if (v == null) return '""';
+        if (typeof v === 'object') v = JSON.stringify(v);
+        return `"${String(v).replace(/"/g, '""')}"`;
+      }).join(','));
+    });
+    const blob = new Blob([rows.join('\n')], { type: 'text/csv' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = fileName.replace('.json', '') + '_export.csv';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+</script>
+</body>
+</html>

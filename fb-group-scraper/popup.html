@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 420px;
+      min-height: 520px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 16px;
+    }
+    h1 { font-size: 18px; color: #00d4ff; margin-bottom: 12px; text-align: center; border-bottom: 1px solid #333; padding-bottom: 8px; }
+    .section { margin-bottom: 14px; }
+    label { display: block; font-size: 12px; color: #aaa; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    input[type="text"], input[type="number"] { width: 100%; padding: 8px 10px; background: #16213e; border: 1px solid #333; border-radius: 6px; color: #e0e0e0; font-size: 13px; outline: none; }
+    input:focus { border-color: #00d4ff; }
+    input[type="file"] { display: none; }
+    .file-upload { display: flex; align-items: center; gap: 8px; }
+    .file-upload-btn { padding: 8px 14px; background: #16213e; border: 1px dashed #555; border-radius: 6px; color: #aaa; cursor: pointer; font-size: 12px; }
+    .file-upload-btn:hover { border-color: #00d4ff; color: #00d4ff; }
+    .file-name { font-size: 12px; color: #777; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .row { display: flex; gap: 10px; }
+    .row .section { flex: 1; }
+    .btn { width: 100%; padding: 10px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .btn-start { background: #00d4ff; color: #1a1a2e; }
+    .btn-start:hover { background: #00b8d9; }
+    .btn-start:disabled { background: #444; color: #888; cursor: not-allowed; }
+    .btn-pause { background: #f59e0b; color: #1a1a2e; }
+    .btn-stop { background: #ef4444; color: white; }
+    .btn-export { background: #10b981; color: white; margin-top: 6px; }
+    .btn-row { display: flex; gap: 8px; margin-top: 10px; }
+    .btn-row .btn { width: 50%; }
+    .status-box { background: #16213e; border-radius: 6px; padding: 10px; margin-top: 12px; font-size: 12px; max-height: 170px; overflow-y: auto; }
+    .stat { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid #222; }
+    .stat-label { color: #888; }
+    .stat-value { color: #00d4ff; font-weight: 600; }
+    .log-box { background: #0f0f23; border-radius: 6px; padding: 8px; margin-top: 8px; font-size: 11px; font-family: 'Consolas', monospace; max-height: 150px; overflow-y: auto; color: #6a9955; }
+    .log-entry { padding: 2px 0; }
+    .log-entry.error { color: #ef4444; }
+    .log-entry.warn { color: #f59e0b; }
+    .log-entry.info { color: #6a9955; }
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .toggle-label { font-size: 12px; color: #ccc; }
+    .toggle { position: relative; width: 40px; height: 20px; }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; border-radius: 20px; transition: 0.3s; }
+    .toggle .slider:before { content: ""; position: absolute; height: 16px; width: 16px; left: 2px; bottom: 2px; background: white; border-radius: 50%; transition: 0.3s; }
+    .toggle input:checked + .slider { background-color: #00d4ff; }
+    .toggle input:checked + .slider:before { transform: translateX(20px); }
+  </style>
+</head>
+<body>
+  <h1>🔍 FB Group Post Scraper v2</h1>
+
+  <div class="section">
+    <label>Facebook Group ID</label>
+    <input type="text" id="groupId" placeholder="e.g. 1437882213110717">
+  </div>
+
+  <div class="section">
+    <label>Upload Members Batch CSV</label>
+    <div class="file-upload">
+      <div class="file-upload-btn" id="fileUploadBtn">📁 Choose CSV</div>
+      <input type="file" id="csvFile" accept=".csv">
+      <span class="file-name" id="fileName">No file selected</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="section">
+      <label>Min Delay (ms)</label>
+      <input type="number" id="minDelay" value="600" min="200" max="10000">
+    </div>
+    <div class="section">
+      <label>Max Delay (ms)</label>
+      <input type="number" id="maxDelay" value="1500" min="400" max="15000">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="section">
+      <label>Page Load Wait (ms)</label>
+      <input type="number" id="pageLoadDelay" value="3000" min="1000" max="15000">
+    </div>
+    <div class="section">
+      <label>Start from Member #</label>
+      <input type="number" id="startFrom" value="1" min="1">
+    </div>
+  </div>
+
+  <div class="toggle-row">
+    <span class="toggle-label">Expand all comments &amp; replies</span>
+    <label class="toggle"><input type="checkbox" id="expandComments" checked><span class="slider"></span></label>
+  </div>
+
+  <div class="toggle-row">
+    <span class="toggle-label">Collect reactions detail</span>
+    <label class="toggle"><input type="checkbox" id="collectReactions" checked><span class="slider"></span></label>
+  </div>
+
+  <button class="btn btn-start" id="btnStart">▶ Start Scraping</button>
+  <div class="btn-row">
+    <button class="btn btn-pause" id="btnPause" style="display:none;">⏸ Pause</button>
+    <button class="btn btn-stop" id="btnStop" style="display:none;">⏹ Stop</button>
+  </div>
+  <button class="btn btn-export" id="btnExport">💾 Export Data (JSON)</button>
+
+  <div class="status-box">
+    <div class="stat"><span class="stat-label">Status</span><span class="stat-value" id="statusText">Idle</span></div>
+    <div class="stat"><span class="stat-label">Members Loaded</span><span class="stat-value" id="membersLoaded">0</span></div>
+    <div class="stat"><span class="stat-label">Current Member</span><span class="stat-value" id="currentMember">-</span></div>
+    <div class="stat"><span class="stat-label">Members Done</span><span class="stat-value" id="membersDone">0 / 0</span></div>
+    <div class="stat"><span class="stat-label">Posts Scraped</span><span class="stat-value" id="postsScraped">0</span></div>
+    <div class="stat"><span class="stat-label">Comments Collected</span><span class="stat-value" id="commentsCollected">0</span></div>
+  </div>
+
+  <div class="log-box" id="logBox"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deck &amp; Patio — Hispanos FB Directory</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0d14;color:#e4e6eb;line-height:1.5}
+a{color:#4da3ff;text-decoration:none}a:hover{text-decoration:underline}
+.topbar{position:sticky;top:0;z-index:10;background:#11141d;border-bottom:1px solid #222836;padding:14px 20px;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.topbar h1{font-size:1.15rem;color:#fff}
+.topbar .sub{font-size:.78rem;color:#8b92a3}
+.topbar nav{display:flex;gap:8px;flex-wrap:wrap}
+.topbar nav a{padding:6px 12px;background:#161a24;border:1px solid #242a38;border-radius:6px;font-size:.8rem;color:#cdd3e0}
+.topbar nav a:hover{background:#1d2535;color:#fff;text-decoration:none}
+.topbar nav a.on{background:#1a2744;color:#4da3ff;border-color:#4da3ff}
+.wrap{max-width:1400px;margin:0 auto;padding:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:24px}
+.stat{background:#11141d;border:1px solid #1f2432;border-radius:10px;padding:16px}
+.stat .n{font-size:1.8rem;font-weight:700;color:#4da3ff;line-height:1}
+.stat .l{font-size:.72rem;color:#8b92a3;text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+.card{background:#11141d;border:1px solid #1f2432;border-radius:10px;overflow:hidden;transition:border-color .15s}
+.card:hover{border-color:#2d3548}
+.card.offer{border-left:3px solid #4ae0a0}
+.card.seek{border-left:3px solid #f0a84a}
+.card-head{padding:12px 16px;display:flex;gap:14px;align-items:flex-start}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4da3ff,#b48eff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.05rem;flex-shrink:0}
+.head-body{flex:1;min-width:0}
+.name{font-size:1.02rem;font-weight:600;color:#fff;margin-bottom:4px}
+.meta{font-size:.75rem;color:#8b92a3;display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.trades{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.trade{font-size:.72rem;padding:3px 10px;border-radius:12px;background:#1a2744;color:#4da3ff;border:1px solid #2c3f5e}
+.trade.offering{background:#0f2d22;color:#4ae0a0;border-color:#1f5540}
+.trade.seeking{background:#2d220f;color:#f0a84a;border-color:#55401f}
+.phones{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.phone{font-size:.86rem;font-weight:600;color:#4ae0a0;padding:4px 10px;background:#0f2d22;border-radius:6px;border:1px solid #1f5540}
+.phone a{color:inherit}
+.bio{font-size:.78rem;color:#8b92a3;font-style:italic}
+.sec{margin:24px 0 12px;font-size:1.1rem;color:#fff;padding-bottom:6px;border-bottom:1px solid #222836}
+.search{width:100%;padding:10px 14px;background:#161a24;border:1px solid #242a38;color:#e4e6eb;border-radius:8px;font-size:.95rem;outline:none;margin-bottom:16px}
+.search:focus{border-color:#4da3ff}
+.list{display:flex;flex-direction:column;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #1f2432}
+th{background:#0d1019;color:#8b92a3;font-weight:600;text-transform:uppercase;font-size:.7rem;letter-spacing:.5px;position:sticky;top:0;cursor:pointer;user-select:none}
+th:hover{color:#fff}
+tr:hover{background:#141823}
+.excerpt{font-size:.78rem;color:#8b92a3;margin-top:4px;line-height:1.4}
+.post-item{padding:10px 14px;background:#0d1019;border:1px solid #1a1f2c;border-radius:6px;margin-bottom:8px;font-size:.85rem}
+.post-item.offer{border-left:2px solid #4ae0a0}
+.post-item.seek{border-left:2px solid #f0a84a}
+.post-item .head{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;font-size:.72rem;color:#8b92a3}
+.post-item .body{color:#cdd3e0;white-space:pre-wrap;word-wrap:break-word}
+.hidden{display:none!important}
+@media (max-width:700px){.topbar{flex-direction:column;align-items:flex-start}}
+.cat-head{background:linear-gradient(135deg,#1a2744 0%,#2a1f44 100%);padding:32px 20px;border-radius:12px;margin-bottom:24px}
+.cat-head h2{font-size:1.8rem;color:#fff;margin-bottom:8px}
+.cat-head p{color:#cdd3e0;font-size:.9rem}
+.section{margin-top:24px}
+.section h3{color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section h3 .count{font-size:.75rem;background:#1a2744;color:#4da3ff;padding:3px 10px;border-radius:10px}
+</style></head><body>
+<div class="topbar">
+  <div><h1>Deck &amp; Patio</h1><div class="sub"><a href="index.html" style="color:#8b92a3">← Dashboard</a> · <a href="index.html" style="color:#8b92a3">All categories</a></div></div>
+  <nav><a href="../index.html" >Dashboard</a><a href="../directory.html" >Full Directory</a><a href="../phones.html" >Phone Lookup</a><a href="../businesses.html" >Top Businesses</a><a href="../categories/index.html" class="on">Categories</a></nav>
+</div>
+<div class="wrap">
+  <div class="cat-head">
+    <h2>Deck &amp; Patio</h2>
+    <p>2 people mentioned · 0 offering · 1 seeking · 2 with phone numbers</p>
+  </div>
+
+  <input type="text" class="search" id="q" placeholder="Search name or phone within Deck &amp; Patio...">
+
+  
+
+  <div class="section"><h3>Mentioned (intent unclear) <span class="count">1</span></h3>
+    <div class="list" id="unclear-list"><div class="card ">
+      <div class="card-head">
+        <div class="avatar">RZ</div>
+        <div class="head-body">
+          <div class="name">Ramón Zapata
+            <a href="https://www.facebook.com/ramon.zapata.500492" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 6 comments</span>
+            <span>🕒 2026-04-02</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(832) 380-9547">(832) 380-9547</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Remodeling</span><span class="trade">Concrete &amp; Masonry</span><span class="trade">Fencing</span><span class="trade">Mechanic</span></div>
+          <div class="excerpt">"Estámos asus orderenes remodelacion de fram y cornice de cement y madera 8323809547 porches pergolas" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4138521719713406/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Río Verde, San Luis Potosi, Mexico</div>
+        </div>
+      </div>
+    </div></div></div>
+
+  <div class="section"><h3>🟡 Seeking Services <span class="count">1</span></h3>
+    <div class="list" id="seek-list"><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">BN</div>
+        <div class="head-body">
+          <div class="name">Bryant Navarrete Guillen
+            <a href="https://www.facebook.com/bryant.navarrete.guillen" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 40 posts</span>
+            <span>💬 19 comments</span>
+            <span>🕒 2025-09-03</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(832) 758-3629">(832) 758-3629</a></span><span class="phone"><a href="tel:(318) 431-3181">(318) 431-3181</a></span><span class="phone"><a href="tel:(241) 567-3167">(241) 567-3167</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Mechanic</span><span class="trade">Landscaping &amp; Lawn</span><span class="trade">Delivery</span><span class="trade">Painting</span><span class="trade">Carpentry</span></div>
+          <div class="excerpt">"Se busca trabajo pintura,Carpinteria, finishar, textura, se ase decks, mumbles rusticos trabajos mechanicos auto mobile,  pintura de carros,  se ase tatuajes contactenme  para fotos y mas a sus ordenes" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3574929489405968/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at B&#39;s Coustoms</div>
+        </div>
+      </div>
+    </div></div></div>
+</div>
+<script>
+document.getElementById('q').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.card').forEach(c => {
+    const txt = c.textContent.toLowerCase();
+    c.classList.toggle('hidden', q && txt.indexOf(q) < 0);
+  });
+});
+</script>
+</body></html>

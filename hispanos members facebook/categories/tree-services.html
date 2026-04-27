@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tree Services — Hispanos FB Directory</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0d14;color:#e4e6eb;line-height:1.5}
+a{color:#4da3ff;text-decoration:none}a:hover{text-decoration:underline}
+.topbar{position:sticky;top:0;z-index:10;background:#11141d;border-bottom:1px solid #222836;padding:14px 20px;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.topbar h1{font-size:1.15rem;color:#fff}
+.topbar .sub{font-size:.78rem;color:#8b92a3}
+.topbar nav{display:flex;gap:8px;flex-wrap:wrap}
+.topbar nav a{padding:6px 12px;background:#161a24;border:1px solid #242a38;border-radius:6px;font-size:.8rem;color:#cdd3e0}
+.topbar nav a:hover{background:#1d2535;color:#fff;text-decoration:none}
+.topbar nav a.on{background:#1a2744;color:#4da3ff;border-color:#4da3ff}
+.wrap{max-width:1400px;margin:0 auto;padding:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:24px}
+.stat{background:#11141d;border:1px solid #1f2432;border-radius:10px;padding:16px}
+.stat .n{font-size:1.8rem;font-weight:700;color:#4da3ff;line-height:1}
+.stat .l{font-size:.72rem;color:#8b92a3;text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+.card{background:#11141d;border:1px solid #1f2432;border-radius:10px;overflow:hidden;transition:border-color .15s}
+.card:hover{border-color:#2d3548}
+.card.offer{border-left:3px solid #4ae0a0}
+.card.seek{border-left:3px solid #f0a84a}
+.card-head{padding:12px 16px;display:flex;gap:14px;align-items:flex-start}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4da3ff,#b48eff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.05rem;flex-shrink:0}
+.head-body{flex:1;min-width:0}
+.name{font-size:1.02rem;font-weight:600;color:#fff;margin-bottom:4px}
+.meta{font-size:.75rem;color:#8b92a3;display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.trades{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.trade{font-size:.72rem;padding:3px 10px;border-radius:12px;background:#1a2744;color:#4da3ff;border:1px solid #2c3f5e}
+.trade.offering{background:#0f2d22;color:#4ae0a0;border-color:#1f5540}
+.trade.seeking{background:#2d220f;color:#f0a84a;border-color:#55401f}
+.phones{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.phone{font-size:.86rem;font-weight:600;color:#4ae0a0;padding:4px 10px;background:#0f2d22;border-radius:6px;border:1px solid #1f5540}
+.phone a{color:inherit}
+.bio{font-size:.78rem;color:#8b92a3;font-style:italic}
+.sec{margin:24px 0 12px;font-size:1.1rem;color:#fff;padding-bottom:6px;border-bottom:1px solid #222836}
+.search{width:100%;padding:10px 14px;background:#161a24;border:1px solid #242a38;color:#e4e6eb;border-radius:8px;font-size:.95rem;outline:none;margin-bottom:16px}
+.search:focus{border-color:#4da3ff}
+.list{display:flex;flex-direction:column;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #1f2432}
+th{background:#0d1019;color:#8b92a3;font-weight:600;text-transform:uppercase;font-size:.7rem;letter-spacing:.5px;position:sticky;top:0;cursor:pointer;user-select:none}
+th:hover{color:#fff}
+tr:hover{background:#141823}
+.excerpt{font-size:.78rem;color:#8b92a3;margin-top:4px;line-height:1.4}
+.post-item{padding:10px 14px;background:#0d1019;border:1px solid #1a1f2c;border-radius:6px;margin-bottom:8px;font-size:.85rem}
+.post-item.offer{border-left:2px solid #4ae0a0}
+.post-item.seek{border-left:2px solid #f0a84a}
+.post-item .head{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;font-size:.72rem;color:#8b92a3}
+.post-item .body{color:#cdd3e0;white-space:pre-wrap;word-wrap:break-word}
+.hidden{display:none!important}
+@media (max-width:700px){.topbar{flex-direction:column;align-items:flex-start}}
+.cat-head{background:linear-gradient(135deg,#1a2744 0%,#2a1f44 100%);padding:32px 20px;border-radius:12px;margin-bottom:24px}
+.cat-head h2{font-size:1.8rem;color:#fff;margin-bottom:8px}
+.cat-head p{color:#cdd3e0;font-size:.9rem}
+.section{margin-top:24px}
+.section h3{color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section h3 .count{font-size:.75rem;background:#1a2744;color:#4da3ff;padding:3px 10px;border-radius:10px}
+</style></head><body>
+<div class="topbar">
+  <div><h1>Tree Services</h1><div class="sub"><a href="index.html" style="color:#8b92a3">← Dashboard</a> · <a href="index.html" style="color:#8b92a3">All categories</a></div></div>
+  <nav><a href="../index.html" >Dashboard</a><a href="../directory.html" >Full Directory</a><a href="../phones.html" >Phone Lookup</a><a href="../businesses.html" >Top Businesses</a><a href="../categories/index.html" class="on">Categories</a></nav>
+</div>
+<div class="wrap">
+  <div class="cat-head">
+    <h2>Tree Services</h2>
+    <p>21 people mentioned · 6 offering · 5 seeking · 15 with phone numbers</p>
+  </div>
+
+  <input type="text" class="search" id="q" placeholder="Search name or phone within Tree Services...">
+
+  <div class="section"><h3>🟢 Offering Services <span class="count">6</span></h3>
+    <div class="list" id="offer-list"><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">LT</div>
+        <div class="head-body">
+          <div class="name">Lemon Tree
+            <a href="https://www.facebook.com/lemon.tree.728022" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 100% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 0 posts</span>
+            <span>💬 8 comments</span>
+            <span>🕒 2026-02-08</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(469) 444-6122">(469) 444-6122</a></span></div>
+          
+          <div class="excerpt">"📢 Estamos contratando en el área de Monroe, LA 📢 
+
+Buscamos trabajadores para trabajo de árboles, y flageros para control de tráfico. 
+🔹 Requisitos: 
+Tener carro propio para llegar al trabajo 
+Saber usar motosierra 💰
+Pago diario: 👉 $170 – $200 por día, según experiencia 📅 D…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4545444709021103/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">FH</div>
+        <div class="head-body">
+          <div class="name">Francisco Hernandez
+            <a href="https://www.facebook.com/francisco.hernandez.849791" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 85% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 44 posts</span>
+            <span>💬 0 comments</span>
+            <span>🕒 2026-03-18</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(903) 812-2780">(903) 812-2780</a></span><span class="phone"><a href="tel:(903) 241-8739">(903) 241-8739</a></span><span class="phone"><a href="tel:(903) 812-2789">(903) 812-2789</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Cleaning</span></div>
+          <div class="excerpt">"Me pongo a tus órdenes si necesitas cortar o trimear árboles las estimaciones son gratis cel..903 812 2780 gracias" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4603298186569088/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at Soy jinete 100% profesional  hombres adictos al peligro</div>
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">LT</div>
+        <div class="head-body">
+          <div class="name">Liliana Torres Martinez
+            <a href="https://www.facebook.com/liliana.torresmartinez.52" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 77% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 7 posts</span>
+            <span>💬 9 comments</span>
+            <span>🕒 2026-03-25</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 450-1178">(318) 450-1178</a></span><span class="phone"><a href="tel:(318) 801-8873">(318) 801-8873</a></span><span class="phone"><a href="tel:(888) 342-6207">(888) 342-6207</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Cleaning</span></div>
+          <div class="excerpt">"Se ocupan 2 trabajadores para trabajo de cortar árboles
+Interesados comunicarse a este número 3184501178" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4322572721308304/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">BL</div>
+        <div class="head-body">
+          <div class="name">Bladimir Lara
+            <a href="https://www.facebook.com/saury.garciagonzalez" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 77% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 14 comments</span>
+            <span>🕒 2025-08-28</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 737-9919">(318) 737-9919</a></span><span class="phone"><a href="tel:(318) 614-3316">(318) 614-3316</a></span><span class="phone"><a href="tel:(318) 547-4541">(318) 547-4541</a></span></div>
+          
+          <div class="excerpt">"Ofrecemos nuestros servicios de tala de árboles por si alguien esté interesado mande mensaje al siguiente número 318 547 4541" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/2975091179389805/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Zongolica</div>
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">RV</div>
+        <div class="head-body">
+          <div class="name">Ricardo Vallvel
+            <a href="https://www.facebook.com/ricardo.vallvel" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 77% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 1 comments</span>
+            <span>🕒 2026-02-10</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 450-9077">(318) 450-9077</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Demolition</span><span class="trade">Fencing</span><span class="trade">Hauling &amp; Junk Removal</span><span class="trade">Concrete &amp; Masonry</span><span class="trade">Carpentry</span></div>
+          <div class="excerpt">"services of whatever are offered. Yards are cleaned of garbage, trees are removed, machine work is demolished, concrete repairs, drains, etc., and all kinds of fences, cattle fences, vinyl, wood are made. Contact with Matt Miller 318-450-9077.  
+O en español conmigo 
+Se hace reco…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4562047937360780/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Louisiana Delta Community College</div>
+        </div>
+      </div>
+    </div><div class="card offer">
+      <div class="card-head">
+        <div class="avatar">AN</div>
+        <div class="head-body">
+          <div class="name">Alex Nieves
+            <a href="https://www.facebook.com/alexarturo.nieves" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟢 OFFERING · 62% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 9 posts</span>
+            <span>💬 14 comments</span>
+            <span>🕒 2026-03-22</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 614-1197">(318) 614-1197</a></span><span class="phone"><a href="tel:(318) 615-1197">(318) 615-1197</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Landscaping &amp; Lawn</span><span class="trade">Hauling &amp; Junk Removal</span></div>
+          <div class="excerpt">"Para toda la comunidad hispana estoy ofreciendo mi servisio de limpiar sercas apodar su yarda y cortar arboles para mas information Al 3186141197" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3875255712706676/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Works at University of Louisiana Monroe</div>
+        </div>
+      </div>
+    </div></div></div>
+
+  <div class="section"><h3>Mentioned (intent unclear) <span class="count">10</span></h3>
+    <div class="list" id="unclear-list"><div class="card ">
+      <div class="card-head">
+        <div class="avatar">AR</div>
+        <div class="head-body">
+          <div class="name">Angela Roa Guzmán
+            <a href="https://www.facebook.com/sofi.roaguzman" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 42% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 6 posts</span>
+            <span>💬 11 comments</span>
+            <span>🕒 2026-03-16</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Labor / Helper</span><span class="trade">Welding</span><span class="trade">Concrete &amp; Masonry</span></div>
+          <div class="excerpt">"📢 **Estamos contratando – Monroe, Louisiana** 📢
+
+Buscamos **ayudantes **y **controladores de tráfico (flaggers)** para trabajo de tree service.
+
+🔹 **Requisitos:**
+• Tener carro propio para llegar al trabajo (en west moroe)
+• Saber usar **motosierra** (para ayudantes)
+
+💰 **Pag…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4599112946987612/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">EA</div>
+        <div class="head-body">
+          <div class="name">Eldin A Carrillo
+            <a href="https://www.facebook.com/eldin.isaias" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 11 posts</span>
+            <span>💬 29 comments</span>
+            <span>🕒 2026-03-28</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 789-6837">(318) 789-6837</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Fencing</span><span class="trade">Concrete &amp; Masonry</span><span class="trade">Landscaping &amp; Lawn</span><span class="trade">HVAC</span></div>
+          <div class="excerpt">"Nos ponemos a sus órdenes ￼
+Cortamos césped 
+Recortamos arbustos 
+También cortamos árboles 
+Tenemos precios razonables 
+Le haremos un trabajo agradable escríbanos o llámanos  3187896837" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4200933786805532/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Alto nivel de amor at en tu corazon</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">MR</div>
+        <div class="head-body">
+          <div class="name">Malbert Rodmat
+            <a href="https://www.facebook.com/profile.php?id=100091813123000" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 3 posts</span>
+            <span>💬 24 comments</span>
+            <span>🕒 2024-01-11</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(501) 626-0500">(501) 626-0500</a></span></div>
+          
+          <div class="excerpt">"ATENCION SE CORTAN ARBOLES NO IMPORTA EL TAMAÑO NI LO DIFÍCIL QUE ESTEN SERVICIO PROFESIONAL Y BUENOS PRECIOS INF.5016260500    TERRA TREE SERVICES.attention, trees are cut no matter the size or how difficult they are professional service and good prices info.5016260500" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3717171311848451/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Dueño u obrero me da lo mismo at Aprendis de la construcción</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">AJ</div>
+        <div class="head-body">
+          <div class="name">Armando Juarez
+            <a href="https://www.facebook.com/armando.juarez.350578" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 9 posts</span>
+            <span>💬 6 comments</span>
+            <span>🕒 2026-03-30</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 348-7097">(318) 348-7097</a></span><span class="phone"><a href="tel:(501) 282-6492">(501) 282-6492</a></span><span class="phone"><a href="tel:(318) 582-9688">(318) 582-9688</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Landscaping &amp; Lawn</span><span class="trade">Cleaning</span></div>
+          <div class="excerpt">"❄️ Daños por tormenta y limpieza de propiedades
+Árboles caídos, ramas rotas y cualquier tipo de limpieza
+Servicio rápido, profesional y confiable
+📞 Llame o mande texto al 318-582-9688" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4543175872581320/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Owner at Louisiana Outdoor Pros</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">JA</div>
+        <div class="head-body">
+          <div class="name">J Alejandro Flores
+            <a href="https://www.facebook.com/jose.florespalomares" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 6 posts</span>
+            <span>💬 6 comments</span>
+            <span>🕒 2026-03-02</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 977-0607">(318) 977-0607</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Labor / Helper</span><span class="trade">Legal Services</span><span class="trade">Restaurant</span><span class="trade">Remodeling</span><span class="trade">Landscaping &amp; Lawn</span></div>
+          <div class="excerpt">"Se solicitan operadores para la industria de los árboles, Licencia Comercial A o B es necesaria. Paga depende de la experiencia." <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4128534437378801/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">MultiTool at Zielies Tree Service</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">AQ</div>
+        <div class="head-body">
+          <div class="name">Alejandro Quinones
+            <a href="https://www.facebook.com/alejandro.quinones.378" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 1 posts</span>
+            <span>💬 7 comments</span>
+            <span>🕒 2026-01-29</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 235-5702">(318) 235-5702</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Hauling &amp; Junk Removal</span><span class="trade">Cleaning</span></div>
+          <div class="excerpt">"Debido a la Tormenta invernal se ocupan gente hombres  con carro para trabajar en la limpieza de restos de árboles escombro de ramas si están interesados mensaje por favor gracias o llamar 318 235 5702  🧊💪🇲🇽" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4547829008782673/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">JR</div>
+        <div class="head-body">
+          <div class="name">Jose Rivera
+            <a href="https://www.facebook.com/profile.php?id=100090538720464" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 97 posts</span>
+            <span>💬 215 comments</span>
+            <span>🕒 2026-04-04</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Translation</span><span class="trade">Driver &amp; Rides</span><span class="trade">Remodeling</span><span class="trade">Labor / Helper</span><span class="trade">Carpentry</span></div>
+          <div class="excerpt">"Limpieza de arboles le ayudamos servicio al momento 💯💯🚙🛻🚧🚧" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4249647085267535/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">College Station, Texas</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">CG</div>
+        <div class="head-body">
+          <div class="name">Carolina Guzmán
+            <a href="https://www.facebook.com/caro.guzq" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 8 posts</span>
+            <span>💬 162 comments</span>
+            <span>🕒 2026-03-06</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Flooring &amp; Tile</span><span class="trade">Remodeling</span><span class="trade">Translation</span><span class="trade">Delivery</span><span class="trade">Photography</span></div>
+          <div class="excerpt">"Los árboles hacen raíces" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3946049645627282/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">CUCS</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">DB</div>
+        <div class="head-body">
+          <div class="name">Danny Burrion
+            <a href="https://www.facebook.com/danny.jimenez.31" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 2 posts</span>
+            <span>💬 9 comments</span>
+            <span>🕒 2025-10-13</span>
+          </div>
+          
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Concrete &amp; Masonry</span></div>
+          <div class="excerpt">"Ocupo un trepador de arboles para 4 días pilas" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4435037310061844/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Business Owner at Jimenez roofing LLc</div>
+        </div>
+      </div>
+    </div><div class="card ">
+      <div class="card-head">
+        <div class="avatar">NU</div>
+        <div class="head-body">
+          <div class="name">NSand Urbina
+            <a href="https://www.facebook.com/nsand.urbina" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">mentioned · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 3 posts</span>
+            <span>💬 5 comments</span>
+            <span>🕒 2026-03-09</span>
+          </div>
+          
+          
+          <div class="excerpt">"Hola buenas noches, estare ocupando dos personas con ganas de trabajar para el sábado en cortar árboles, interesado comunicarce al privado conmigo…" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4548243895407851/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div></div></div>
+
+  <div class="section"><h3>🟡 Seeking Services <span class="count">5</span></h3>
+    <div class="list" id="seek-list"><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">JP</div>
+        <div class="head-body">
+          <div class="name">John Philip
+            <a href="https://www.facebook.com/profile.php?id=61571970404938" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 74 posts</span>
+            <span>💬 28 comments</span>
+            <span>🕒 2026-04-10</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 692-0191">(318) 692-0191</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Electrical</span><span class="trade">Plumbing</span><span class="trade">Remodeling</span><span class="trade">Fencing</span></div>
+          <div class="excerpt">"Estoy buscando una cotización para algunos árboles que necesito cortar" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4188822028016708/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">AO</div>
+        <div class="head-body">
+          <div class="name">Antonio Orozco
+            <a href="https://www.facebook.com/antonio.orozco.220918" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 24 posts</span>
+            <span>💬 43 comments</span>
+            <span>🕒 2026-04-01</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 331-7262">(318) 331-7262</a></span><span class="phone"><a href="tel:(318) 278-5608">(318) 278-5608</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Roofing</span></div>
+          <div class="excerpt">"Buenos días paisanos estoy buscando a alguien que pueda cortar árboles, es para mi patrón el quiere cortar un árbol que está atrás de su casa." <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3650446575187592/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Farmerville, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">SL</div>
+        <div class="head-body">
+          <div class="name">Stacy Lofton
+            <a href="https://www.facebook.com/stacy.robinson.980" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 25 posts</span>
+            <span>💬 14 comments</span>
+            <span>🕒 2023-11-26</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 397-4430">(318) 397-4430</a></span><span class="phone"><a href="tel:(903) 380-8409">(903) 380-8409</a></span></div>
+          <div class="trades"><span style="font-size:.7rem;color:#8b92a3">Also:</span> <span class="trade">Restaurant</span><span class="trade">Plumbing</span><span class="trade">Events &amp; Party</span></div>
+          <div class="excerpt">"Hola, estoy buscando a alguien que pueda recoger hojas de arboles y poner luces de Navidad, de mi casa, este fin de semana. Mándeme mensaje porfavor!" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/3469608106604774/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">West Monroe, Louisiana</div>
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">G</div>
+        <div class="head-body">
+          <div class="name">Guatelinda 
+            <a href="https://www.facebook.com/guatelinda.722723" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 20% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 8 posts</span>
+            <span>💬 1 comments</span>
+            <span>🕒 2026-01-26</span>
+          </div>
+          <div class="phones"><span class="phone"><a href="tel:(318) 417-7418">(318) 417-7418</a></span></div>
+          
+          <div class="excerpt">"Buenos días, si alguien necesita remover árboles ó sacar nieve de su paso escríbanos" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/4544184515813789/" target="_blank">View on FB ↗</a></div>
+          
+        </div>
+      </div>
+    </div><div class="card seek">
+      <div class="card-head">
+        <div class="avatar">JJ</div>
+        <div class="head-body">
+          <div class="name">Jose J Lopez
+            <a href="https://www.facebook.com/josej.lopez.98871" target="_blank" style="font-size:.75rem;margin-left:6px">Facebook ↗</a>
+            <span style="font-size:.7rem;color:#8b92a3;margin-left:8px">🟡 SEEKING · 0% confidence</span>
+          </div>
+          <div class="meta">
+            <span>📝 4 posts</span>
+            <span>💬 4 comments</span>
+            <span>🕒 2022-12-27</span>
+          </div>
+          
+          
+          <div class="excerpt">"Necesito una persona que sepa trepar árboles y cortar las ramas de a rriba.de un árbol" <a href="https://www.facebook.com/groups/westmonore.monroe/posts/2725601454338780/" target="_blank">View on FB ↗</a></div>
+          <div class="bio">Ruston, Louisiana</div>
+        </div>
+      </div>
+    </div></div></div>
+</div>
+<script>
+document.getElementById('q').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.card').forEach(c => {
+    const txt = c.textContent.toLowerCase();
+    c.classList.toggle('hidden', q && txt.indexOf(q) < 0);
+  });
+});
+</script>
+</body></html>
